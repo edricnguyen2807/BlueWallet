@@ -8,7 +8,7 @@ import {
   LAST_UPDATED,
   PREFERRED_CURRENCY_STORAGE_KEY,
   setPreferredCurrency,
-  GROUP_IO_BLUEWALLET,
+  GROUP_ORG_BIGWALLET,
 } from '../../blue_modules/currency';
 import { FiatUnit } from '../../models/fiatUnit';
 
@@ -16,7 +16,7 @@ jest.setTimeout(90 * 1000);
 
 describe('currency', () => {
   beforeAll(async () => {
-    await DefaultPreference.setName(GROUP_IO_BLUEWALLET);
+    await DefaultPreference.setName(GROUP_ORG_BIGWALLET);
   });
 
   afterEach(async () => {

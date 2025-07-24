@@ -1,4 +1,4 @@
-package io.bluewallet.bluewallet
+package org.bigcoinwallet.bigwallet
 
 import android.util.Log
 import java.text.NumberFormat

@@ -8,7 +8,7 @@ import { sha256 as _sha256 } from '@noble/hashes/sha256';
 import { LegacyWallet, SegwitBech32Wallet, SegwitP2SHWallet, TaprootWallet } from '../class';
 import presentAlert from '../components/Alert';
 import loc from '../loc';
-import { GROUP_IO_BLUEWALLET } from './currency';
+import { GROUP_ORG_BIGWALLET } from './currency';
 import { ElectrumServerItem } from '../screen/settings/ElectrumSettings';
 import { triggerWarningHapticFeedback } from './hapticFeedback';
 import { AlertButton } from 'react-native';
@@ -83,14 +83,15 @@ export const ELECTRUM_SSL_PORT = 'electrum_ssl_port';
 export const ELECTRUM_SERVER_HISTORY = 'electrum_server_history';
 const ELECTRUM_CONNECTION_DISABLED = 'electrum_disabled';
 const storageKey = 'ELECTRUM_PEERS';
-const defaultPeer = { host: 'electrum1.bluewallet.io', ssl: 443 };
+// const defaultPeer = { host: 'electrum1.bluewallet.io', ssl: 443 };
+const defaultPeer = { host: '8.219.145.96',tcp: 50001 };
 export const hardcodedPeers: Peer[] = [
-  { host: 'mainnet.foundationdevices.com', ssl: 50002 },
+  { host: '8.219.145.96', tcp: 50001},
   // { host: 'bitcoin.lukechilds.co', ssl: 50002 },
   // { host: 'electrum.jochen-hoenicke.de', ssl: '50006' },
-  { host: 'electrum1.bluewallet.io', ssl: 443 },
-  { host: 'electrum.acinq.co', ssl: 50002 },
-  { host: 'electrum.bitaroo.net', ssl: 50002 },
+  // { host: 'electrum1.bluewallet.io', ssl: 443 },
+  // { host: 'electrum.acinq.co', ssl: 50002 },
+  // { host: 'electrum.bitaroo.net', ssl: 50002 },
 ];
 
 export const suggestedServers: Peer[] = hardcodedPeers.map(peer => ({
@@ -145,7 +146,7 @@ async function _getRealm() {
 
 export const getPreferredServer = async (): Promise<ElectrumServerItem | undefined> => {
   try {
-    await DefaultPreference.setName(GROUP_IO_BLUEWALLET);
+    await DefaultPreference.setName(GROUP_ORG_BIGWALLET);
     const host = (await DefaultPreference.get(ELECTRUM_HOST)) as string;
     const tcpPort = await DefaultPreference.get(ELECTRUM_TCP_PORT);
     const sslPort = await DefaultPreference.get(ELECTRUM_SSL_PORT);
@@ -170,7 +171,7 @@ export const getPreferredServer = async (): Promise<ElectrumServerItem | undefin
 
 export const removePreferredServer = async () => {
   try {
-    await DefaultPreference.setName(GROUP_IO_BLUEWALLET);
+    await DefaultPreference.setName(GROUP_ORG_BIGWALLET);
     console.log('Removing preferred server');
     await DefaultPreference.clear(ELECTRUM_HOST);
     await DefaultPreference.clear(ELECTRUM_TCP_PORT);
@@ -183,7 +184,7 @@ export const removePreferredServer = async () => {
 export async function isDisabled(): Promise<boolean> {
   let result;
   try {
-    await DefaultPreference.setName(GROUP_IO_BLUEWALLET);
+    await DefaultPreference.setName(GROUP_ORG_BIGWALLET);
     const savedValue = await DefaultPreference.get(ELECTRUM_CONNECTION_DISABLED);
     console.log('Getting Electrum connection disabled state:', savedValue);
     if (savedValue === null) {
@@ -199,7 +200,7 @@ export async function isDisabled(): Promise<boolean> {
 }
 
 export async function setDisabled(disabled = true) {
-  await DefaultPreference.setName(GROUP_IO_BLUEWALLET);
+  await DefaultPreference.setName(GROUP_ORG_BIGWALLET);
   console.log('Setting Electrum connection disabled state to:', disabled);
   return DefaultPreference.set(ELECTRUM_CONNECTION_DISABLED, disabled ? '1' : '');
 }
@@ -220,7 +221,7 @@ function getNextPeer() {
 
 async function getSavedPeer(): Promise<Peer | null> {
   try {
-    await DefaultPreference.setName(GROUP_IO_BLUEWALLET);
+    await DefaultPreference.setName(GROUP_ORG_BIGWALLET);
     const host = (await DefaultPreference.get(ELECTRUM_HOST)) as string;
     const tcpPort = await DefaultPreference.get(ELECTRUM_TCP_PORT);
     const sslPort = await DefaultPreference.get(ELECTRUM_SSL_PORT);
@@ -351,7 +352,7 @@ export async function presentResetToDefaultsAlert(): Promise<boolean> {
         text: loc.settings.electrum_reset,
         onPress: async () => {
           try {
-            await DefaultPreference.setName(GROUP_IO_BLUEWALLET);
+            await DefaultPreference.setName(GROUP_ORG_BIGWALLET);
             await DefaultPreference.clear(ELECTRUM_HOST);
             await DefaultPreference.clear(ELECTRUM_SSL_PORT);
             await DefaultPreference.clear(ELECTRUM_TCP_PORT);
@@ -369,7 +370,7 @@ export async function presentResetToDefaultsAlert(): Promise<boolean> {
         text: loc.settings.electrum_reset_to_default_and_clear_history,
         onPress: async () => {
           try {
-            await DefaultPreference.setName(GROUP_IO_BLUEWALLET);
+            await DefaultPreference.setName(GROUP_ORG_BIGWALLET);
             await DefaultPreference.clear(ELECTRUM_SERVER_HISTORY);
             await DefaultPreference.clear(ELECTRUM_HOST);
             await DefaultPreference.clear(ELECTRUM_SSL_PORT);

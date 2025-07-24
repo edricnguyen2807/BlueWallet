@@ -1,4 +1,4 @@
-package io.bluewallet.bluewallet
+package org.bigcoinwallet.bigwallet
 
 import android.content.Context
 import android.util.Log
