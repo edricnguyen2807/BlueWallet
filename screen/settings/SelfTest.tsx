@@ -4,8 +4,6 @@ import * as bip39 from 'bip39';
 import * as bitcoin from 'bitcoinjs-lib';
 import React, { Component } from 'react';
 import { Linking, ScrollView, StyleSheet, View } from 'react-native';
-// @ts-ignore theres no type declaration for this
-import BlueCrypto from 'react-native-blue-crypto';
 import wif from 'wif';
 
 import * as BlueElectrum from '../../blue_modules/BlueElectrum';
@@ -286,13 +284,6 @@ export default class SelfTest extends Component {
         if (hd4.getTransactions().length !== 4) throw new Error('Could not fetch HD Bech32 transactions');
       } else {
         // skipping RN-specific test
-      }
-
-      // BlueCrypto test
-      if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
-        const hex = await BlueCrypto.scrypt('717765727479', '4749345a22b23cf3', 64, 8, 8, 32); // using non-default parameters to speed it up (not-bip38 compliant)
-        if (hex.toUpperCase() !== 'F36AB2DC12377C788D61E6770126D8A01028C8F6D8FE01871CE0489A1F696A90')
-          throw new Error('react-native-blue-crypto is not ok');
       }
 
       // bip38 test
