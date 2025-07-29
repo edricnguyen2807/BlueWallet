@@ -145,7 +145,10 @@ const DrawerList: React.FC<DrawerContentComponentProps> = memo(props => {
                 const WALLET_CARD_HEIGHT = 195;
                 const scrollPosition = walletIndex * WALLET_CARD_HEIGHT;
 
-                scrollViewRef.current.scrollTo({ y: scrollPosition, animated: true });
+                scrollViewRef.current.scrollTo({
+                  y: scrollPosition,
+                  animated: true,
+                });
               }
             }
           }, 700);

@@ -48,7 +48,9 @@ const NotificationSettings: React.FC = () => {
       borderBottomColor: colors.formBorder,
       backgroundColor: colors.inputBackgroundColor,
     },
-    buttonStyles: { flexDirection: direction === 'rtl' ? 'row-reverse' : 'row' },
+    buttonStyles: {
+      flexDirection: direction === 'rtl' ? 'row-reverse' : 'row',
+    },
   });
   const handleTap = () => {
     setTapCount(prevCount => prevCount + 1);
@@ -202,7 +204,11 @@ const NotificationSettings: React.FC = () => {
         subtitle={loc.notifications.notifications_subtitle}
         disabled={isLoading}
         isLoading={isNotificationsEnabledState === undefined}
-        switch={{ onValueChange: onNotificationsSwitch, value: isNotificationsEnabledState, testID: 'NotificationsSwitch' }}
+        switch={{
+          onValueChange: onNotificationsSwitch,
+          value: isNotificationsEnabledState,
+          testID: 'NotificationsSwitch',
+        }}
       />
 
       <Pressable onPress={handleTap}>

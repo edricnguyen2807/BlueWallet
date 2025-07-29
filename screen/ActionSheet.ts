@@ -21,7 +21,9 @@ export default class ActionSheet {
         };
       });
 
-      Alert.alert(options.title || '', options.message || '', alertOptions, { cancelable: !!options.cancelButtonIndex });
+      Alert.alert(options.title || '', options.message || '', alertOptions, {
+        cancelable: !!options.cancelButtonIndex,
+      });
     });
   }
 }

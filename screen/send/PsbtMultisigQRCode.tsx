@@ -1,5 +1,5 @@
 import { RouteProp, StackActions, useIsFocused, useRoute } from '@react-navigation/native';
-import * as bitcoin from 'bitcoinjs-lib';
+import * as bigcoin from 'bigcoinjs-lib';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, ScrollView, StyleSheet, View } from 'react-native';
 import presentAlert from '../../components/Alert';
@@ -29,7 +29,7 @@ const PsbtMultisigQRCode: React.FC = () => {
   const dynamicQRCode = useRef<DynamicQRCode>(null);
   const isFocused = useIsFocused();
 
-  const psbt = bitcoin.Psbt.fromBase64(psbtBase64);
+  const psbt = bigcoin.Psbt.fromBase64(psbtBase64);
   const stylesHook = StyleSheet.create({
     root: {
       backgroundColor: colors.elevated,
@@ -57,7 +57,9 @@ const PsbtMultisigQRCode: React.FC = () => {
       const data = result.data || '';
 
       if (data.toUpperCase().startsWith('UR')) {
-        presentAlert({ message: 'BC-UR not decoded. This should never happen' });
+        presentAlert({
+          message: 'BC-UR not decoded. This should never happen',
+        });
       } else if (data.indexOf('+') === -1 && data.indexOf('=') === -1) {
         presentAlert({ message: loc.wallets.import_error });
         // this looks like NOT base64, so maybe its transaction's hex

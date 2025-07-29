@@ -89,7 +89,12 @@ const reducer = (state: State, action: { type: ActionType; payload?: any }): Sta
     case ActionType.SetIntervalMs:
       return { ...state, intervalMs: action.payload };
     case ActionType.SetAllButtonStatus:
-      return { ...state, isCPFPPossible: action.payload, isRBFBumpFeePossible: action.payload, isRBFCancelPossible: action.payload };
+      return {
+        ...state,
+        isCPFPPossible: action.payload,
+        isRBFBumpFeePossible: action.payload,
+        isRBFCancelPossible: action.payload,
+      };
     case ActionType.SetWallet:
       return { ...state, wallet: action.payload };
     case ActionType.SetLoadingError:
@@ -271,7 +276,9 @@ const TransactionStatus: React.FC<TransactionStatusProps> = ({ transaction, txid
           setEta('');
           if (tx) {
             setTX((prevState: any) => {
-              return Object.assign({}, prevState, { confirmations: txFromElectrum.confirmations });
+              return Object.assign({}, prevState, {
+                confirmations: txFromElectrum.confirmations,
+              });
             });
           } else {
             console.error('Cannot set confirmations: tx is undefined.');

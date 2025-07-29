@@ -33,7 +33,10 @@ const Currency: React.FC = () => {
   const { setPreferredFiatCurrencyStorage } = useSettings();
   const [isSavingNewPreferredCurrency, setIsSavingNewPreferredCurrency] = useState<FiatUnitType | undefined>();
   const [selectedCurrency, setSelectedCurrency] = useState<FiatUnitType>(FiatUnit.USD);
-  const [currencyRate, setCurrencyRate] = useState<CurrencyRate>({ LastUpdated: null, Rate: null });
+  const [currencyRate, setCurrencyRate] = useState<CurrencyRate>({
+    LastUpdated: null,
+    Rate: null,
+  });
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const { colors } = useTheme();
   const { setOptions } = useExtendedNavigation();

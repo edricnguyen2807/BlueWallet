@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { Psbt } from 'bitcoinjs-lib';
+import { Psbt } from 'bigcoinjs-lib';
 
 import { BlueURDecoder, clearUseURv1, decodeUR, encodeUR, extractSingleWorkload, setUseURv1 } from '../../blue_modules/ur';
 import { WatchOnlyWallet } from '../../class';
@@ -133,7 +133,12 @@ describe('Watch only wallet', () => {
     ];
     // hardcoding utxo so we wont have to call w.fetchUtxo() and w.getUtxo()
 
-    const { psbt } = w.createTransaction(utxos, [{ address: 'bc1qcr8te4kr609gcawutmrza0j4xv80jy8z306fyu', value: 5000 }], 1, changeAddress);
+    const { psbt } = w.createTransaction(
+      utxos,
+      [{ address: 'bgc1qm9wpa7m3yyvg9xnch6h2jx9z3vclhpqwxthx9q', value: 5000 }],
+      1,
+      changeAddress,
+    );
 
     assert.strictEqual(
       psbt.toBase64(),
@@ -318,7 +323,7 @@ describe('Watch only wallet', () => {
       'zpub6rutAggZJCvkgZg3BAqNGAxCkx1khxCE6g6jyJugMfZ1zgkVdUWSdnzSRpWX1GYVZXCpQFS87BUsvgXXJBpsJVroiHbu4Js2TY69zbWcTNb',
     );
 
-    assert.strictEqual(w._getExternalAddressByIndex(0), 'bc1q68y6r45k4kvxe42xl37dgjueg2suqwnh4ze0sr');
+    assert.strictEqual(w._getExternalAddressByIndex(0), 'bgc1q68y6r45k4kvxe42xl37dgjueg2suqwnh720gje');
 
     assert.ok(!w.useWithHardwareWalletEnabled());
   });
@@ -342,7 +347,7 @@ describe('Watch only wallet', () => {
     assert.strictEqual(w.getMasterFingerprintHex(), '3c7f1a52');
     assert.strictEqual(w.getDerivationPath(), "m/84'/0'/0'");
 
-    assert.strictEqual(w._getExternalAddressByIndex(0), 'bc1qr0y5c96xtfeulnzxnjl086f2njcmf8qmhenvpp');
+    assert.strictEqual(w._getExternalAddressByIndex(0), 'bgc1qr0y5c96xtfeulnzxnjl086f2njcmf8qmu39trm');
 
     assert.strictEqual(
       w.getSecret(),
@@ -419,7 +424,12 @@ describe('Watch only wallet', () => {
 
     const changeAddress = '3DrZBgntD8kBBbuKLJtPVAeGT75BMC7NxU';
 
-    const { psbt } = w.createTransaction(utxos, [{ address: 'bc1qcr8te4kr609gcawutmrza0j4xv80jy8z306fyu', value: 5000 }], 1, changeAddress);
+    const { psbt } = w.createTransaction(
+      utxos,
+      [{ address: 'bgc1qm9wpa7m3yyvg9xnch6h2jx9z3vclhpqwxthx9q', value: 5000 }],
+      1,
+      changeAddress,
+    );
 
     assert.strictEqual(
       psbt.data.outputs[1].bip32Derivation[0].pubkey.toString('hex'),
@@ -437,7 +447,7 @@ describe('Watch only wallet', () => {
 
     const { psbt: psbt2 } = await w.createTransaction(
       utxos,
-      [{ address: 'bc1qcr8te4kr609gcawutmrza0j4xv80jy8z306fyu', value: 5000 }],
+      [{ address: 'bgc1qm9wpa7m3yyvg9xnch6h2jx9z3vclhpqwxthx9q', value: 5000 }],
       1,
       changeAddress,
     );

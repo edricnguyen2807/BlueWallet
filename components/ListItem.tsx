@@ -47,7 +47,10 @@ export class TouchableOpacityWrapper extends React.Component {
 }
 
 // Define Swipeable Button Components
-const DefaultRightContent: React.FC<{ reset: () => void; onDeletePressed?: () => void }> = ({ reset, onDeletePressed }) => (
+const DefaultRightContent: React.FC<{
+  reset: () => void;
+  onDeletePressed?: () => void;
+}> = ({ reset, onDeletePressed }) => (
   <Button
     title="Delete"
     onPress={() => {
@@ -154,7 +157,13 @@ const ListItem: React.FC<ListItemProps> = React.memo(
           <ActivityIndicator />
         ) : (
           <>
-            {chevron && <RNElementsListItem.Chevron iconStyle={{ transform: [{ scaleX: direction === 'rtl' ? -1 : 1 }] }} />}
+            {chevron && (
+              <RNElementsListItem.Chevron
+                iconStyle={{
+                  transform: [{ scaleX: direction === 'rtl' ? -1 : 1 }],
+                }}
+              />
+            )}
             {rightIcon && <Avatar icon={rightIcon} />}
             {switchProps && (
               <Switch {...memoizedSwitchProps} accessibilityLabel={title} style={styles.margin16} accessible accessibilityRole="switch" />

@@ -81,21 +81,49 @@ const icons = {
   RemoveAllRecipients: { iconValue: 'person.2.slash' },
   AddRecipient: { iconValue: 'person.badge.plus' },
   RemoveRecipient: { iconValue: 'person.badge.minus' },
-  ScanQR: { iconValue: Platform.OS === 'ios' ? 'qrcode.viewfinder' : 'ic_menu_camera' },
-  ChoosePhoto: { iconValue: Platform.OS === 'ios' ? 'photo.on.rectangle' : 'ic_menu_gallery' },
-  Clipboard: { iconValue: Platform.OS === 'ios' ? 'document.on.clipboard' : 'ic_menu_file' },
-  ExportPrivateKey: { iconValue: Platform.OS === 'ios' ? 'key' : 'ic_lock_idle_lock' },
-  Share: { iconValue: Platform.OS === 'ios' ? 'square.and.arrow.up' : 'ic_menu_share' },
-  Signature: { iconValue: Platform.OS === 'ios' ? 'signature' : 'ic_menu_edit' },
-  PasteFromClipboard: { iconValue: Platform.OS === 'ios' ? 'document.on.clipboard' : 'ic_menu_paste' },
-  ImportFile: { iconValue: Platform.OS === 'ios' ? 'document.viewfinder' : 'ic_menu_upload' },
-  Hide: { iconValue: Platform.OS === 'ios' ? 'eye.slash' : 'ic_menu_close_clear_cancel' },
-  ClearClipboard: { iconValue: Platform.OS === 'ios' ? 'clipboard' : 'ic_menu_delete' },
-  SortASC: { iconValue: Platform.OS === 'ios' ? 'arrow.down.to.line' : 'ic_menu_sort_alphabetically' },
-  SortDESC: { iconValue: Platform.OS === 'ios' ? 'arrow.up.to.line' : 'ic_menu_sort_by_size' },
-  SaveFile: { iconValue: Platform.OS === 'ios' ? 'square.and.arrow.down' : 'ic_menu_save' },
+  ScanQR: {
+    iconValue: Platform.OS === 'ios' ? 'qrcode.viewfinder' : 'ic_menu_camera',
+  },
+  ChoosePhoto: {
+    iconValue: Platform.OS === 'ios' ? 'photo.on.rectangle' : 'ic_menu_gallery',
+  },
+  Clipboard: {
+    iconValue: Platform.OS === 'ios' ? 'document.on.clipboard' : 'ic_menu_file',
+  },
+  ExportPrivateKey: {
+    iconValue: Platform.OS === 'ios' ? 'key' : 'ic_lock_idle_lock',
+  },
+  Share: {
+    iconValue: Platform.OS === 'ios' ? 'square.and.arrow.up' : 'ic_menu_share',
+  },
+  Signature: {
+    iconValue: Platform.OS === 'ios' ? 'signature' : 'ic_menu_edit',
+  },
+  PasteFromClipboard: {
+    iconValue: Platform.OS === 'ios' ? 'document.on.clipboard' : 'ic_menu_paste',
+  },
+  ImportFile: {
+    iconValue: Platform.OS === 'ios' ? 'document.viewfinder' : 'ic_menu_upload',
+  },
+  Hide: {
+    iconValue: Platform.OS === 'ios' ? 'eye.slash' : 'ic_menu_close_clear_cancel',
+  },
+  ClearClipboard: {
+    iconValue: Platform.OS === 'ios' ? 'clipboard' : 'ic_menu_delete',
+  },
+  SortASC: {
+    iconValue: Platform.OS === 'ios' ? 'arrow.down.to.line' : 'ic_menu_sort_alphabetically',
+  },
+  SortDESC: {
+    iconValue: Platform.OS === 'ios' ? 'arrow.up.to.line' : 'ic_menu_sort_by_size',
+  },
+  SaveFile: {
+    iconValue: Platform.OS === 'ios' ? 'square.and.arrow.down' : 'ic_menu_save',
+  },
   Delete: { iconValue: Platform.OS === 'ios' ? 'trash' : 'ic_menu_delete' },
-  Details: { iconValue: Platform.OS === 'ios' ? 'info.circle' : 'ic_menu_info_details' },
+  Details: {
+    iconValue: Platform.OS === 'ios' ? 'info.circle' : 'ic_menu_info_details',
+  },
 } as const;
 
 export type ToolTipAction = {

@@ -14,11 +14,46 @@ jest.mock('../../blue_modules/BlueElectrum', () => {
 });
 
 const mockAddressesList = [
-  { index: 2, isInternal: false, key: 'third_external_address', address: '', balance: 0, transactions: 0 },
-  { index: 0, isInternal: true, key: 'first_internal_address', address: '', balance: 0, transactions: 0 },
-  { index: 1, isInternal: false, key: 'second_external_address', address: '', balance: 0, transactions: 0 },
-  { index: 1, isInternal: true, key: 'second_internal_address', address: '', balance: 0, transactions: 0 },
-  { index: 0, isInternal: false, key: 'first_external_address', address: '', balance: 0, transactions: 0 },
+  {
+    index: 2,
+    isInternal: false,
+    key: 'third_external_address',
+    address: '',
+    balance: 0,
+    transactions: 0,
+  },
+  {
+    index: 0,
+    isInternal: true,
+    key: 'first_internal_address',
+    address: '',
+    balance: 0,
+    transactions: 0,
+  },
+  {
+    index: 1,
+    isInternal: false,
+    key: 'second_external_address',
+    address: '',
+    balance: 0,
+    transactions: 0,
+  },
+  {
+    index: 1,
+    isInternal: true,
+    key: 'second_internal_address',
+    address: '',
+    balance: 0,
+    transactions: 0,
+  },
+  {
+    index: 0,
+    isInternal: false,
+    key: 'first_external_address',
+    address: '',
+    balance: 0,
+    transactions: 0,
+  },
 ];
 
 describe('Addresses', () => {

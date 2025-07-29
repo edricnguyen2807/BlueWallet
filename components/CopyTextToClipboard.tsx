@@ -64,5 +64,9 @@ const CopyTextToClipboard = forwardRef<React.ElementRef<typeof TouchableOpacity>
 export default CopyTextToClipboard;
 
 const styles = StyleSheet.create({
-  container: { justifyContent: 'center', alignItems: 'center', paddingHorizontal: 16 },
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+  },
 });

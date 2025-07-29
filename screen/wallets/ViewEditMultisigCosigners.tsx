@@ -74,7 +74,15 @@ const ViewEditMultisigCosigners: React.FC = () => {
   const [exportString, setExportString] = useState('{}'); // used in exportCosigner()
   const [exportStringURv2, setExportStringURv2] = useState(''); // used in QR
   const [exportFilename, setExportFilename] = useState('bw-cosigner.json');
-  const [vaultKeyData, setVaultKeyData] = useState({ keyIndex: 1, xpub: '', seed: '', passphrase: '', path: '', fp: '', isLoading: false }); // string rendered in modal
+  const [vaultKeyData, setVaultKeyData] = useState({
+    keyIndex: 1,
+    xpub: '',
+    seed: '',
+    passphrase: '',
+    path: '',
+    fp: '',
+    isLoading: false,
+  }); // string rendered in modal
   const [isVaultKeyIndexDataLoading, setIsVaultKeyIndexDataLoading] = useState<number | undefined>(undefined);
   const [askPassphrase, setAskPassphrase] = useState(false);
   const [walletData, setWalletData] = useState<TWallet[]>([]);
@@ -226,7 +234,9 @@ const ViewEditMultisigCosigners: React.FC = () => {
             </View>
             <View style={styles.vaultKeyTextWrapper}>
               <Text style={[styles.vaultKeyText, stylesHook.vaultKeyText]}>
-                {loc.formatString(loc.multisig.vault_key, { number: vaultKeyData.keyIndex })}
+                {loc.formatString(loc.multisig.vault_key, {
+                  number: vaultKeyData.keyIndex,
+                })}
               </Text>
             </View>
           </View>
@@ -305,7 +315,9 @@ const ViewEditMultisigCosigners: React.FC = () => {
       <View>
         <MultipleStepsListItem
           checked
-          leftText={loc.formatString(loc.multisig.vault_key, { number: el.index + 1 })}
+          leftText={loc.formatString(loc.multisig.vault_key, {
+            number: el.index + 1,
+          })}
           dashes={el.index === length - 1 ? MultipleStepsListItemDashType.Bottom : MultipleStepsListItemDashType.TopAndBottom}
         />
 
@@ -327,7 +339,9 @@ const ViewEditMultisigCosigners: React.FC = () => {
                       const fp = wallet.getFingerprint(keyIndex);
                       const path = wallet.getCustomDerivationPathForCosigner(keyIndex);
                       if (!path) {
-                        presentAlert({ message: 'Cannot find derivation path for this cosigner' });
+                        presentAlert({
+                          message: 'Cannot find derivation path for this cosigner',
+                        });
                         return;
                       }
                       setVaultKeyData({
@@ -393,7 +407,9 @@ const ViewEditMultisigCosigners: React.FC = () => {
                       const fp = wallet.getFingerprint(keyIndex);
                       const path = wallet.getCustomDerivationPathForCosigner(keyIndex);
                       if (!path) {
-                        presentAlert({ message: 'Cannot find derivation path for this cosigner' });
+                        presentAlert({
+                          message: 'Cannot find derivation path for this cosigner',
+                        });
                         return;
                       }
                       const xpub = wallet.convertXpubToMultisignatureXpub(MultisigHDWallet.seedToXpub(seed, path, passphrase));
@@ -641,8 +657,12 @@ const ViewEditMultisigCosigners: React.FC = () => {
       <View>
         <BlueSpacing20 />
         <Text style={[styles.tipKeys, stylesHook.tipKeys]}>
-          {loc.formatString(loc.multisig.signatures_required_to_spend, { number: howMany })}
-          {loc.formatString(loc.multisig.signatures_we_can_make, { number: andHere })}
+          {loc.formatString(loc.multisig.signatures_required_to_spend, {
+            number: howMany,
+          })}
+          {loc.formatString(loc.multisig.signatures_we_can_make, {
+            number: andHere,
+          })}
         </Text>
         <BlueSpacing10 />
         <BlueSpacing20 />
@@ -683,7 +703,11 @@ const styles = StyleSheet.create({
   itemKeyUnprovidedWrapper: { flexDirection: 'row', paddingTop: 22 },
   textDestination: { fontWeight: '600' },
   vaultKeyText: { fontSize: 18, fontWeight: 'bold' },
-  vaultKeyTextWrapper: { justifyContent: 'center', alignItems: 'center', paddingLeft: 16 },
+  vaultKeyTextWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingLeft: 16,
+  },
   newKeyModalContent: {
     paddingHorizontal: 22,
     minHeight: 350,
@@ -725,7 +749,14 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
 
-  askPassprase: { top: 0, left: 0, justifyContent: 'center', width: 33, height: 33, borderRadius: 33 / 2 },
+  askPassprase: {
+    top: 0,
+    left: 0,
+    justifyContent: 'center',
+    width: 33,
+    height: 33,
+    borderRadius: 33 / 2,
+  },
 });
 
 export default ViewEditMultisigCosigners;

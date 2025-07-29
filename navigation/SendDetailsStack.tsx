@@ -32,7 +32,13 @@ const SendDetailsStack = () => {
   );
 
   return (
-    <Stack.Navigator initialRouteName="SendDetails" screenOptions={{ headerShadowVisible: false, fullScreenGestureEnabled: false }}>
+    <Stack.Navigator
+      initialRouteName="SendDetails"
+      screenOptions={{
+        headerShadowVisible: false,
+        fullScreenGestureEnabled: false,
+      }}
+    >
       <Stack.Screen
         name="SendDetails"
         component={SendDetailsComponent}
@@ -41,7 +47,11 @@ const SendDetailsStack = () => {
           statusBarStyle: 'light',
           closeButtonPosition: CloseButtonPosition.Left,
         })(theme)}
-        initialParams={{ isEditable: true, feeUnit: BitcoinUnit.BTC, amountUnit: BitcoinUnit.BTC }} // Correctly typed now
+        initialParams={{
+          isEditable: true,
+          feeUnit: BitcoinUnit.BTC,
+          amountUnit: BitcoinUnit.BTC,
+        }} // Correctly typed now
       />
       <Stack.Screen
         name="SelectFee"
@@ -56,12 +66,19 @@ const SendDetailsStack = () => {
       <Stack.Screen
         name="Confirm"
         component={ConfirmComponent}
-        options={navigationStyle({ title: loc.send.confirm_header, headerRight: () => DetailsButton })(theme)}
+        options={navigationStyle({
+          title: loc.send.confirm_header,
+          headerRight: () => DetailsButton,
+        })(theme)}
       />
       <Stack.Screen
         name="PsbtWithHardwareWallet"
         component={PsbtWithHardwareWalletComponent}
-        options={navigationStyle({ title: loc.send.header, gestureEnabled: false, fullScreenGestureEnabled: false })(theme)}
+        options={navigationStyle({
+          title: loc.send.header,
+          gestureEnabled: false,
+          fullScreenGestureEnabled: false,
+        })(theme)}
       />
       <Stack.Screen
         name="CreateTransaction"

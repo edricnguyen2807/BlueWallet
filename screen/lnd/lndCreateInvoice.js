@@ -252,12 +252,18 @@ const LNDCreateInvoice = () => {
             text =
               unit === BitcoinUnit.SATS
                 ? loc.formatString(loc.receive.minSats, { min })
-                : loc.formatString(loc.receive.minSatsFull, { min, currency: formatBalance(min, unit) });
+                : loc.formatString(loc.receive.minSatsFull, {
+                    min,
+                    currency: formatBalance(min, unit),
+                  });
           } else {
             text =
               unit === BitcoinUnit.SATS
                 ? loc.formatString(loc.receive.maxSats, { max })
-                : loc.formatString(loc.receive.maxSatsFull, { max, currency: formatBalance(max, unit) });
+                : loc.formatString(loc.receive.maxSatsFull, {
+                    max,
+                    currency: formatBalance(max, unit),
+                  });
           }
           triggerHapticFeedback(HapticFeedbackTypes.NotificationError);
           presentAlert({ message: text });

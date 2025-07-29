@@ -294,7 +294,10 @@ const postTokenConfig = async () => {
   try {
     const lang = (await AsyncStorage.getItem('lang')) || 'en';
     const appVersion = getSystemName() + ' ' + getSystemVersion() + ';' + getApplicationName() + ' ' + getVersion();
-    console.debug('postTokenConfig: Posting configuration', { lang, appVersion });
+    console.debug('postTokenConfig: Posting configuration', {
+      lang,
+      appVersion,
+    });
 
     await fetch(`${baseURI}/setTokenConfiguration`, {
       method: 'POST',

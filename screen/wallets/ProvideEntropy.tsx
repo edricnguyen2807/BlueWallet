@@ -81,7 +81,12 @@ export const eReducer = (state: TState = initialState, action: TAction): TState 
       if (state.bits === 0) return state;
       const bits = state.items.pop()!;
       const entropy = shiftRight(state.entropy, bits);
-      return { ...state, entropy, bits: state.bits - bits, items: [...state.items] };
+      return {
+        ...state,
+        entropy,
+        bits: state.bits - bits,
+        items: [...state.items],
+      };
     }
 
     case EActionType.limit: {
@@ -348,7 +353,12 @@ const ProvideEntropy = () => {
       <TouchableOpacity accessibilityRole="button" onPress={() => setShow(!show)}>
         <View style={[styles.entropy, stylesHook.entropy]}>
           <Text style={[styles.entropyText, stylesHook.entropyText]}>
-            {show ? hex : loc.formatString(loc.entropy.amountOfEntropy, { bits, limit: entropy.limit })}
+            {show
+              ? hex
+              : loc.formatString(loc.entropy.amountOfEntropy, {
+                  bits,
+                  limit: entropy.limit,
+                })}
           </Text>
         </View>
       </TouchableOpacity>

@@ -1,6 +1,5 @@
 version: 2.1
 jobs:
-
   lint:
     docker:
       - image: cimg/node:22.14.0
@@ -46,7 +45,6 @@ jobs:
       # run tests!
       - run:
           command: npm run unit
-
 
   integration:
     docker:

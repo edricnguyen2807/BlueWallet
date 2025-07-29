@@ -118,7 +118,9 @@ export class BlueApp {
    */
   setItem = (key: string, value: any): Promise<any> => {
     if (isReactNative) {
-      return RNSecureKeyStore.set(key, value, { accessible: ACCESSIBLE.WHEN_UNLOCKED_THIS_DEVICE_ONLY });
+      return RNSecureKeyStore.set(key, value, {
+        accessible: ACCESSIBLE.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
+      });
     } else {
       return AsyncStorage.setItem(key, value);
     }
@@ -630,7 +632,10 @@ export class BlueApp {
   async saveToDisk(): Promise<void> {
     if (savingInProgress) {
       console.warn('saveToDisk is in progress');
-      if (++savingInProgress > 10) presentAlert({ message: 'Critical error. Last actions were not saved' }); // should never happen
+      if (++savingInProgress > 10)
+        presentAlert({
+          message: 'Critical error. Last actions were not saved',
+        }); // should never happen
       await new Promise(resolve => setTimeout(resolve, 1000 * savingInProgress)); // sleep
       return this.saveToDisk();
     }

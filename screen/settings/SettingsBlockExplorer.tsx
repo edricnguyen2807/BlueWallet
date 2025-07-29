@@ -54,7 +54,9 @@ const SettingsBlockExplorer: React.FC = () => {
         setIsCustomEnabled(false);
       } else {
         triggerHapticFeedback(HapticFeedbackTypes.NotificationError);
-        presentAlert({ message: loc.settings.block_explorer_error_saving_custom });
+        presentAlert({
+          message: loc.settings.block_explorer_error_saving_custom,
+        });
       }
     },
     [setBlockExplorerStorage],
@@ -88,7 +90,9 @@ const SettingsBlockExplorer: React.FC = () => {
       triggerHapticFeedback(HapticFeedbackTypes.NotificationSuccess);
     } else {
       triggerHapticFeedback(HapticFeedbackTypes.NotificationError);
-      presentAlert({ message: loc.settings.block_explorer_error_saving_custom });
+      presentAlert({
+        message: loc.settings.block_explorer_error_saving_custom,
+      });
     }
     setIsSubmitting(false);
   }, [customUrl, setBlockExplorerStorage, isSubmitting]);
@@ -108,7 +112,9 @@ const SettingsBlockExplorer: React.FC = () => {
         } else {
           triggerHapticFeedback(HapticFeedbackTypes.NotificationError);
           if (!isSubmitting) {
-            presentAlert({ message: loc.settings.block_explorer_error_saving_custom });
+            presentAlert({
+              message: loc.settings.block_explorer_error_saving_custom,
+            });
           }
         }
       }
@@ -125,7 +131,9 @@ const SettingsBlockExplorer: React.FC = () => {
             const success = await setBlockExplorerStorage(BLOCK_EXPLORERS.default);
             if (!success) {
               triggerHapticFeedback(HapticFeedbackTypes.NotificationError);
-              presentAlert({ message: loc.settings.block_explorer_error_saving_custom });
+              presentAlert({
+                message: loc.settings.block_explorer_error_saving_custom,
+              });
             }
           })();
         }

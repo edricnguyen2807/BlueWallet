@@ -8,7 +8,9 @@ import presentAlert from '../components/Alert';
 import { useStorage } from './context/useStorage';
 
 const STORAGEKEY = 'Biometrics';
-const rnBiometrics = new ReactNativeBiometrics({ allowDeviceCredentials: true });
+const rnBiometrics = new ReactNativeBiometrics({
+  allowDeviceCredentials: true,
+});
 
 const FaceID = 'Face ID';
 const TouchID = 'Touch ID';
@@ -23,10 +25,14 @@ const clearKeychain = async () => {
     });
     console.debug('Wiped key: data');
     console.debug('Wiping key: data_encrypted');
-    await RNSecureKeyStore.set('data_encrypted', '', { accessible: ACCESSIBLE.WHEN_UNLOCKED_THIS_DEVICE_ONLY });
+    await RNSecureKeyStore.set('data_encrypted', '', {
+      accessible: ACCESSIBLE.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
+    });
     console.debug('Wiped key: data_encrypted');
     console.debug('Wiping key: STORAGEKEY');
-    await RNSecureKeyStore.set(STORAGEKEY, '', { accessible: ACCESSIBLE.WHEN_UNLOCKED_THIS_DEVICE_ONLY });
+    await RNSecureKeyStore.set(STORAGEKEY, '', {
+      accessible: ACCESSIBLE.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
+    });
     console.debug('Wiped key: STORAGEKEY');
     NavigationService.reset();
   } catch (error: any) {

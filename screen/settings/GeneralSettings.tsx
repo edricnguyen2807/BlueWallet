@@ -56,7 +56,10 @@ const GeneralSettings: React.FC = () => {
           <ListItem
             title={loc.settings.general_continuity}
             Component={PressableWrapper}
-            switch={{ onValueChange: onHandOffUseEnabledChange, value: isHandOffUseEnabled }}
+            switch={{
+              onValueChange: onHandOffUseEnabledChange,
+              value: isHandOffUseEnabled,
+            }}
             subtitle={loc.settings.general_continuity_e}
           />
         </>
@@ -64,7 +67,10 @@ const GeneralSettings: React.FC = () => {
       <ListItem
         Component={PressableWrapper}
         title="Legacy URv1 QR"
-        switch={{ onValueChange: setIsLegacyURv1EnabledStorage, value: isLegacyURv1Enabled }}
+        switch={{
+          onValueChange: setIsLegacyURv1EnabledStorage,
+          value: isLegacyURv1Enabled,
+        }}
       />
       <BlueSpacing20 />
     </SafeAreaScrollView>

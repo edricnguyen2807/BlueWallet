@@ -17,7 +17,10 @@ const triggerHapticFeedback = (type: HapticFeedbackTypes) => {
   if (isDesktop) return;
   DeviceInfo.getPowerState().then((state: Partial<PowerState>) => {
     if (!state.lowPowerMode) {
-      ReactNativeHapticFeedback.trigger(type, { ignoreAndroidSystemSettings: false, enableVibrateFallback: true });
+      ReactNativeHapticFeedback.trigger(type, {
+        ignoreAndroidSystemSettings: false,
+        enableVibrateFallback: true,
+      });
     } else {
       console.log('Haptic feedback not triggered due to low power mode.');
     }

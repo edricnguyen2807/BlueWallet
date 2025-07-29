@@ -12,9 +12,14 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "module": "esnext",
-    "paths": {
-    }
+    "paths": {}
   },
   "extends": "@react-native/typescript-config/tsconfig.json",
-  "exclude": ["node_modules", "babel.config.js", "jest.config.js", "components/react-native-draggable-flatlist", "scripts/maccatalystpatches"],
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "jest.config.js",
+    "components/react-native-draggable-flatlist",
+    "scripts/maccatalystpatches"
+  ]
 }

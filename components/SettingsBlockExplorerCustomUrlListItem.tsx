@@ -39,7 +39,15 @@ const SettingsBlockExplorerCustomUrlItem: React.FC<SettingsBlockExplorerCustomUr
       </ListItem>
 
       {isCustomEnabled && (
-        <View style={[styles.uriContainer, { borderColor: colors.formBorder, backgroundColor: colors.inputBackgroundColor }]}>
+        <View
+          style={[
+            styles.uriContainer,
+            {
+              borderColor: colors.formBorder,
+              backgroundColor: colors.inputBackgroundColor,
+            },
+          ]}
+        >
           <TextInput
             ref={inputRef}
             value={customUrl}

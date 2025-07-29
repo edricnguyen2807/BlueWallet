@@ -120,7 +120,9 @@ const LnurlAuth = () => {
         <BlueCard>
           <BlueSpacing20 />
           <BlueText style={styles.alignSelfCenter}>
-            {loc.formatString(loc.lnurl_auth.could_not_auth, { hostname: parsedLnurl.hostname })}
+            {loc.formatString(loc.lnurl_auth.could_not_auth, {
+              hostname: parsedLnurl.hostname,
+            })}
           </BlueText>
           <BlueText style={styles.alignSelfCenter}>{errMsg}</BlueText>
           <BlueSpacing20 />

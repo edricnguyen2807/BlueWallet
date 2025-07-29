@@ -271,7 +271,10 @@ const PromptPasswordConfirmationModal = forwardRef<PromptPasswordConfirmationMod
             ) : (
               <Animated.View
                 style={[
-                  { opacity: isVisible ? opacity : fadeOutAnimation, transform: [{ scale: scaleAnimation }] },
+                  {
+                    opacity: isVisible ? opacity : fadeOutAnimation,
+                    transform: [{ scale: scaleAnimation }],
+                  },
                   styles.feeModalFooterSpacing,
                 ]}
               >

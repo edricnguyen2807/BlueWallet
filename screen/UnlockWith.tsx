@@ -27,7 +27,13 @@ const SET_AUTH = 'SET_AUTH';
 const SET_IS_AUTHENTICATING = 'SET_IS_AUTHENTICATING';
 
 type Action =
-  | { type: typeof SET_AUTH; payload: { type: AuthType; detail: keyof typeof BiometricType | undefined } }
+  | {
+      type: typeof SET_AUTH;
+      payload: {
+        type: AuthType;
+        detail: keyof typeof BiometricType | undefined;
+      };
+    }
   | { type: typeof SET_IS_AUTHENTICATING; payload: boolean };
 
 const initialState: State = {
@@ -102,16 +108,28 @@ const UnlockWith: React.FC = () => {
       const biometricType = biometricUseCapableAndEnabled ? deviceBiometricType : undefined;
 
       if (storageIsEncrypted) {
-        dispatch({ type: SET_AUTH, payload: { type: AuthType.Encrypted, detail: undefined } });
+        dispatch({
+          type: SET_AUTH,
+          payload: { type: AuthType.Encrypted, detail: undefined },
+        });
         unlockWithKey();
       } else if (biometricUseCapableAndEnabled) {
-        dispatch({ type: SET_AUTH, payload: { type: AuthType.Biometrics, detail: biometricType } });
+        dispatch({
+          type: SET_AUTH,
+          payload: { type: AuthType.Biometrics, detail: biometricType },
+        });
         unlockUsingBiometrics();
       } else if (biometricsUseEnabled && biometricType === undefined) {
         triggerHapticFeedback(HapticFeedbackTypes.NotificationError);
-        dispatch({ type: SET_AUTH, payload: { type: AuthType.BiometricsUnavailable, detail: undefined } });
+        dispatch({
+          type: SET_AUTH,
+          payload: { type: AuthType.BiometricsUnavailable, detail: undefined },
+        });
       } else {
-        dispatch({ type: SET_AUTH, payload: { type: AuthType.None, detail: undefined } });
+        dispatch({
+          type: SET_AUTH,
+          payload: { type: AuthType.None, detail: undefined },
+        });
         unlockWithKey();
       }
     };

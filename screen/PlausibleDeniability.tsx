@@ -54,7 +54,10 @@ const PlausibleDeniability: React.FC = () => {
 
   const handleOnCreateFakeStorageButtonPressed = async () => {
     dispatch({ type: SET_LOADING, payload: true });
-    dispatch({ type: SET_MODAL_TYPE, payload: MODAL_TYPES.CREATE_FAKE_STORAGE });
+    dispatch({
+      type: SET_MODAL_TYPE,
+      payload: MODAL_TYPES.CREATE_FAKE_STORAGE,
+    });
     await promptRef.current?.present();
   };
 
@@ -63,7 +66,9 @@ const PlausibleDeniability: React.FC = () => {
     const isProvidedPasswordInUse = password === cachedPassword || (await isPasswordInUse(password));
     if (isProvidedPasswordInUse) {
       triggerHapticFeedback(HapticFeedbackTypes.NotificationError);
-      presentAlert({ message: loc.plausibledeniability.password_should_not_match });
+      presentAlert({
+        message: loc.plausibledeniability.password_should_not_match,
+      });
       return false;
     }
 

@@ -98,8 +98,14 @@ export class LightningCustodianWallet extends LegacyWallet {
   async createAccount(isTest: boolean = false) {
     const response = await fetch(this.baseURI + '/create', {
       method: 'POST',
-      body: JSON.stringify({ partnerid: 'bluewallet', accounttype: (isTest && 'test') || 'common' }),
-      headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        partnerid: 'bluewallet',
+        accounttype: (isTest && 'test') || 'common',
+      }),
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      },
     });
     const json = await response.json();
     if (!json) {
@@ -253,7 +259,10 @@ export class LightningCustodianWallet extends LegacyWallet {
     const response = await fetch(this.baseURI + '/auth?type=auth', {
       method: 'POST',
       body: JSON.stringify({ login, password }),
-      headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      },
     });
 
     const json = await response.json();
@@ -301,7 +310,10 @@ export class LightningCustodianWallet extends LegacyWallet {
     const response = await fetch(this.baseURI + '/auth?type=refresh_token', {
       method: 'POST',
       body: JSON.stringify({ refresh_token: this.refresh_token }),
-      headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      },
     });
 
     const json = await response.json();

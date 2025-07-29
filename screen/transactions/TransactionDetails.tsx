@@ -230,7 +230,9 @@ const TransactionDetails = () => {
       if (isWeOwnAddress) {
         actions.push({
           id: actionKeys.GoToWallet,
-          text: loc.formatString(loc.transactions.view_wallet, { walletLabel: isWeOwnAddress.getLabel() }),
+          text: loc.formatString(loc.transactions.view_wallet, {
+            walletLabel: isWeOwnAddress.getLabel(),
+          }),
           icon: actionIcons.GoToWallet,
         });
       }

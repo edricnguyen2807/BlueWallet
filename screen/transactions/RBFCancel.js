@@ -37,7 +37,12 @@ export default class RBFCancel extends CPFP {
     ) {
       const info = await tx.getInfo();
       console.log({ info });
-      return this.setState({ nonReplaceable: false, feeRate: info.feeRate + 1, isLoading: false, tx });
+      return this.setState({
+        nonReplaceable: false,
+        feeRate: info.feeRate + 1,
+        isLoading: false,
+        tx,
+      });
       // 1 sat makes a lot of difference, since sometimes because of rounding created tx's fee might be insufficient
     } else {
       return this.setState({ nonReplaceable: true, isLoading: false });
@@ -52,7 +57,11 @@ export default class RBFCancel extends CPFP {
       this.setState({ isLoading: true });
       try {
         const { tx: newTx } = await tx.createRBFcancelTx(newFeeRate);
-        this.setState({ stage: 2, txhex: newTx.toHex(), newTxid: newTx.getId() });
+        this.setState({
+          stage: 2,
+          txhex: newTx.toHex(),
+          newTxid: newTx.getId(),
+        });
         this.setState({ isLoading: false });
       } catch (_) {
         this.setState({ isLoading: false });
@@ -72,7 +81,10 @@ export default class RBFCancel extends CPFP {
       this.context.txMetadata[this.state.newTxid].memo = 'Cancelled transaction';
     }
     this.context.sleep(4000).then(() => this.context.fetchAndSaveWalletTransactions(this.state.wallet.getID()));
-    this.props.navigation.navigate('Success', { onDonePressed: () => popToTop(), amount: undefined });
+    this.props.navigation.navigate('Success', {
+      onDonePressed: () => popToTop(),
+      amount: undefined,
+    });
   }
 
   render() {

@@ -38,7 +38,9 @@ export const NavigationFormNoSwipeDefaultOptions: NativeStackNavigationOptions =
   headerShadowVisible: false,
   fullScreenGestureEnabled: false,
 };
-export const StatusBarLightOptions: NativeStackNavigationOptions = { statusBarStyle: 'light' };
+export const StatusBarLightOptions: NativeStackNavigationOptions = {
+  statusBarStyle: 'light',
+};
 
 const DetailViewStack = createNativeStackNavigator<DetailViewStackParamList>();
 

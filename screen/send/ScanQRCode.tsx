@@ -1,5 +1,5 @@
 import { RouteProp, StackActions, useIsFocused, useRoute } from '@react-navigation/native';
-import * as bitcoin from 'bitcoinjs-lib';
+import * as bigcoin from 'bigcoinjs-lib';
 import { sha256 } from '@noble/hashes/sha256';
 import React, { useEffect, useState } from 'react';
 import { Platform, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
@@ -44,8 +44,22 @@ const styles = StyleSheet.create({
     left: '50%',
     transform: [{ translateX: -30 }],
   },
-  backdoorInputWrapper: { position: 'absolute', left: '5%', top: '0%', width: '90%', height: '70%', backgroundColor: 'white' },
-  progressWrapper: { position: 'absolute', alignSelf: 'center', alignItems: 'center', top: '50%', padding: 8, borderRadius: 8 },
+  backdoorInputWrapper: {
+    position: 'absolute',
+    left: '5%',
+    top: '0%',
+    width: '90%',
+    height: '70%',
+    backgroundColor: 'white',
+  },
+  progressWrapper: {
+    position: 'absolute',
+    alignSelf: 'center',
+    alignItems: 'center',
+    top: '50%',
+    padding: 8,
+    borderRadius: 8,
+  },
   backdoorInput: {
     height: '50%',
     marginTop: 5,
@@ -79,7 +93,11 @@ const ScanQRCode = () => {
     openSettingsContainer: {
       backgroundColor: colors.brandingColor,
     },
-    progressWrapper: { backgroundColor: colors.brandingColor, borderColor: colors.foregroundColor, borderWidth: 4 },
+    progressWrapper: {
+      backgroundColor: colors.brandingColor,
+      borderColor: colors.foregroundColor,
+      borderWidth: 4,
+    },
     backdoorInput: {
       borderColor: colors.formBorder,
       borderBottomColor: colors.formBorder,
@@ -202,7 +220,7 @@ const ScanQRCode = () => {
     // is it base43? stupid electrum desktop
     try {
       const hex = Base43.decode(ret.data);
-      bitcoin.Psbt.fromHex(hex); // if it doesnt throw - all good
+      bigcoin.Psbt.fromHex(hex); // if it doesnt throw - all good
       const data = Buffer.from(hex, 'hex').toString('base64');
 
       if (launchedBy) {

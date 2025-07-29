@@ -102,7 +102,10 @@ const DetailViewStackScreensStack = () => {
   return (
     <DetailViewStack.Navigator
       initialRouteName="WalletsList"
-      screenOptions={{ headerShadowVisible: false, animationTypeForReplace: 'push' }}
+      screenOptions={{
+        headerShadowVisible: false,
+        animationTypeForReplace: 'push',
+      }}
     >
       <DetailViewStack.Screen name="WalletsList" component={WalletsList} options={navigationStyle(walletListScreenOptions)(theme)} />
       <DetailViewStack.Screen name="WalletTransactions" component={WalletTransactions} options={getWalletTransactionsOptions} />
@@ -232,7 +235,10 @@ const DetailViewStackScreensStack = () => {
       <DetailViewStack.Screen
         name="WalletAddresses"
         component={WalletAddresses}
-        options={navigationStyle({ title: loc.addresses.addresses_title, statusBarStyle: 'auto' })(theme)}
+        options={navigationStyle({
+          title: loc.addresses.addresses_title,
+          statusBarStyle: 'auto',
+        })(theme)}
       />
 
       <DetailViewStack.Screen
@@ -278,7 +284,9 @@ const DetailViewStackScreensStack = () => {
       <DetailViewStack.Screen
         name="ElectrumSettings"
         component={ElectrumSettings}
-        options={navigationStyle({ title: loc.settings.electrum_settings_server })(theme)}
+        options={navigationStyle({
+          title: loc.settings.electrum_settings_server,
+        })(theme)}
         initialParams={{ server: undefined }}
       />
       <DetailViewStack.Screen

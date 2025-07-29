@@ -123,24 +123,52 @@ describe.each(['', '//'])('unit - DeepLinkSchemaMatch', function (suffix) {
     const events = [
       {
         argument: { url: `12eQ9m4sgAwTSQoNXkRABKhCXCsjm2jdVG` },
-        expected: ['SendDetailsRoot', { screen: 'SendDetails', params: { uri: '12eQ9m4sgAwTSQoNXkRABKhCXCsjm2jdVG' } }],
-      },
-      {
-        argument: { url: `bitcoin:${suffix}12eQ9m4sgAwTSQoNXkRABKhCXCsjm2jdVG` },
-        expected: ['SendDetailsRoot', { screen: 'SendDetails', params: { uri: 'bitcoin:12eQ9m4sgAwTSQoNXkRABKhCXCsjm2jdVG' } }],
-      },
-      {
-        argument: { url: `BITCOIN:${suffix}BC1Q3RL0MKYK0ZRTXFMQN9WPCD3GNAZ00YV9YP0HXE?amount=666&label=Yo` },
         expected: [
           'SendDetailsRoot',
-          { screen: 'SendDetails', params: { uri: 'BITCOIN:BC1Q3RL0MKYK0ZRTXFMQN9WPCD3GNAZ00YV9YP0HXE?amount=666&label=Yo' } },
+          {
+            screen: 'SendDetails',
+            params: { uri: '12eQ9m4sgAwTSQoNXkRABKhCXCsjm2jdVG' },
+          },
         ],
       },
       {
-        argument: { url: `bluewallet:BITCOIN:${suffix}BC1Q3RL0MKYK0ZRTXFMQN9WPCD3GNAZ00YV9YP0HXE?amount=666&label=Yo` },
+        argument: {
+          url: `bitcoin:${suffix}12eQ9m4sgAwTSQoNXkRABKhCXCsjm2jdVG`,
+        },
         expected: [
           'SendDetailsRoot',
-          { screen: 'SendDetails', params: { uri: 'BITCOIN:BC1Q3RL0MKYK0ZRTXFMQN9WPCD3GNAZ00YV9YP0HXE?amount=666&label=Yo' } },
+          {
+            screen: 'SendDetails',
+            params: { uri: 'bitcoin:12eQ9m4sgAwTSQoNXkRABKhCXCsjm2jdVG' },
+          },
+        ],
+      },
+      {
+        argument: {
+          url: `BITCOIN:${suffix}BC1Q3RL0MKYK0ZRTXFMQN9WPCD3GNAZ00YV9YP0HXE?amount=666&label=Yo`,
+        },
+        expected: [
+          'SendDetailsRoot',
+          {
+            screen: 'SendDetails',
+            params: {
+              uri: 'BITCOIN:BC1Q3RL0MKYK0ZRTXFMQN9WPCD3GNAZ00YV9YP0HXE?amount=666&label=Yo',
+            },
+          },
+        ],
+      },
+      {
+        argument: {
+          url: `bluewallet:BITCOIN:${suffix}BC1Q3RL0MKYK0ZRTXFMQN9WPCD3GNAZ00YV9YP0HXE?amount=666&label=Yo`,
+        },
+        expected: [
+          'SendDetailsRoot',
+          {
+            screen: 'SendDetails',
+            params: {
+              uri: 'BITCOIN:BC1Q3RL0MKYK0ZRTXFMQN9WPCD3GNAZ00YV9YP0HXE?amount=666&label=Yo',
+            },
+          },
         ],
       },
       {
@@ -179,7 +207,13 @@ describe.each(['', '//'])('unit - DeepLinkSchemaMatch', function (suffix) {
           'AztecoRedeemRoot',
           {
             screen: 'AztecoRedeem',
-            params: { c1: '3062', c2: '2586', c3: '5053', c4: '5261', uri: 'https://azte.co/?c1=3062&c2=2586&c3=5053&c4=5261' },
+            params: {
+              c1: '3062',
+              c2: '2586',
+              c3: '5053',
+              c4: '5261',
+              uri: 'https://azte.co/?c1=3062&c2=2586&c3=5053&c4=5261',
+            },
           },
         ],
       },
@@ -191,7 +225,13 @@ describe.each(['', '//'])('unit - DeepLinkSchemaMatch', function (suffix) {
           'AztecoRedeemRoot',
           {
             screen: 'AztecoRedeem',
-            params: { c1: '1111', c2: '2222', c3: '3333', c4: '4444', uri: 'https://azte.co/redeem?code=1111222233334444' },
+            params: {
+              c1: '1111',
+              c2: '2222',
+              c3: '3333',
+              c4: '4444',
+              uri: 'https://azte.co/redeem?code=1111222233334444',
+            },
           },
         ],
       },
@@ -203,7 +243,13 @@ describe.each(['', '//'])('unit - DeepLinkSchemaMatch', function (suffix) {
           'AztecoRedeemRoot',
           {
             screen: 'AztecoRedeem',
-            params: { c1: '3062', c2: '2586', c3: '5053', c4: '5261', uri: 'https://azte.co/?c1=3062&c2=2586&c3=5053&c4=5261' },
+            params: {
+              c1: '3062',
+              c2: '2586',
+              c3: '5053',
+              c4: '5261',
+              uri: 'https://azte.co/?c1=3062&c2=2586&c3=5053&c4=5261',
+            },
           },
         ],
       },

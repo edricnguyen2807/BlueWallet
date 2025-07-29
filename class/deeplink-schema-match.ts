@@ -1,5 +1,5 @@
 import bip21, { TOptions } from 'bip21';
-import * as bitcoin from 'bitcoinjs-lib';
+import * as bigcoin from 'bigcoinjs-lib';
 import URL from 'url';
 import { readFileOutsideSandbox } from '../blue_modules/fs';
 import { Chain } from '../models/bitcoinUnits';
@@ -42,7 +42,12 @@ class DeeplinkSchemaMatch {
   static navigationRouteFor(
     event: { url: string },
     completionHandler: (args: TCompletionHandlerParams) => void,
-    context: TContext = { wallets: [], saveToDisk: () => {}, addWallet: () => {}, setSharedCosigner: () => {} },
+    context: TContext = {
+      wallets: [],
+      saveToDisk: () => {},
+      addWallet: () => {},
+      setSharedCosigner: () => {},
+    },
   ) {
     if (event.url === null) {
       return;
@@ -95,7 +100,13 @@ class DeeplinkSchemaMatch {
               },
             ]);
           } else if (action === 'openReceive') {
-            completionHandler(['LNDCreateInvoiceRoot', { screen: 'LNDCreateInvoice', params: { walletID: wallet.getID() } }]);
+            completionHandler([
+              'LNDCreateInvoiceRoot',
+              {
+                screen: 'LNDCreateInvoice',
+                params: { walletID: wallet.getID() },
+              },
+            ]);
           }
         }
       }
@@ -321,7 +332,7 @@ class DeeplinkSchemaMatch {
     address = address.replace('://', ':').replace('bitcoin:', '').replace('BITCOIN:', '').replace('bitcoin=', '').split('?')[0];
     let isValidBitcoinAddress = false;
     try {
-      bitcoin.address.toOutputScript(address);
+      bigcoin.address.toOutputScript(address);
       isValidBitcoinAddress = true;
     } catch (err) {
       isValidBitcoinAddress = false;

@@ -54,7 +54,9 @@ const LightningSettings: React.FC = () => {
         setIsLoading(false);
         if (params?.url) {
           Alert.alert(
-            loc.formatString(loc.settings.set_lndhub_as_default, { url: params.url }) as string,
+            loc.formatString(loc.settings.set_lndhub_as_default, {
+              url: params.url,
+            }) as string,
             '',
             [
               {
@@ -96,7 +98,10 @@ const LightningSettings: React.FC = () => {
         await clearLNDHub();
       }
 
-      presentAlert({ message: loc.settings.lightning_saved, type: AlertType.Toast });
+      presentAlert({
+        message: loc.settings.lightning_saved,
+        type: AlertType.Toast,
+      });
       triggerHapticFeedback(HapticFeedbackTypes.NotificationSuccess);
     } catch (error) {
       triggerHapticFeedback(HapticFeedbackTypes.NotificationError);
@@ -140,7 +145,9 @@ const LightningSettings: React.FC = () => {
         <AddressInput
           isLoading={isLoading}
           address={URI}
-          placeholder={loc.formatString(loc.settings.lndhub_uri, { example: 'https://10.20.30.40:3000' })}
+          placeholder={loc.formatString(loc.settings.lndhub_uri, {
+            example: 'https://10.20.30.40:3000',
+          })}
           onChangeText={setLndhubURI}
           testID="URIInput"
           editable={!isLoading}

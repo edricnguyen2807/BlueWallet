@@ -52,7 +52,11 @@ const FrozenBadge: React.FC = () => {
 const ChangeBadge: React.FC = () => {
   const { colors } = useTheme();
   const oStyles = StyleSheet.create({
-    change: { backgroundColor: colors.buttonDisabledBackgroundColor, borderWidth: 0, marginLeft: 4 },
+    change: {
+      backgroundColor: colors.buttonDisabledBackgroundColor,
+      borderWidth: 0,
+      marginLeft: 4,
+    },
     changeText: { color: colors.alternativeTextColor, marginTop: -1 },
   });
   return <Badge value={loc.cc.change} badgeStyle={oStyles.change} textStyle={oStyles.changeText} />;
@@ -90,7 +94,10 @@ const OutputList: React.FC<TOutputListProps> = ({
   const amount = formatBalance(value, balanceUnit, true);
 
   const oStyles = StyleSheet.create({
-    container: { borderBottomColor: colors.lightBorder, backgroundColor: colors.elevated },
+    container: {
+      borderBottomColor: colors.lightBorder,
+      backgroundColor: colors.elevated,
+    },
     containerSelected: {
       backgroundColor: colors.ballOutgoingExpired,
       borderBottomColor: 'rgba(0, 0, 0, 0)',
@@ -147,11 +154,19 @@ const OutputModal: React.FC<TOutputModalProps> = ({
   const amount = formatBalance(value, balanceUnit, true);
 
   const oStyles = StyleSheet.create({
-    container: { paddingHorizontal: 0, borderBottomColor: colors.lightBorder, backgroundColor: 'transparent' },
+    container: {
+      paddingHorizontal: 0,
+      borderBottomColor: colors.lightBorder,
+      backgroundColor: 'transparent',
+    },
     avatar: { borderColor: 'white', borderWidth: 1, backgroundColor: color },
     amount: { fontWeight: 'bold', color: colors.foregroundColor },
     tranContainer: { paddingLeft: 20 },
-    tranText: { fontWeight: 'normal', fontSize: 13, color: colors.alternativeTextColor },
+    tranText: {
+      fontWeight: 'normal',
+      fontSize: 13,
+      color: colors.alternativeTextColor,
+    },
     memo: { fontSize: 13, marginTop: 3, color: colors.alternativeTextColor },
   });
   const confirmationsFormatted = new Intl.NumberFormat(RNLocalize.getLocales()[0].languageCode, { maximumSignificantDigits: 3 }).format(
@@ -165,7 +180,11 @@ const OutputModal: React.FC<TOutputModalProps> = ({
         <RNElementsListItem.Title numberOfLines={1} adjustsFontSizeToFit style={oStyles.amount}>
           {amount}
           <View style={oStyles.tranContainer}>
-            <Text style={oStyles.tranText}>{loc.formatString(loc.transactions.list_conf, { number: confirmationsFormatted })}</Text>
+            <Text style={oStyles.tranText}>
+              {loc.formatString(loc.transactions.list_conf, {
+                number: confirmationsFormatted,
+              })}
+            </Text>
           </View>
         </RNElementsListItem.Title>
         {memo ? (
@@ -215,7 +234,13 @@ const OutputModalContent: React.FC<TOutputModalContentProps> = ({ output, wallet
   const { colors } = useTheme();
   const { txMetadata, saveToDisk } = useStorage();
   const [memo, setMemo] = useState<string>(wallet.getUTXOMetadata(output.txid, output.vout).memo || txMetadata[output.txid]?.memo || '');
-  const switchValue = useMemo(() => ({ value: frozen, onValueChange: (value: boolean) => setFrozen(value) }), [frozen, setFrozen]);
+  const switchValue = useMemo(
+    () => ({
+      value: frozen,
+      onValueChange: (value: boolean) => setFrozen(value),
+    }),
+    [frozen, setFrozen],
+  );
 
   const onMemoChange = (value: string) => setMemo(value);
 
@@ -321,7 +346,9 @@ const CoinControl: React.FC = () => {
   const debouncedSaveFronen = useRef(
     debounce(async frzn => {
       utxos.forEach(({ txid, vout }) => {
-        wallet.setUTXOMetadata(txid, vout, { frozen: frzn.includes(`${txid}:${vout}`) });
+        wallet.setUTXOMetadata(txid, vout, {
+          frozen: frzn.includes(`${txid}:${vout}`),
+        });
       });
       await saveToDisk();
     }, 500),
@@ -457,10 +484,22 @@ const CoinControl: React.FC = () => {
     return [
       [sortDirection === ESortDirections.asc ? CommonToolTipActions.SortASC : CommonToolTipActions.SortDESC],
       [
-        { ...CommonToolTipActions.SortHeight, menuState: sortType === ESortTypes.height },
-        { ...CommonToolTipActions.SortValue, menuState: sortType === ESortTypes.value },
-        { ...CommonToolTipActions.SortLabel, menuState: sortType === ESortTypes.label },
-        { ...CommonToolTipActions.SortStatus, menuState: sortType === ESortTypes.frozen },
+        {
+          ...CommonToolTipActions.SortHeight,
+          menuState: sortType === ESortTypes.height,
+        },
+        {
+          ...CommonToolTipActions.SortValue,
+          menuState: sortType === ESortTypes.value,
+        },
+        {
+          ...CommonToolTipActions.SortLabel,
+          menuState: sortType === ESortTypes.label,
+        },
+        {
+          ...CommonToolTipActions.SortStatus,
+          menuState: sortType === ESortTypes.frozen,
+        },
       ],
     ];
   }, [sortDirection, sortType]);

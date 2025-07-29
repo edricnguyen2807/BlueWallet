@@ -69,7 +69,12 @@ const WalletsAddMultisig: React.FC = () => {
   });
 
   const onLetsStartPress = useCallback(() => {
-    navigate('WalletsAddMultisigStep2', { m: state.m, n: state.n, format: state.format, walletLabel });
+    navigate('WalletsAddMultisigStep2', {
+      m: state.m,
+      n: state.n,
+      format: state.format,
+      walletLabel,
+    });
   }, [navigate, state.m, state.n, state.format, walletLabel]);
 
   const showAdvancedOptionsModal = useCallback(() => {
@@ -90,7 +95,10 @@ const WalletsAddMultisig: React.FC = () => {
       case 'format':
         return getCurrentFormatReadable(state.format);
       case 'quorum':
-        return loc.formatString(loc.multisig.quorum, { m: state.m, n: state.n });
+        return loc.formatString(loc.multisig.quorum, {
+          m: state.m,
+          n: state.n,
+        });
       default:
         throw new Error('This should never happen');
     }
@@ -106,7 +114,10 @@ const WalletsAddMultisig: React.FC = () => {
         <Text style={[styles.textdesc, stylesHook.textdesc]}>
           {loc.multisig.what_is_vault}
           <Text style={[styles.textdescBold, stylesHook.textdesc]}>
-            {loc.formatString(loc.multisig.what_is_vault_numberOfWallets, { m: state.m, n: state.n })}
+            {loc.formatString(loc.multisig.what_is_vault_numberOfWallets, {
+              m: state.m,
+              n: state.n,
+            })}
           </Text>
           <Text style={[styles.textdesc, stylesHook.textdesc]}>{loc.multisig.what_is_vault_wallet}</Text>
         </Text>

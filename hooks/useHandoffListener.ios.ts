@@ -31,8 +31,10 @@ const useHandoffListener = () => {
       const modifiedUserInfo = { ...(userInfo || {}), type: activityType };
       try {
         if (activityType === HandOffActivityType.ReceiveOnchain && modifiedUserInfo.address) {
-          navigate( 'ReceiveDetails', { address: modifiedUserInfo.address, type: activityType },
-          );
+          navigate('ReceiveDetails', {
+            address: modifiedUserInfo.address,
+            type: activityType,
+          });
         } else if (activityType === HandOffActivityType.Xpub && modifiedUserInfo.xpub) {
           navigate('WalletXpubRoot', {
             screen: 'WalletXpub',

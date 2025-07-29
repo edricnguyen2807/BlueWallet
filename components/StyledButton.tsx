@@ -3,7 +3,11 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { useTheme } from './themes';
 
-export const StyledButtonType: Record<string, string> = { default: 'default', destroy: 'destroy', grey: 'grey' };
+export const StyledButtonType: Record<string, string> = {
+  default: 'default',
+  destroy: 'destroy',
+  grey: 'grey',
+};
 
 interface StyledButtonProps {
   onPress: () => void;

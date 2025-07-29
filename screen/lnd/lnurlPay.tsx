@@ -176,7 +176,12 @@ const LnurlPay: React.FC = () => {
         <TouchableOpacity
           accessibilityRole="button"
           style={styles.walletSelectTouch}
-          onPress={() => navigate('SelectWallet', { onWalletSelect, chainType: Chain.OFFCHAIN })}
+          onPress={() =>
+            navigate('SelectWallet', {
+              onWalletSelect,
+              chainType: Chain.OFFCHAIN,
+            })
+          }
         >
           <Text style={styles.walletSelectText}>{loc.wallets.select_wallet.toLowerCase()}</Text>
           <Icon name={direction === 'rtl' ? 'angle-left' : 'angle-right'} size={18} type="font-awesome" color="#9aa0aa" />
@@ -186,7 +191,12 @@ const LnurlPay: React.FC = () => {
         <TouchableOpacity
           accessibilityRole="button"
           style={styles.walletWrapTouch}
-          onPress={() => navigate('SelectWallet', { onWalletSelect, chainType: Chain.OFFCHAIN })}
+          onPress={() =>
+            navigate('SelectWallet', {
+              onWalletSelect,
+              chainType: Chain.OFFCHAIN,
+            })
+          }
         >
           <Text style={[styles.walletWrapLabel, stylesHook.walletWrapLabel]}>{wallet.getLabel()}</Text>
           <Text style={[styles.walletWrapBalance, stylesHook.walletWrapBalance]}>

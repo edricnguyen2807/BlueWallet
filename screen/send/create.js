@@ -1,7 +1,7 @@
 import Clipboard from '@react-native-clipboard/clipboard';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import BigNumber from 'bignumber.js';
-import * as bitcoin from 'bitcoinjs-lib';
+import * as bigcoin from 'bigcoinjs-lib';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect } from 'react';
 import { Alert, FlatList, Linking, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
@@ -23,7 +23,7 @@ import { BlueSpacing20 } from '../../components/BlueSpacing';
 
 const SendCreate = () => {
   const { fee, recipients, memo = '', satoshiPerByte, psbt, showAnimatedQr, tx } = useRoute().params;
-  const transaction = bitcoin.Transaction.fromHex(tx);
+  const transaction = bigcoin.Transaction.fromHex(tx);
   const size = transaction.virtualSize();
   const { isPrivacyBlurEnabled } = useSettings();
   const { colors } = useTheme();
@@ -81,7 +81,9 @@ const SendCreate = () => {
         const filePath = RNFS.DownloadDirectoryPath + `/${fileName}`;
         try {
           await RNFS.writeFile(filePath, tx);
-          presentAlert({ message: loc.formatString(loc.send.txSaved, { filePath }) });
+          presentAlert({
+            message: loc.formatString(loc.send.txSaved, { filePath }),
+          });
         } catch (e) {
           console.log(e);
           presentAlert({ message: e.message });
@@ -124,7 +126,12 @@ const SendCreate = () => {
             {satoshiToBTC(item.value)} {BitcoinUnit.BTC}
           </Text>
           {recipients.length > 1 && (
-            <BlueText style={styles.itemOf}>{loc.formatString(loc._.of, { number: index + 1, total: recipients.length })}</BlueText>
+            <BlueText style={styles.itemOf}>
+              {loc.formatString(loc._.of, {
+                number: index + 1,
+                total: recipients.length,
+              })}
+            </BlueText>
           )}
         </View>
       </>

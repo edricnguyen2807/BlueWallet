@@ -177,7 +177,10 @@ const ReceiveDetails = () => {
     }
 
     if (!newAddress) {
-      presentAlert({ title: loc.errors.error, message: loc.receive.address_not_found });
+      presentAlert({
+        title: loc.errors.error,
+        message: loc.receive.address_not_found,
+      });
       return;
     }
 
@@ -481,7 +484,12 @@ const ReceiveDetails = () => {
     setCustomAmount(tempCustomAmount);
     setCustomUnit(tempCustomUnit);
     // address is always defined here
-    setBip21encoded(DeeplinkSchemaMatch.bip21encode(address!, { amount, label: tempCustomLabel }));
+    setBip21encoded(
+      DeeplinkSchemaMatch.bip21encode(address!, {
+        amount,
+        label: tempCustomLabel,
+      }),
+    );
     setShowAddress(true);
   };
 

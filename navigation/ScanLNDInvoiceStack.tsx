@@ -17,8 +17,16 @@ const ScanLNDInvoiceRoot = () => {
       <Stack.Screen
         name="ScanLNDInvoice"
         component={ScanLNDInvoiceComponent}
-        options={navigationStyle({ headerBackVisible: false, title: loc.send.header, statusBarStyle: 'light' })(theme)}
-        initialParams={{ uri: undefined, walletID: undefined, invoice: undefined }}
+        options={navigationStyle({
+          headerBackVisible: false,
+          title: loc.send.header,
+          statusBarStyle: 'light',
+        })(theme)}
+        initialParams={{
+          uri: undefined,
+          walletID: undefined,
+          invoice: undefined,
+        }}
       />
       <Stack.Screen
         name="SelectWallet"

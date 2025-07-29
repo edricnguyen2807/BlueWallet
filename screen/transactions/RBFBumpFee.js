@@ -39,7 +39,12 @@ export default class RBFBumpFee extends CPFP {
     const tx = new HDSegwitBech32Transaction(null, this.state.txid, this.state.wallet);
     if ((await tx.isOurTransaction()) && (await tx.getRemoteConfirmationsNum()) === 0 && (await tx.isSequenceReplaceable())) {
       const info = await tx.getInfo();
-      return this.setState({ nonReplaceable: false, feeRate: info.feeRate + 1, isLoading: false, tx });
+      return this.setState({
+        nonReplaceable: false,
+        feeRate: info.feeRate + 1,
+        isLoading: false,
+        tx,
+      });
       // 1 sat makes a lot of difference, since sometimes because of rounding created tx's fee might be insufficient
     } else {
       return this.setState({ nonReplaceable: true, isLoading: false });
@@ -54,7 +59,11 @@ export default class RBFBumpFee extends CPFP {
       this.setState({ isLoading: true });
       try {
         const { tx: newTx } = await tx.createRBFbumpFee(newFeeRate);
-        this.setState({ stage: 2, txhex: newTx.toHex(), newTxid: newTx.getId() });
+        this.setState({
+          stage: 2,
+          txhex: newTx.toHex(),
+          newTxid: newTx.getId(),
+        });
         this.setState({ isLoading: false });
       } catch (_) {
         this.setState({ isLoading: false });
@@ -69,7 +78,10 @@ export default class RBFBumpFee extends CPFP {
       this.context.txMetadata[this.state.newTxid] = this.context.txMetadata[this.state.txid];
     }
     this.context.sleep(4000).then(() => this.context.fetchAndSaveWalletTransactions(this.state.wallet.getID()));
-    this.props.navigation.navigate('Success', { onDonePressed: () => popToTop(), amount: undefined });
+    this.props.navigation.navigate('Success', {
+      onDonePressed: () => popToTop(),
+      amount: undefined,
+    });
   }
 
   render() {

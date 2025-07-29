@@ -349,18 +349,41 @@ export const WalletCarouselItem: React.FC<WalletCarouselItemProps> = React.memo(
           delayHoverIn={0}
           delayHoverOut={0}
         >
-          <View style={[iStyles.shadowContainer, { backgroundColor: colors.background, shadowColor: colors.shadowColor }]}>
+          <View
+            style={[
+              iStyles.shadowContainer,
+              {
+                backgroundColor: colors.background,
+                shadowColor: colors.shadowColor,
+              },
+            ]}
+          >
             <LinearGradient colors={WalletGradient.gradientsFor(item.type)} style={iStyles.grad}>
               <ImageBackground source={image} style={iStyles.image} />
               <Text style={iStyles.br} />
               {!isPlaceHolder && (
                 <>
-                  <Text numberOfLines={1} style={[iStyles.label, { color: colors.inverseForegroundColor, writingDirection: direction }]}>
+                  <Text
+                    numberOfLines={1}
+                    style={[
+                      iStyles.label,
+                      {
+                        color: colors.inverseForegroundColor,
+                        writingDirection: direction,
+                      },
+                    ]}
+                  >
                     {renderHighlightedText && searchQuery ? (
                       <HighlightedText
                         text={item.getLabel()}
                         query={searchQuery}
-                        style={[iStyles.label, { color: colors.inverseForegroundColor, writingDirection: direction }]}
+                        style={[
+                          iStyles.label,
+                          {
+                            color: colors.inverseForegroundColor,
+                            writingDirection: direction,
+                          },
+                        ]}
                       />
                     ) : (
                       item.getLabel()
@@ -377,19 +400,40 @@ export const WalletCarouselItem: React.FC<WalletCarouselItemProps> = React.memo(
                         numberOfLines={1}
                         adjustsFontSizeToFit
                         key={`${balance}`} // force component recreation on balance change. To fix right-to-left languages, like Farsi
-                        style={[iStyles.balance, { color: colors.inverseForegroundColor, writingDirection: direction }]}
+                        style={[
+                          iStyles.balance,
+                          {
+                            color: colors.inverseForegroundColor,
+                            writingDirection: direction,
+                          },
+                        ]}
                       >
                         {`${balance} `}
                       </Text>
                     )}
                   </View>
                   <Text style={iStyles.br} />
-                  <Text numberOfLines={1} style={[iStyles.latestTx, { color: colors.inverseForegroundColor, writingDirection: direction }]}>
+                  <Text
+                    numberOfLines={1}
+                    style={[
+                      iStyles.latestTx,
+                      {
+                        color: colors.inverseForegroundColor,
+                        writingDirection: direction,
+                      },
+                    ]}
+                  >
                     {loc.wallets.list_latest_transaction}
                   </Text>
                   <Text
                     numberOfLines={1}
-                    style={[iStyles.latestTxTime, { color: colors.inverseForegroundColor, writingDirection: direction }]}
+                    style={[
+                      iStyles.latestTxTime,
+                      {
+                        color: colors.inverseForegroundColor,
+                        writingDirection: direction,
+                      },
+                    ]}
                   >
                     {latestTransactionText}
                   </Text>
@@ -503,9 +547,19 @@ const WalletsCarousel = forwardRef<FlatListRefType, WalletsCarouselProps>((props
         getWalletPosition: (walletId: string) => {
           const walletRef = walletRefs.current[walletId];
           if (walletRef?.current) {
-            return new Promise<{ x: number; y: number; width: number; height: number }>(resolve => {
+            return new Promise<{
+              x: number;
+              y: number;
+              width: number;
+              height: number;
+            }>(resolve => {
               walletRef.current?.measure((x, y, widthVal, heightVal, pageX, pageY) => {
-                resolve({ x: pageX, y: pageY, width: widthVal, height: heightVal });
+                resolve({
+                  x: pageX,
+                  y: pageY,
+                  width: widthVal,
+                  height: heightVal,
+                });
               });
             });
           }
@@ -633,10 +687,16 @@ const WalletsCarousel = forwardRef<FlatListRefType, WalletsCarouselProps>((props
 
   const onScrollToIndexFailed = (error: { averageItemLength: number; index: number }): void => {
     console.debug('onScrollToIndexFailed', error);
-    flatListRef.current?.scrollToOffset({ offset: error.averageItemLength * error.index, animated: true });
+    flatListRef.current?.scrollToOffset({
+      offset: error.averageItemLength * error.index,
+      animated: true,
+    });
     setTimeout(() => {
       if (data.length !== 0 && flatListRef.current !== null) {
-        flatListRef.current.scrollToIndex({ index: error.index, animated: true });
+        flatListRef.current.scrollToIndex({
+          index: error.index,
+          animated: true,
+        });
       }
     }, 100);
   };

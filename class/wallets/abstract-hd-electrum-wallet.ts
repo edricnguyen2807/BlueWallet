@@ -4,8 +4,8 @@ import assert from 'assert';
 import BigNumber from 'bignumber.js';
 import BIP32Factory, { BIP32Interface } from 'bip32';
 import * as bip39 from 'bip39';
-import * as bitcoin from 'bitcoinjs-lib';
-import { Psbt, Transaction as BTransaction } from 'bitcoinjs-lib';
+import * as bigcoin from 'bigcoinjs-lib';
+import { Psbt, Transaction as BTransaction } from 'bigcoinjs-lib';
 import b58 from 'bs58check';
 import { CoinSelectOutput, CoinSelectReturnInput } from 'coinselect';
 import { ECPairFactory, ECPairInterface } from 'ecpair';
@@ -417,7 +417,11 @@ export class AbstractHDElectrumWallet extends AbstractHDWallet {
             // this TX is related to our address
             this._txs_by_external_index[c] = this._txs_by_external_index[c] || [];
             const { vin: txVin, vout: txVout, ...txRest } = tx;
-            const clonedTx = { ...txRest, inputs: txVin.slice(0), outputs: txVout.slice(0) };
+            const clonedTx = {
+              ...txRest,
+              inputs: txVin.slice(0),
+              outputs: txVout.slice(0),
+            };
 
             // trying to replace tx if it exists already (because it has lower confirmations, for example)
             let replaced = false;
@@ -435,7 +439,11 @@ export class AbstractHDElectrumWallet extends AbstractHDWallet {
             // this TX is related to our address
             this._txs_by_external_index[c] = this._txs_by_external_index[c] || [];
             const { vin: txVin, vout: txVout, ...txRest } = tx;
-            const clonedTx = { ...txRest, inputs: txVin.slice(0), outputs: txVout.slice(0) };
+            const clonedTx = {
+              ...txRest,
+              inputs: txVin.slice(0),
+              outputs: txVout.slice(0),
+            };
 
             // trying to replace tx if it exists already (because it has lower confirmations, for example)
             let replaced = false;
@@ -458,7 +466,11 @@ export class AbstractHDElectrumWallet extends AbstractHDWallet {
             // this TX is related to our address
             this._txs_by_internal_index[c] = this._txs_by_internal_index[c] || [];
             const { vin: txVin, vout: txVout, ...txRest } = tx;
-            const clonedTx = { ...txRest, inputs: txVin.slice(0), outputs: txVout.slice(0) };
+            const clonedTx = {
+              ...txRest,
+              inputs: txVin.slice(0),
+              outputs: txVout.slice(0),
+            };
 
             // trying to replace tx if it exists already (because it has lower confirmations, for example)
             let replaced = false;
@@ -476,7 +488,11 @@ export class AbstractHDElectrumWallet extends AbstractHDWallet {
             // this TX is related to our address
             this._txs_by_internal_index[c] = this._txs_by_internal_index[c] || [];
             const { vin: txVin, vout: txVout, ...txRest } = tx;
-            const clonedTx = { ...txRest, inputs: txVin.slice(0), outputs: txVout.slice(0) };
+            const clonedTx = {
+              ...txRest,
+              inputs: txVin.slice(0),
+              outputs: txVout.slice(0),
+            };
 
             // trying to replace tx if it exists already (because it has lower confirmations, for example)
             let replaced = false;
@@ -502,7 +518,11 @@ export class AbstractHDElectrumWallet extends AbstractHDWallet {
               this._txs_by_payment_code_index[pc] = this._txs_by_payment_code_index[pc] || {};
               this._txs_by_payment_code_index[pc][c] = this._txs_by_payment_code_index[pc][c] || [];
               const { vin: txVin, vout: txVout, ...txRest } = tx;
-              const clonedTx = { ...txRest, inputs: txVin.slice(0), outputs: txVout.slice(0) };
+              const clonedTx = {
+                ...txRest,
+                inputs: txVin.slice(0),
+                outputs: txVout.slice(0),
+              };
 
               // trying to replace tx if it exists already (because it has lower confirmations, for example)
               let replaced = false;
@@ -1174,13 +1194,17 @@ export class AbstractHDElectrumWallet extends AbstractHDWallet {
           if (this.type === 'HDlegacyP2PKH') utxoType = 'p2pkh';
       }
 
-      const spUtxos: SPUTXO[] = inputs.map(u => ({ ...u, utxoType, wif: u.wif! }));
+      const spUtxos: SPUTXO[] = inputs.map(u => ({
+        ...u,
+        utxoType,
+        wif: u.wif!,
+      }));
       const sp = new SilentPayment();
       outputs = sp.createTransaction(spUtxos, outputs) as CoinSelectOutput[];
     }
 
     sequence = sequence || AbstractHDElectrumWallet.defaultRBFSequence;
-    let psbt = new bitcoin.Psbt();
+    let psbt = new bigcoin.Psbt();
     let c = 0;
     const keypairs: Record<number, ECPairInterface> = {};
     const values: Record<number, number> = {};
@@ -1286,7 +1310,7 @@ export class AbstractHDElectrumWallet extends AbstractHDWallet {
     if (!pubkey || !path) {
       throw new Error('Internal error: pubkey or path are invalid');
     }
-    const p2wpkh = bitcoin.payments.p2wpkh({ pubkey });
+    const p2wpkh = bigcoin.payments.p2wpkh({ pubkey });
     if (!p2wpkh.output) {
       throw new Error('Internal error: could not create p2wpkh output during _addPsbtInput');
     }
@@ -1320,8 +1344,8 @@ export class AbstractHDElectrumWallet extends AbstractHDWallet {
    * @returns {Transaction}
    */
   combinePsbt(base64one: string | Psbt, base64two: string | Psbt) {
-    const final1 = typeof base64one === 'string' ? bitcoin.Psbt.fromBase64(base64one) : base64one;
-    const final2 = typeof base64two === 'string' ? bitcoin.Psbt.fromBase64(base64two) : base64two;
+    const final1 = typeof base64one === 'string' ? bigcoin.Psbt.fromBase64(base64one) : base64one;
+    const final2 = typeof base64two === 'string' ? bigcoin.Psbt.fromBase64(base64two) : base64two;
     final1.combine(final2);
 
     let extractedTransaction;
@@ -1339,7 +1363,7 @@ export class AbstractHDElectrumWallet extends AbstractHDWallet {
    * Creates Segwit Bech32 Bitcoin address
    */
   _nodeToBech32SegwitAddress(hdNode: BIP32Interface): string {
-    const { address } = bitcoin.payments.p2wpkh({
+    const { address } = bigcoin.payments.p2wpkh({
       pubkey: hdNode.publicKey,
     });
 
@@ -1351,7 +1375,7 @@ export class AbstractHDElectrumWallet extends AbstractHDWallet {
   }
 
   _nodeToLegacyAddress(hdNode: BIP32Interface): string {
-    const { address } = bitcoin.payments.p2pkh({
+    const { address } = bigcoin.payments.p2pkh({
       pubkey: hdNode.publicKey,
     });
 
@@ -1366,8 +1390,8 @@ export class AbstractHDElectrumWallet extends AbstractHDWallet {
    * Creates Segwit P2SH Bitcoin address
    */
   _nodeToP2shSegwitAddress(hdNode: BIP32Interface): string {
-    const { address } = bitcoin.payments.p2sh({
-      redeem: bitcoin.payments.p2wpkh({ pubkey: hdNode.publicKey }),
+    const { address } = bigcoin.payments.p2sh({
+      redeem: bigcoin.payments.p2wpkh({ pubkey: hdNode.publicKey }),
     });
 
     if (!address) {

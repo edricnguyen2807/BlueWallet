@@ -53,7 +53,11 @@ export const writeFileAndExport = async function (fileName: string, contents: st
         if (showShareDialog) {
           await _shareOpen(filePath);
         } else {
-          presentAlert({ message: loc.formatString(loc.send.file_saved_at_path, { filePath }) });
+          presentAlert({
+            message: loc.formatString(loc.send.file_saved_at_path, {
+              filePath,
+            }),
+          });
         }
       } catch (e: any) {
         console.error(e);
@@ -120,7 +124,9 @@ export const showImagePickerAndReadImage = async (): Promise<string | undefined>
       try {
         const uri = response.assets[0].uri;
         if (uri) {
-          const result = await RNQRGenerator.detect({ uri: decodeURI(uri.toString()) });
+          const result = await RNQRGenerator.detect({
+            uri: decodeURI(uri.toString()),
+          });
           if (result?.values.length > 0) {
             return result?.values[0];
           }
@@ -139,7 +145,10 @@ export const showImagePickerAndReadImage = async (): Promise<string | undefined>
   }
 };
 
-export const showFilePickerAndReadFile = async function (): Promise<{ data: string | false; uri: string | false }> {
+export const showFilePickerAndReadFile = async function (): Promise<{
+  data: string | false;
+  uri: string | false;
+}> {
   try {
     const res = await DocumentPicker.pickSingle({
       copyTo: 'cachesDirectory',

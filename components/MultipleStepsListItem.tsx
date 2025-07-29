@@ -148,7 +148,9 @@ const MultipleStepsListItem = (props: MultipleStepsListItemProps) => {
     }
   };
   const buttonOpacity = { opacity: props.button?.disabled ? 0.5 : 1.0 };
-  const rightButtonOpacity = { opacity: props.rightButton?.disabled ? 0.5 : 1.0 };
+  const rightButtonOpacity = {
+    opacity: props.rightButton?.disabled ? 0.5 : 1.0,
+  };
   const onPress = isActionSheet ? handleOnPressForActionSheet : props.button?.onPress;
   return (
     <View>
@@ -283,7 +285,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   vaultKeyText: { fontSize: 18, fontWeight: 'bold' },
-  vaultKeyTextWrapper: { justifyContent: 'center', alignContent: 'flex-start', paddingLeft: 16 },
+  vaultKeyTextWrapper: {
+    justifyContent: 'center',
+    alignContent: 'flex-start',
+    paddingLeft: 16,
+  },
   provideKeyButton: {
     marginLeft: 40,
     height: 48,

@@ -79,7 +79,11 @@ const walletReducer = (state: State, action: TAction): State => {
     case ActionTypes.SET_WALLET_BASE_URI:
       return { ...state, walletBaseURI: action.payload };
     case ActionTypes.SET_SELECTED_INDEX:
-      return { ...state, selectedIndex: action.payload, selectedWalletType: ButtonSelected.ONCHAIN };
+      return {
+        ...state,
+        selectedIndex: action.payload,
+        selectedWalletType: ButtonSelected.ONCHAIN,
+      };
     case ActionTypes.SET_LABEL:
       return { ...state, label: action.payload };
     case ActionTypes.SET_SELECTED_WALLET_TYPE:
@@ -248,9 +252,15 @@ const WalletsAdd: React.FC = () => {
           } else if (id === LightningCustodianWallet.type) {
             handleOnLightningButtonPressed();
           } else if (id === '12_words') {
-            navigate('ProvideEntropy', { words: 12, entropy: entropy?.toString('hex') });
+            navigate('ProvideEntropy', {
+              words: 12,
+              entropy: entropy?.toString('hex'),
+            });
           } else if (id === '24_words') {
-            navigate('ProvideEntropy', { words: 24, entropy: entropy?.toString('hex') });
+            navigate('ProvideEntropy', {
+              words: 24,
+              entropy: entropy?.toString('hex'),
+            });
           } else if (id === CommonToolTipActions.ResetToDefault.id) {
             confirmResetEntropy(ButtonSelected.ONCHAIN);
           }
@@ -264,7 +274,10 @@ const WalletsAdd: React.FC = () => {
   useEffect(() => {
     setOptions({
       headerRight: () => HeaderRight,
-      statusBarStyle: Platform.select({ ios: 'light', default: colorScheme === 'dark' ? 'light' : 'dark' }),
+      statusBarStyle: Platform.select({
+        ios: 'light',
+        default: colorScheme === 'dark' ? 'light' : 'dark',
+      }),
     });
   }, [HeaderRight, colorScheme, colors.foregroundColor, setOptions, toolTipActions]);
 
@@ -343,7 +356,9 @@ const WalletsAdd: React.FC = () => {
       }
     } else if (selectedWalletType === ButtonSelected.VAULT) {
       setIsLoading(false);
-      navigate('WalletsAddMultisig', { walletLabel: label.trim().length > 0 ? label : loc.multisig.default_label });
+      navigate('WalletsAddMultisig', {
+        walletLabel: label.trim().length > 0 ? label : loc.multisig.default_label,
+      });
     }
   };
 

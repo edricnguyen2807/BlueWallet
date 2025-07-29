@@ -1,4 +1,4 @@
-import * as bitcoin from 'bitcoinjs-lib';
+import * as bigcoin from 'bigcoinjs-lib';
 import { ECPairFactory } from 'ecpair';
 
 import triggerHapticFeedback, { HapticFeedbackTypes } from '../blue_modules/hapticFeedback';
@@ -14,12 +14,12 @@ const delay = (milliseconds: number) => new Promise(resolve => setTimeout(resolv
 // Implements IPayjoinClientWallet
 // https://github.com/bitcoinjs/payjoin-client/blob/master/ts_src/wallet.ts
 export default class PayjoinTransaction {
-  private _psbt: bitcoin.Psbt;
+  private _psbt: bigcoin.Psbt;
   private _broadcast: (txhex: string) => Promise<true | undefined>;
   private _wallet: HDSegwitBech32Wallet;
   private _payjoinPsbt: any;
 
-  constructor(psbt: bitcoin.Psbt, broadcast: (txhex: string) => Promise<true | undefined>, wallet: HDSegwitBech32Wallet) {
+  constructor(psbt: bigcoin.Psbt, broadcast: (txhex: string) => Promise<true | undefined>, wallet: HDSegwitBech32Wallet) {
     this._psbt = psbt;
     this._broadcast = broadcast;
     this._wallet = wallet;
@@ -33,14 +33,14 @@ export default class PayjoinTransaction {
       delete input.finalScriptWitness;
 
       assert(input.witnessUtxo, 'Internal error: input.witnessUtxo is not set');
-      const address = bitcoin.address.fromOutputScript(input.witnessUtxo.script);
+      const address = bigcoin.address.fromOutputScript(input.witnessUtxo.script);
       const wif = this._wallet._getWifForAddress(address);
       const keyPair = ECPair.fromWIF(wif);
 
       unfinalized.signInput(index, keyPair);
     }
 
-    // now, since payjoin lib expects an older version of Psbt object (from bitcoinjs-lib v6),
+    // now, since payjoin lib expects an older version of Psbt object (from bigcoinjs-lib v6),
     // it expects `script` to be Buffer, and in v7 its actually uint8 array.
     // lets monkey patch the cloned PSBT so it returns buffers, as expected:
     const origclone = unfinalized.clone;
@@ -72,12 +72,12 @@ export default class PayjoinTransaction {
     return this._payjoinPsbt;
   }
 
-  async signPsbt(payjoinPsbt: bitcoin.Psbt) {
+  async signPsbt(payjoinPsbt: bigcoin.Psbt) {
     // Do this without relying on private methods
 
     for (const [index, input] of payjoinPsbt.data.inputs.entries()) {
       assert(input.witnessUtxo, 'Internal error: input.witnessUtxo is not set');
-      const address = bitcoin.address.fromOutputScript(input.witnessUtxo.script);
+      const address = bigcoin.address.fromOutputScript(input.witnessUtxo.script);
       try {
         const wif = this._wallet._getWifForAddress(address);
         const keyPair = ECPair.fromWIF(wif);
@@ -106,13 +106,15 @@ export default class PayjoinTransaction {
       if (result === '') {
         // TODO: Improve the wording of this error message
         triggerHapticFeedback(HapticFeedbackTypes.NotificationError);
-        presentAlert({ message: 'Something was wrong with the payjoin transaction, the original transaction successfully broadcast.' });
+        presentAlert({
+          message: 'Something was wrong with the payjoin transaction, the original transaction successfully broadcast.',
+        });
       }
     });
   }
 
   async isOwnOutputScript(outputScript: Buffer) {
-    const address = bitcoin.address.fromOutputScript(outputScript);
+    const address = bigcoin.address.fromOutputScript(outputScript);
 
     return this._wallet.weOwnAddress(address);
   }

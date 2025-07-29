@@ -1,7 +1,3 @@
 {
-  "extends": [
-    "config:base",
-    ":disableMajorUpdates",
-    ":preserveSemverRanges"
-  ]
+  "extends": ["config:base", ":disableMajorUpdates", ":preserveSemverRanges"]
 }

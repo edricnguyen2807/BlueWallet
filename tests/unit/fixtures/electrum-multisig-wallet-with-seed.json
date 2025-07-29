@@ -87,13 +87,7 @@
       "exp": 0,
       "id": "7bf2aec9c12aa8b0a2363f283d46769c",
       "message": "let's see",
-      "outputs": [
-        [
-          0,
-          "bc1qhhvjcww8q904upz96nnery7nz5qd404w2prsmf",
-          "!"
-        ]
-      ],
+      "outputs": [[0, "bc1qhhvjcww8q904upz96nnery7nz5qd404w2prsmf", "!"]],
       "requestor": null,
       "time": 1598963621,
       "type": 0
@@ -112,11 +106,7 @@
       "id": "44291cd0de",
       "message": "test",
       "outputs": [
-        [
-          0,
-          "bc1qkzg22vej70cqnrlsxcee9nfnstcr70jalvsmjn0c8rjf0klwyydsk8nggs",
-          0
-        ]
+        [0, "bc1qkzg22vej70cqnrlsxcee9nfnstcr70jalvsmjn0c8rjf0klwyydsk8nggs", 0]
       ],
       "requestor": null,
       "time": 1598962791,
@@ -180,10 +170,7 @@
   "txo": {
     "76bfabeba1fa447bb0ffa497f80585511d238b9c6bd0c3e04381b0152624ef09": {
       "bc1qkzg22vej70cqnrlsxcee9nfnstcr70jalvsmjn0c8rjf0klwyydsk8nggs": {
-        "0": [
-          20000,
-          false
-        ]
+        "0": [20000, false]
       }
     }
   },
@@ -203,12 +190,7 @@
     ]
   },
   "wallet_type": "2of3",
-  "winpos-qt": [
-    200,
-    175,
-    890,
-    463
-  ],
+  "winpos-qt": [200, 175, 890, 463],
   "x1/": {
     "derivation": "m/1'",
     "pw_hash_version": 1,

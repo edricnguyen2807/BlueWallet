@@ -73,9 +73,17 @@ export const useExtendedNavigation = <T extends NavigationProp<ParamListBase>>()
           } else {
             // Normal navigation
             if (typeof screenOrOptions === 'string') {
-              originalNavigation.navigate({ name: screenOrOptions, params, merge: options?.merge });
+              originalNavigation.navigate({
+                name: screenOrOptions,
+                params,
+                merge: options?.merge,
+              });
             } else {
-              originalNavigation.navigate({ ...screenOrOptions, params, merge: options?.merge });
+              originalNavigation.navigate({
+                ...screenOrOptions,
+                params,
+                merge: options?.merge,
+              });
             }
           }
         }
@@ -141,33 +149,33 @@ export const useExtendedNavigation = <T extends NavigationProp<ParamListBase>>()
   );
 
   const navigateToWalletsList = useCallback(() => {
-  if (navigationRef.isReady()) {
-    navigationRef.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [
-          {
-            name: 'DrawerRoot',
-            state: {
-              routes: [
-                {
-                  name: 'DetailViewStackScreensStack',
-                  state: {
-                    routes: [
-                      {
-                        name: 'WalletsList',
-                      },
-                    ],
+    if (navigationRef.isReady()) {
+      navigationRef.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [
+            {
+              name: 'DrawerRoot',
+              state: {
+                routes: [
+                  {
+                    name: 'DetailViewStackScreensStack',
+                    state: {
+                      routes: [
+                        {
+                          name: 'WalletsList',
+                        },
+                      ],
+                    },
                   },
-                },
-              ],
+                ],
+              },
             },
-          },
-        ],
-      })
-    );
-  }
-}, []);
+          ],
+        }),
+      );
+    }
+  }, []);
 
   return useMemo(
     () => ({

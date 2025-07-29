@@ -12,11 +12,10 @@ jobs:
     permissions:
       contents: write
     steps:
-
       - name: Checkout master branch
         uses: actions/checkout@v4
         with:
-          ref: master  # Ensures we're checking out the master branch
+          ref: master # Ensures we're checking out the master branch
           fetch-depth: 0 # Ensures full history to enable branch deletion and recreation
 
       - name: Delete existing branch
@@ -25,13 +24,13 @@ jobs:
           git branch -D pod-update-branch || echo "Local branch does not exist, continuing..."
 
       - name: Create new branch from master
-        run: git checkout -b pod-update-branch  # Create a new branch from the master branch
+        run: git checkout -b pod-update-branch # Create a new branch from the master branch
 
       - name: Specify node version
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm'
+          cache: "npm"
           cache-dependency-path: package-lock.json
 
       - name: Install node modules
@@ -93,7 +92,6 @@ jobs:
     if: github.event.pull_request.merged == true || github.event.pull_request.state == 'closed'
     needs: pod-update
     steps:
-
       - name: Delete branch after PR merge/close
         run: |
           git push origin --delete pod-update-branch

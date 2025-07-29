@@ -31,7 +31,11 @@ const ToolTipMenu = (props: ToolTipMenuProps) => {
           title: subaction.text,
           subtitle: subaction.subtitle,
           image: subaction.icon?.iconValue ? subaction.icon.iconValue : undefined,
-          attributes: { disabled: subaction.disabled, destructive: subaction.destructive, hidden: subaction.hidden },
+          attributes: {
+            disabled: subaction.disabled,
+            destructive: subaction.destructive,
+            hidden: subaction.hidden,
+          },
         };
         if ('menuState' in subaction) {
           subMenuItem.state = subaction.menuState ? 'on' : 'off';
@@ -43,7 +47,11 @@ const ToolTipMenu = (props: ToolTipMenuProps) => {
               title: deepSub.text,
               subtitle: deepSub.subtitle,
               image: deepSub.icon?.iconValue ? deepSub.icon.iconValue : undefined,
-              attributes: { disabled: deepSub.disabled, destructive: deepSub.destructive, hidden: deepSub.hidden },
+              attributes: {
+                disabled: deepSub.disabled,
+                destructive: deepSub.destructive,
+                hidden: deepSub.hidden,
+              },
             };
             if ('menuState' in deepSub) {
               deepMenuItem.state = deepSub.menuState ? 'on' : 'off';
@@ -60,7 +68,11 @@ const ToolTipMenu = (props: ToolTipMenuProps) => {
       title: action.text,
       subtitle: action.subtitle,
       image: action.icon?.iconValue ? action.icon.iconValue : undefined,
-      attributes: { disabled: action.disabled, destructive: action.destructive, hidden: action.hidden },
+      attributes: {
+        disabled: action.disabled,
+        destructive: action.destructive,
+        hidden: action.hidden,
+      },
       displayInline: action.displayInline || false,
     };
     if ('menuState' in action) {

@@ -66,7 +66,9 @@ export function useWatchConnectivity() {
 
     if (lastPreferredCurrency.current !== preferredFiatCurrency.endPointKey) {
       try {
-        const currencyPayload = { preferredFiatCurrency: preferredFiatCurrency.endPointKey };
+        const currencyPayload = {
+          preferredFiatCurrency: preferredFiatCurrency.endPointKey,
+        };
         transferCurrentComplicationUserInfo(currencyPayload);
         lastPreferredCurrency.current = preferredFiatCurrency.endPointKey;
         console.debug('Apple Watch: updated preferred fiat currency', currencyPayload);
@@ -136,7 +138,9 @@ export function useWatchConnectivity() {
               }),
             ...(wallet.allowBIP47() &&
               wallet.isBIP47Enabled() &&
-              'getBIP47PaymentCode' in wallet && { paymentCode: wallet.getBIP47PaymentCode() }),
+              'getBIP47PaymentCode' in wallet && {
+                paymentCode: wallet.getBIP47PaymentCode(),
+              }),
           };
 
           console.debug('Constructed wallet data for watch:', {
@@ -161,7 +165,10 @@ export function useWatchConnectivity() {
       walletCount: processedWallets.length,
       walletLabels: processedWallets.map(wallet => wallet.label),
     });
-    return { wallets: processedWallets, randomID: `${Date.now()}${Math.floor(Math.random() * 1000)}` };
+    return {
+      wallets: processedWallets,
+      randomID: `${Date.now()}${Math.floor(Math.random() * 1000)}`,
+    };
   }, [wallets, walletsInitialized, txMetadata]);
 
   const determineTransactionType = (transaction: Transaction & LightningTransaction): string => {

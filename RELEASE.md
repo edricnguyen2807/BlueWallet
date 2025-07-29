@@ -2,8 +2,8 @@
 
 ## Apple
 
-* TBD
+- TBD
 
 ## Android
 
-* TBD
+- TBD

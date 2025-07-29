@@ -48,9 +48,19 @@ function reducer(state: State, action: Action): State {
     case ActionType.SET_SHARE_BUTTON_TAPPED:
       return { ...state, isShareButtonTapped: action.isShareButtonTapped };
     case ActionType.SET_ERROR:
-      return { ...state, error: action.error, isLoading: false, closeButtonState: true };
+      return {
+        ...state,
+        error: action.error,
+        isLoading: false,
+        closeButtonState: true,
+      };
     case ActionType.SET_QR_CODE_CONTENTS:
-      return { ...state, qrCodeContents: action.qrCodeContents, isLoading: false, closeButtonState: true };
+      return {
+        ...state,
+        qrCodeContents: action.qrCodeContents,
+        isLoading: false,
+        closeButtonState: true,
+      };
     case ActionType.SET_XPUB:
       return { ...state, xpub: action.xpub, isLoading: false };
     case ActionType.SET_CLOSE_BUTTON_STATE:
@@ -96,7 +106,10 @@ const ExportMultisigCoordinationSetup: React.FC = () => {
   const label = useMemo(() => wallet?.getLabel(), [wallet]);
 
   const setIsShareButtonTapped = (value: boolean) => {
-    dispatch({ type: ActionType.SET_SHARE_BUTTON_TAPPED, isShareButtonTapped: value });
+    dispatch({
+      type: ActionType.SET_SHARE_BUTTON_TAPPED,
+      isShareButtonTapped: value,
+    });
   };
 
   useFocusEffect(
@@ -111,19 +124,31 @@ const ExportMultisigCoordinationSetup: React.FC = () => {
               if (walletXpub) {
                 const value = Buffer.from(walletXpub, 'ascii').toString('hex');
                 dispatch({ type: ActionType.SET_XPUB, xpub: walletXpub });
-                dispatch({ type: ActionType.SET_QR_CODE_CONTENTS, qrCodeContents: value });
+                dispatch({
+                  type: ActionType.SET_QR_CODE_CONTENTS,
+                  qrCodeContents: value,
+                });
               } else {
-                dispatch({ type: ActionType.SET_ERROR, error: 'xpub not found' });
+                dispatch({
+                  type: ActionType.SET_ERROR,
+                  error: 'xpub not found',
+                });
               }
             } catch (error) {
               const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
               dispatch({ type: ActionType.SET_ERROR, error: errorMessage });
             }
-            dispatch({ type: ActionType.SET_CLOSE_BUTTON_STATE, closeButtonState: true });
+            dispatch({
+              type: ActionType.SET_CLOSE_BUTTON_STATE,
+              closeButtonState: true,
+            });
           }, 0);
         } else {
           dispatch({ type: ActionType.SET_ERROR, error: 'Wallet not found' });
-          dispatch({ type: ActionType.SET_CLOSE_BUTTON_STATE, closeButtonState: true });
+          dispatch({
+            type: ActionType.SET_CLOSE_BUTTON_STATE,
+            closeButtonState: true,
+          });
         }
       });
 

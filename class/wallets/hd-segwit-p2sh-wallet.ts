@@ -1,6 +1,6 @@
 import BIP32Factory, { BIP32Interface } from 'bip32';
-import * as bitcoin from 'bitcoinjs-lib';
-import { Psbt } from 'bitcoinjs-lib';
+import * as bigcoin from 'bigcoinjs-lib';
+import { Psbt } from 'bigcoinjs-lib';
 import b58 from 'bs58check';
 import { CoinSelectReturnInput } from 'coinselect';
 
@@ -87,8 +87,8 @@ export class HDSegwitP2SHWallet extends AbstractHDElectrumWallet {
     if (!pubkey || !path) {
       throw new Error('Internal error: pubkey or path are invalid');
     }
-    const p2wpkh = bitcoin.payments.p2wpkh({ pubkey });
-    const p2sh = bitcoin.payments.p2sh({ redeem: p2wpkh });
+    const p2wpkh = bigcoin.payments.p2wpkh({ pubkey });
+    const p2sh = bigcoin.payments.p2sh({ redeem: p2wpkh });
     if (!p2sh.output) {
       throw new Error('Internal error: no p2sh.output during _addPsbtInput()');
     }

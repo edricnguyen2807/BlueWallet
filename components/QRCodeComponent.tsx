@@ -44,7 +44,11 @@ const menuActions: Action[] =
           text: loc.transactions.details_copy,
           icon: actionIcons.Copy,
         },
-        { id: actionKeys.Share, text: loc.receive.details_share, icon: actionIcons.Share },
+        {
+          id: actionKeys.Share,
+          text: loc.receive.details_share,
+          icon: actionIcons.Share,
+        },
       ]
     : [
         {

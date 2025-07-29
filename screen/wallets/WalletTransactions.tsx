@@ -99,8 +99,12 @@ const WalletTransactions: React.FC<WalletTransactionsProps> = ({ route }) => {
     activityIndicatorStyle: {
       backgroundColor: colors.background,
     },
-    sendIcon: { transform: [{ rotate: direction === 'rtl' ? '-225deg' : '225deg' }] },
-    receiveIcon: { transform: [{ rotate: direction === 'rtl' ? '-45deg' : '45deg' }] },
+    sendIcon: {
+      transform: [{ rotate: direction === 'rtl' ? '-225deg' : '225deg' }],
+    },
+    receiveIcon: {
+      transform: [{ rotate: direction === 'rtl' ? '-45deg' : '45deg' }],
+    },
   });
 
   useFocusEffect(
@@ -118,9 +122,15 @@ const WalletTransactions: React.FC<WalletTransactionsProps> = ({ route }) => {
           uri: ret?.data ? ret.data : ret,
         };
         if (wallet.chain === Chain.ONCHAIN) {
-          navigate('SendDetailsRoot', { screen: 'SendDetails', params: parameters });
+          navigate('SendDetailsRoot', {
+            screen: 'SendDetails',
+            params: parameters,
+          });
         } else {
-          navigate('ScanLNDInvoiceRoot', { screen: 'ScanLNDInvoice', params: parameters });
+          navigate('ScanLNDInvoiceRoot', {
+            screen: 'ScanLNDInvoice',
+            params: parameters,
+          });
         }
         setIsLoading(false);
       }
@@ -198,7 +208,10 @@ const WalletTransactions: React.FC<WalletTransactionsProps> = ({ route }) => {
           // Only show error on final attempt for automatic refresh
           if ((isManualRefresh || newFailures === MAX_FAILURES) && newFailures >= MAX_FAILURES) {
             if (err) {
-              presentAlert({ message: (err as Error).message, type: AlertType.Toast });
+              presentAlert({
+                message: (err as Error).message,
+                type: AlertType.Toast,
+              });
             }
           }
           setIsLoading(true);
@@ -258,7 +271,10 @@ const WalletTransactions: React.FC<WalletTransactionsProps> = ({ route }) => {
           await wallet.fetchBtcAddress();
           toAddress = wallet.refill_addressess[0];
         } catch (Err) {
-          return presentAlert({ message: (Err as Error).message, type: AlertType.Toast });
+          return presentAlert({
+            message: (Err as Error).message,
+            type: AlertType.Toast,
+          });
         }
       }
 
@@ -333,7 +349,10 @@ const WalletTransactions: React.FC<WalletTransactionsProps> = ({ route }) => {
 
   const sendButtonPress = () => {
     if (wallet.chain === Chain.OFFCHAIN) {
-      return navigate('ScanLNDInvoiceRoot', { screen: 'ScanLNDInvoice', params: { walletID } });
+      return navigate('ScanLNDInvoiceRoot', {
+        screen: 'ScanLNDInvoice',
+        params: { walletID },
+      });
     }
 
     if (wallet.type === WatchOnlyWallet.type && wallet.isHd() && !wallet.useWithHardwareWalletEnabled()) {
@@ -435,7 +454,10 @@ const WalletTransactions: React.FC<WalletTransactionsProps> = ({ route }) => {
       const offsetY = event.nativeEvent.contentOffset.y;
       const combinedHeight = 180;
       if (offsetY < combinedHeight) {
-        setOptions({ ...getWalletTransactionsOptions({ route }), headerTitle: undefined });
+        setOptions({
+          ...getWalletTransactionsOptions({ route }),
+          headerTitle: undefined,
+        });
       } else {
         navigation.setOptions({
           headerTitle: `${wallet.getLabel()} ${walletBalance}`,
@@ -603,7 +625,10 @@ const WalletTransactions: React.FC<WalletTransactionsProps> = ({ route }) => {
             text={loc.receive.header}
             onPress={() => {
               if (wallet.chain === Chain.OFFCHAIN) {
-                navigate('LNDCreateInvoiceRoot', { screen: 'LNDCreateInvoice', params: { walletID } });
+                navigate('LNDCreateInvoiceRoot', {
+                  screen: 'LNDCreateInvoice',
+                  params: { walletID },
+                });
               } else {
                 navigate('ReceiveDetails', { walletID });
               }
@@ -656,10 +681,25 @@ export default WalletTransactions;
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
-  scrollViewContent: { flex: 1, justifyContent: 'center', paddingHorizontal: 16, paddingBottom: 500 },
+  scrollViewContent: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 16,
+    paddingBottom: 500,
+  },
   activityIndicator: { marginVertical: 20 },
-  listHeaderTextRow: { flex: 1, margin: 16, flexDirection: 'row', justifyContent: 'space-between' },
-  listHeaderText: { marginTop: 8, marginBottom: 8, fontWeight: 'bold', fontSize: 24 },
+  listHeaderTextRow: {
+    flex: 1,
+    margin: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  listHeaderText: {
+    marginTop: 8,
+    marginBottom: 8,
+    fontWeight: 'bold',
+    fontSize: 24,
+  },
   refreshIndicatorBackground: {
     position: 'absolute',
     top: 0,
@@ -667,8 +707,18 @@ const styles = StyleSheet.create({
     right: 0,
   },
   emptyTxsContainer: { height: '10%', minHeight: '10%', flex: 1 },
-  emptyTxs: { fontSize: 18, color: '#9aa0aa', textAlign: 'center', marginVertical: 16 },
-  emptyTxsLightning: { fontSize: 18, color: '#9aa0aa', textAlign: 'center', fontWeight: '600' },
+  emptyTxs: {
+    fontSize: 18,
+    color: '#9aa0aa',
+    textAlign: 'center',
+    marginVertical: 16,
+  },
+  emptyTxsLightning: {
+    fontSize: 18,
+    color: '#9aa0aa',
+    textAlign: 'center',
+    fontWeight: '600',
+  },
   iconContainer: {
     justifyContent: 'center',
     alignItems: 'center',

@@ -168,7 +168,10 @@ export default function PaymentCodesList() {
         if (!(await confirm(loc.wallets.details_are_you_sure))) {
           return;
         }
-        counterpartyMetadata[pc] = { label: counterpartyMetadata[pc]?.label, hidden: true };
+        counterpartyMetadata[pc] = {
+          label: counterpartyMetadata[pc]?.label,
+          hidden: true,
+        };
         setReload(Math.random());
         await saveToDisk();
         break;
@@ -395,5 +398,13 @@ const styles = StyleSheet.create({
   contactRowBody: { flex: 6, justifyContent: 'center', top: -3 },
   contactRowNameText: { marginLeft: 10, fontSize: 16 },
   contactRowContainer: { flexDirection: 'row', padding: 15 },
-  stick: { borderStyle: 'solid', borderWidth: 0.5, borderColor: 'gray', opacity: 0.5, top: 0, left: -10, width: '110%' },
+  stick: {
+    borderStyle: 'solid',
+    borderWidth: 0.5,
+    borderColor: 'gray',
+    opacity: 0.5,
+    top: 0,
+    left: -10,
+    width: '110%',
+  },
 });

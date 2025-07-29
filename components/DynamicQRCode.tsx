@@ -124,7 +124,9 @@ export class DynamicQRCode extends Component<DynamicQRCodeProps, DynamicQRCodeSt
           testID="DynamicCode"
           onPress={() => {
             LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-            this.setState(prevState => ({ hideControls: !prevState.hideControls }));
+            this.setState(prevState => ({
+              hideControls: !prevState.hideControls,
+            }));
           }}
         >
           {this.state.displayQRCode && (
@@ -146,7 +148,10 @@ export class DynamicQRCode extends Component<DynamicQRCodeProps, DynamicQRCodeSt
             <BlueSpacing20 />
             <View>
               <Text style={animatedQRCodeStyle.text}>
-                {loc.formatString(loc._.of, { number: this.state.index + 1, total: this.state.total })}
+                {loc.formatString(loc._.of, {
+                  number: this.state.index + 1,
+                  total: this.state.total,
+                })}
               </Text>
             </View>
             <BlueSpacing20 />

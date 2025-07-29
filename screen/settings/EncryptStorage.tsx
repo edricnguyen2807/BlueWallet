@@ -79,8 +79,14 @@ const EncryptStorage = () => {
   const initializeState = useCallback(async () => {
     const isStorageEncryptedSwitchEnabled = await isStorageEncrypted();
     const isDeviceBiometricCapableSync = await isDeviceBiometricCapable();
-    dispatch({ type: ActionType.SetStorageEncryptedSwitch, payload: isStorageEncryptedSwitchEnabled });
-    dispatch({ type: ActionType.SetDeviceBiometricCapable, payload: isDeviceBiometricCapableSync });
+    dispatch({
+      type: ActionType.SetStorageEncryptedSwitch,
+      payload: isStorageEncryptedSwitchEnabled,
+    });
+    dispatch({
+      type: ActionType.SetDeviceBiometricCapable,
+      payload: isDeviceBiometricCapableSync,
+    });
     dispatch({ type: ActionType.SetLoading, payload: false });
   }, [isStorageEncrypted, isDeviceBiometricCapable]);
 
@@ -89,7 +95,10 @@ const EncryptStorage = () => {
   }, [initializeState]);
 
   const handleDecryptStorage = async () => {
-    dispatch({ type: ActionType.SetModalType, payload: MODAL_TYPES.ENTER_PASSWORD });
+    dispatch({
+      type: ActionType.SetModalType,
+      payload: MODAL_TYPES.ENTER_PASSWORD,
+    });
     promptRef.current?.present();
   };
 
@@ -98,7 +107,10 @@ const EncryptStorage = () => {
     dispatch({ type: ActionType.SetLoading, payload: true });
 
     if (value) {
-      dispatch({ type: ActionType.SetModalType, payload: MODAL_TYPES.CREATE_PASSWORD });
+      dispatch({
+        type: ActionType.SetModalType,
+        payload: MODAL_TYPES.CREATE_PASSWORD,
+      });
       promptRef.current?.present();
     } else {
       Alert.alert(
@@ -110,7 +122,10 @@ const EncryptStorage = () => {
             style: 'cancel',
             onPress: () => {
               dispatch({ type: ActionType.SetLoading, payload: false });
-              dispatch({ type: ActionType.SetCurrentLoadingSwitch, payload: null });
+              dispatch({
+                type: ActionType.SetCurrentLoadingSwitch,
+                payload: null,
+              });
             },
           },
           {
@@ -125,7 +140,10 @@ const EncryptStorage = () => {
   };
 
   const onUseBiometricSwitch = async (value: boolean) => {
-    dispatch({ type: ActionType.SetCurrentLoadingSwitch, payload: 'biometric' });
+    dispatch({
+      type: ActionType.SetCurrentLoadingSwitch,
+      payload: 'biometric',
+    });
     if (await unlockWithBiometrics()) {
       setBiometricUseEnabled(value);
       dispatch({ type: ActionType.SetCurrentLoadingSwitch, payload: null });
@@ -150,7 +168,9 @@ const EncryptStorage = () => {
         <>
           <Header leftText={loc.settings.biometrics} />
           <ListItem
-            title={loc.formatString(loc.settings.encrypt_use, { type: deviceBiometricType! })}
+            title={loc.formatString(loc.settings.encrypt_use, {
+              type: deviceBiometricType!,
+            })}
             Component={TouchableWithoutFeedback}
             switch={{
               value: biometricEnabled,
@@ -161,9 +181,17 @@ const EncryptStorage = () => {
             containerStyle={[styles.row, styleHooks.root]}
             subtitle={
               <>
-                <Text style={styles.subtitleText}>{loc.formatString(loc.settings.encrypt_use_expl, { type: deviceBiometricType! })}</Text>
+                <Text style={styles.subtitleText}>
+                  {loc.formatString(loc.settings.encrypt_use_expl, {
+                    type: deviceBiometricType!,
+                  })}
+                </Text>
                 {Platform.OS === 'android' && Platform.Version >= 30 && (
-                  <Text style={styles.subtitleText}>{loc.formatString(loc.settings.biometrics_fail, { type: deviceBiometricType! })}</Text>
+                  <Text style={styles.subtitleText}>
+                    {loc.formatString(loc.settings.biometrics_fail, {
+                      type: deviceBiometricType!,
+                    })}
+                  </Text>
                 )}
               </>
             }
@@ -204,7 +232,10 @@ const EncryptStorage = () => {
             try {
               await encryptStorage(password);
               await saveToDisk();
-              dispatch({ type: ActionType.SetModalType, payload: MODAL_TYPES.SUCCESS });
+              dispatch({
+                type: ActionType.SetModalType,
+                payload: MODAL_TYPES.SUCCESS,
+              });
               success = true;
             } catch (error) {
               presentAlert({ message: (error as Error).message });

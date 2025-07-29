@@ -414,7 +414,10 @@ const ManageWallets: React.FC = () => {
   }, [debouncedSearchQuery, state.managedWalletsData, state.walletsCopy, state.txMetadata]);
 
   useEffect(() => {
-    dispatch({ type: SET_INITIAL_DATA, payload: { wallets: initialWalletsRef.current, txMetadata } });
+    dispatch({
+      type: SET_INITIAL_DATA,
+      payload: { wallets: initialWalletsRef.current, txMetadata },
+    });
   }, [txMetadata]);
 
   useEffect(() => {

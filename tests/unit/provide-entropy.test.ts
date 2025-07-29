@@ -37,7 +37,11 @@ describe('Entropy reducer and format', () => {
   });
 
   it('handles 128 bits correctly', () => {
-    const state = eReducer(undefined, { type: EActionType.push, value: 0, bits: 128 });
+    const state = eReducer(undefined, {
+      type: EActionType.push,
+      value: 0,
+      bits: 128,
+    });
     assert.equal(entropyToHex(state), '0x00000000000000000000000000000000');
   });
 
@@ -57,7 +61,11 @@ describe('Entropy reducer and format', () => {
   });
 
   it('handles 256 bits limit', () => {
-    let state = eReducer(undefined, { type: EActionType.push, value: 0, bits: 254 });
+    let state = eReducer(undefined, {
+      type: EActionType.push,
+      value: 0,
+      bits: 254,
+    });
     state = eReducer(state, { type: EActionType.push, value: 0b101, bits: 3 });
     assert.equal(entropyToHex(state), '0x0000000000000000000000000000000000000000000000000000000000000002');
   });
@@ -109,32 +117,56 @@ describe('convertToBuffer function', () => {
   });
 
   it('8 zero bits', () => {
-    const state = eReducer(undefined, { type: EActionType.push, value: 0, bits: 8 });
+    const state = eReducer(undefined, {
+      type: EActionType.push,
+      value: 0,
+      bits: 8,
+    });
     assert.deepEqual(convertToBuffer(state), Buffer.from([0]));
   });
 
   it('8 filled bits', () => {
-    const state = eReducer(undefined, { type: EActionType.push, value: 0b11111111, bits: 8 });
+    const state = eReducer(undefined, {
+      type: EActionType.push,
+      value: 0b11111111,
+      bits: 8,
+    });
     assert.deepEqual(convertToBuffer(state), Buffer.from([0b11111111]));
   });
 
   it('9 zero bits', () => {
-    const state = eReducer(undefined, { type: EActionType.push, value: 0, bits: 9 });
+    const state = eReducer(undefined, {
+      type: EActionType.push,
+      value: 0,
+      bits: 9,
+    });
     assert.deepEqual(convertToBuffer(state), Buffer.from([0]));
   });
 
   it('9 filled bits', () => {
-    const state = eReducer(undefined, { type: EActionType.push, value: 0b111111111, bits: 9 });
+    const state = eReducer(undefined, {
+      type: EActionType.push,
+      value: 0b111111111,
+      bits: 9,
+    });
     assert.deepEqual(convertToBuffer(state), Buffer.from([0b11111111]));
   });
 
   it('9 bits', () => {
-    const state = eReducer(undefined, { type: EActionType.push, value: 0b111100111, bits: 9 });
+    const state = eReducer(undefined, {
+      type: EActionType.push,
+      value: 0b111100111,
+      bits: 9,
+    });
     assert.deepEqual(convertToBuffer(state), Buffer.from([0b11100111]));
   });
 
   it('3 bytes', () => {
-    let state = eReducer(undefined, { type: EActionType.push, value: 1, bits: 8 });
+    let state = eReducer(undefined, {
+      type: EActionType.push,
+      value: 1,
+      bits: 8,
+    });
     state = eReducer(state, { type: EActionType.push, value: 2, bits: 8 });
     state = eReducer(state, { type: EActionType.push, value: 3, bits: 8 });
     assert.deepEqual(convertToBuffer(state), Buffer.from([1, 2, 3]));

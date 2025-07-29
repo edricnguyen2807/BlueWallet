@@ -1,5 +1,5 @@
 import assert from 'assert';
-import * as bitcoin from 'bitcoinjs-lib';
+import * as bigcoin from 'bigcoinjs-lib';
 
 import { HDSegwitBech32Wallet } from '../../class';
 import { uint8ArrayToHex } from '../../blue_modules/uint8array-extras';
@@ -21,17 +21,17 @@ describe('Bech32 Segwit HD (BIP84)', () => {
     assert.strictEqual(hd._getInternalWIFByIndex(0), 'KxuoxufJL5csa1Wieb2kp29VNdn92Us8CoaUG3aGtPtcF3AzeXvF');
     assert.ok(hd._getInternalWIFByIndex(0) !== hd._getInternalWIFByIndex(1));
 
-    assert.strictEqual(hd._getExternalAddressByIndex(0), 'bc1qcr8te4kr609gcawutmrza0j4xv80jy8z306fyu');
+    assert.strictEqual(hd._getExternalAddressByIndex(0), 'bgc1qm9wpa7m3yyvg9xnch6h2jx9z3vclhpqwxthx9q');
     assert.strictEqual(hd._getExternalAddressByIndex(1), 'bc1qnjg0jd8228aq7egyzacy8cys3knf9xvrerkf9g');
     assert.strictEqual(hd._getInternalAddressByIndex(0), 'bc1q8c6fshw2dlwun7ekn9qwf37cu2rn755upcp6el');
     assert.ok(hd._getInternalAddressByIndex(0) !== hd._getInternalAddressByIndex(1));
 
-    assert.ok(hd.getAllExternalAddresses().includes('bc1qcr8te4kr609gcawutmrza0j4xv80jy8z306fyu'));
+    assert.ok(hd.getAllExternalAddresses().includes('bgc1qm9wpa7m3yyvg9xnch6h2jx9z3vclhpqwxthx9q'));
     assert.ok(hd.getAllExternalAddresses().includes('bc1qnjg0jd8228aq7egyzacy8cys3knf9xvrerkf9g'));
     assert.ok(!hd.getAllExternalAddresses().includes('bc1q8c6fshw2dlwun7ekn9qwf37cu2rn755upcp6el')); // not internal
 
     assert.ok(hd.addressIsChange('bc1q8c6fshw2dlwun7ekn9qwf37cu2rn755upcp6el'));
-    assert.ok(!hd.addressIsChange('bc1qcr8te4kr609gcawutmrza0j4xv80jy8z306fyu'));
+    assert.ok(!hd.addressIsChange('bgc1qm9wpa7m3yyvg9xnch6h2jx9z3vclhpqwxthx9q'));
 
     assert.strictEqual(
       hd._getPubkeyByAddress(hd._getExternalAddressByIndex(0)).toString('hex'),
@@ -54,12 +54,12 @@ describe('Bech32 Segwit HD (BIP84)', () => {
     const zpub = 'zpub6rFR7y4Q2AijBEqTUquhVz398htDFrtymD9xYYfG1m4wAcvPhXNfE3EfH1r1ADqtfSdVCToUG868RvUUkgDKf31mGDtKsAYz2oz2AGutZYs';
     const hd = new HDSegwitBech32Wallet();
     hd._xpub = zpub;
-    assert.strictEqual(hd._getExternalAddressByIndex(0), 'bc1qcr8te4kr609gcawutmrza0j4xv80jy8z306fyu');
+    assert.strictEqual(hd._getExternalAddressByIndex(0), 'bgc1qm9wpa7m3yyvg9xnch6h2jx9z3vclhpqwxthx9q');
     assert.strictEqual(hd._getExternalAddressByIndex(1), 'bc1qnjg0jd8228aq7egyzacy8cys3knf9xvrerkf9g');
     assert.strictEqual(hd._getInternalAddressByIndex(0), 'bc1q8c6fshw2dlwun7ekn9qwf37cu2rn755upcp6el');
     assert.ok(hd._getInternalAddressByIndex(0) !== hd._getInternalAddressByIndex(1));
 
-    assert.ok(hd.getAllExternalAddresses().includes('bc1qcr8te4kr609gcawutmrza0j4xv80jy8z306fyu'));
+    assert.ok(hd.getAllExternalAddresses().includes('bgc1qm9wpa7m3yyvg9xnch6h2jx9z3vclhpqwxthx9q'));
     assert.ok(hd.getAllExternalAddresses().includes('bc1qnjg0jd8228aq7egyzacy8cys3knf9xvrerkf9g'));
     assert.ok(!hd.getAllExternalAddresses().includes('bc1q8c6fshw2dlwun7ekn9qwf37cu2rn755upcp6el')); // not internal
   });
@@ -237,7 +237,12 @@ describe('Bech32 Segwit HD (BIP84)', () => {
 
     const { tx, psbt, outputs } = hd.createTransaction(
       utxo,
-      [{ address: 'bc1qtmcfj7lvgjp866w8lytdpap82u7eege58jy52hp4ctk0hsncegyqel8prp', value: 546 }],
+      [
+        {
+          address: 'bc1qtmcfj7lvgjp866w8lytdpap82u7eege58jy52hp4ctk0hsncegyqel8prp',
+          value: 546,
+        },
+      ],
       10,
       'bc1qtmcfj7lvgjp866w8lytdpap82u7eege58jy52hp4ctk0hsncegyqel8prp',
     );
@@ -275,7 +280,12 @@ describe('Bech32 Segwit HD (BIP84)', () => {
       utxo,
       [
         { address: hd._getExternalAddressByIndex(0), value: 546 },
-        { script: { hex: '00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff' }, value: 0 },
+        {
+          script: {
+            hex: '00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff',
+          },
+          value: 0,
+        },
       ],
       150,
       hd._getInternalAddressByIndex(0),
@@ -284,7 +294,7 @@ describe('Bech32 Segwit HD (BIP84)', () => {
     assert.strictEqual(outputs.length, 3); // destination, op_return, change
     assert.ok(!outputs[1].address); // should not be there as it should be OP_RETURN
 
-    const decodedTx = bitcoin.Transaction.fromHex(tx.toHex());
+    const decodedTx = bigcoin.Transaction.fromHex(tx.toHex());
     // console.log(decodedTx.outs);
 
     assert.strictEqual(decodedTx.outs[0].value, 546n); // first output - destination

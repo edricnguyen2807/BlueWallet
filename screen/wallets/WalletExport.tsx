@@ -151,12 +151,20 @@ const WalletExport: React.FC = () => {
 
         {secrets.map((secret, index) => (
           <React.Fragment key={secret}>
-            <BlueText style={styles.scanText}>{loc.formatString(loc.wallets.share_number, { number: index + 1 })}</BlueText>
+            <BlueText style={styles.scanText}>
+              {loc.formatString(loc.wallets.share_number, {
+                number: index + 1,
+              })}
+            </BlueText>
             <SeedWords seed={secret} />
           </React.Fragment>
         ))}
 
-        <BlueText style={styles.typeText}>{loc.formatString(loc.wallets.wallet_type_this, { type: wallet.typeReadable })}</BlueText>
+        <BlueText style={styles.typeText}>
+          {loc.formatString(loc.wallets.wallet_type_this, {
+            type: wallet.typeReadable,
+          })}
+        </BlueText>
       </Scroll>
     );
   }
@@ -202,7 +210,11 @@ const WalletExport: React.FC = () => {
         <HandOffComponent title={loc.wallets.xpub_title} type={HandOffActivityType.Xpub} userInfo={{ xpub: secret }} />
       )}
 
-      <BlueText style={styles.typeText}>{loc.formatString(loc.wallets.wallet_type_this, { type: wallet.typeReadable })}</BlueText>
+      <BlueText style={styles.typeText}>
+        {loc.formatString(loc.wallets.wallet_type_this, {
+          type: wallet.typeReadable,
+        })}
+      </BlueText>
     </ScrollView>
   );
 };

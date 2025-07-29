@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js';
-import * as bitcoin from 'bitcoinjs-lib';
+import * as bigcoin from 'bigcoinjs-lib';
 import DefaultPreference from 'react-native-default-preference';
 import RNFS from 'react-native-fs';
 import Realm from 'realm';
@@ -84,9 +84,9 @@ export const ELECTRUM_SERVER_HISTORY = 'electrum_server_history';
 const ELECTRUM_CONNECTION_DISABLED = 'electrum_disabled';
 const storageKey = 'ELECTRUM_PEERS';
 // const defaultPeer = { host: 'electrum1.bluewallet.io', ssl: 443 };
-const defaultPeer = { host: '8.219.145.96',tcp: 50001 };
+const defaultPeer = { host: '8.219.145.96', tcp: 50001 };
 export const hardcodedPeers: Peer[] = [
-  { host: '8.219.145.96', tcp: 50001},
+  { host: '8.219.145.96', tcp: 50001 },
   // { host: 'bitcoin.lukechilds.co', ssl: 50002 },
   // { host: 'electrum.jochen-hoenicke.de', ssl: '50006' },
   // { host: 'electrum1.bluewallet.io', ssl: 443 },
@@ -105,11 +105,14 @@ let serverName: string | false = false;
 let disableBatching: boolean = false;
 let connectionAttempt: number = 0;
 let currentPeerIndex = Math.floor(Math.random() * hardcodedPeers.length);
-let latestBlock: { height: number; time: number } | { height: undefined; time: undefined } = { height: undefined, time: undefined };
+let latestBlock: { height: number; time: number } | { height: undefined; time: undefined } = {
+  height: undefined,
+  time: undefined,
+};
 const txhashHeightCache: Record<string, number> = {};
 let _realm: Realm | undefined;
 
-function bitcoinjs_crypto_sha256(buffer: Uint8Array): Buffer {
+function bigcoinjs_crypto_sha256(buffer: Uint8Array): Buffer {
   return Buffer.from(_sha256(buffer));
 }
 
@@ -117,7 +120,7 @@ async function _getRealm() {
   if (_realm) return _realm;
 
   const cacheFolderPath = RNFS.CachesDirectoryPath; // Path to cache folder
-  const password = uint8ArrayToHex(bitcoinjs_crypto_sha256(Buffer.from('fyegjitkyf[eqjnc.lf')));
+  const password = uint8ArrayToHex(bigcoinjs_crypto_sha256(Buffer.from('fyegjitkyf[eqjnc.lf')));
   const buf = Buffer.from(password + password, 'hex');
   const encryptionKey = Int8Array.from(buf);
   const path = `${cacheFolderPath}/electrumcache.realm`; // Use cache folder path
@@ -279,7 +282,10 @@ export async function connectMain(): Promise<void> {
         setTimeout(connectMain, usingPeer.host.endsWith('.onion') ? 4000 : 500);
       }
     };
-    const ver = await mainClient.initElectrum({ client: 'bluewallet', version: '1.4' });
+    const ver = await mainClient.initElectrum({
+      client: 'bluewallet',
+      version: '1.4',
+    });
     if (ver && ver[0]) {
       console.log('connected to ', ver);
       serverName = ver[0];
@@ -491,8 +497,8 @@ async function getRandomDynamicPeer(): Promise<Peer> {
 export const getBalanceByAddress = async function (address: string): Promise<{ confirmed: number; unconfirmed: number }> {
   try {
     if (!mainClient) throw new Error('Electrum client is not connected');
-    const script = bitcoin.address.toOutputScript(address);
-    const hash = bitcoinjs_crypto_sha256(script);
+    const script = bigcoin.address.toOutputScript(address);
+    const hash = bigcoinjs_crypto_sha256(script);
     const reversedHash = Buffer.from(hash).reverse();
     const balance = await mainClient.blockchainScripthash_getBalance(reversedHash.toString('hex'));
     balance.addr = address;
@@ -519,8 +525,8 @@ export const getSecondsSinceLastRequest = function () {
 
 export const getTransactionsByAddress = async function (address: string): Promise<ElectrumHistory[]> {
   if (!mainClient) throw new Error('Electrum client is not connected');
-  const script = bitcoin.address.toOutputScript(address);
-  const hash = bitcoinjs_crypto_sha256(script);
+  const script = bigcoin.address.toOutputScript(address);
+  const hash = bigcoinjs_crypto_sha256(script);
   const reversedHash = Buffer.from(hash).reverse();
   const history = await mainClient.blockchainScripthash_getHistory(reversedHash.toString('hex'));
   for (const h of history || []) {
@@ -532,8 +538,8 @@ export const getTransactionsByAddress = async function (address: string): Promis
 
 export const getMempoolTransactionsByAddress = async function (address: string): Promise<MempoolTransaction[]> {
   if (!mainClient) throw new Error('Electrum client is not connected');
-  const script = bitcoin.address.toOutputScript(address);
-  const hash = bitcoinjs_crypto_sha256(script);
+  const script = bigcoin.address.toOutputScript(address);
+  const hash = bigcoinjs_crypto_sha256(script);
   const reversedHash = Buffer.from(hash).reverse();
   return mainClient.blockchainScripthash_getMempool(reversedHash.toString('hex'));
 };
@@ -550,7 +556,7 @@ export const ping = async function () {
 
 // exported only to be used in unit tests
 export function txhexToElectrumTransaction(txhex: string): ElectrumTransactionWithHex {
-  const tx = bitcoin.Transaction.fromHex(txhex);
+  const tx = bigcoin.Transaction.fromHex(txhex);
 
   const ret: ElectrumTransactionWithHex = {
     txid: tx.getId(),
@@ -718,8 +724,8 @@ export const multiGetBalanceByAddress = async (addresses: string[], batchsize: n
     const scripthashes = [];
     const scripthash2addr: Record<string, string> = {};
     for (const addr of chunk) {
-      const script = bitcoin.address.toOutputScript(addr);
-      const hash = bitcoinjs_crypto_sha256(script);
+      const script = bigcoin.address.toOutputScript(addr);
+      const hash = bigcoinjs_crypto_sha256(script);
       const reversedHash = Buffer.from(hash).reverse().toString('hex');
       scripthashes.push(reversedHash);
       scripthash2addr[reversedHash] = addr;
@@ -736,7 +742,10 @@ export const multiGetBalanceByAddress = async (addresses: string[], batchsize: n
       }
       const promiseResults = await Promise.all(promises);
       for (let resultIndex = 0; resultIndex < promiseResults.length; resultIndex++) {
-        balances.push({ result: promiseResults[resultIndex], param: index2scripthash[resultIndex] });
+        balances.push({
+          result: promiseResults[resultIndex],
+          param: index2scripthash[resultIndex],
+        });
       }
     } else {
       balances = await mainClient.blockchainScripthash_getBalanceBatch(scripthashes);
@@ -762,8 +771,8 @@ export const multiGetUtxoByAddress = async function (addresses: string[], batchs
     const scripthashes = [];
     const scripthash2addr: Record<string, string> = {};
     for (const addr of chunk) {
-      const script = bitcoin.address.toOutputScript(addr);
-      const hash = bitcoinjs_crypto_sha256(script);
+      const script = bigcoin.address.toOutputScript(addr);
+      const hash = bigcoinjs_crypto_sha256(script);
       const reversedHash = Buffer.from(hash).reverse().toString('hex');
       scripthashes.push(reversedHash);
       scripthash2addr[reversedHash] = addr;
@@ -812,8 +821,8 @@ export const multiGetHistoryByAddress = async function (
     const scripthashes = [];
     const scripthash2addr: Record<string, string> = {};
     for (const addr of chunk) {
-      const script = bitcoin.address.toOutputScript(addr);
-      const hash = bitcoinjs_crypto_sha256(script);
+      const script = bigcoin.address.toOutputScript(addr);
+      const hash = bigcoinjs_crypto_sha256(script);
       const reversedHash = Buffer.from(hash).reverse().toString('hex');
       scripthashes.push(reversedHash);
       scripthash2addr[reversedHash] = addr;
@@ -830,7 +839,10 @@ export const multiGetHistoryByAddress = async function (
       }
       const histories = await Promise.all(promises);
       for (let historyIndex = 0; historyIndex < histories.length; historyIndex++) {
-        results.push({ result: histories[historyIndex], param: index2scripthash[historyIndex] });
+        results.push({
+          result: histories[historyIndex],
+          param: index2scripthash[historyIndex],
+        });
       }
     } else {
       results = await mainClient.blockchainScripthash_getHistoryBatch(scripthashes);
@@ -1088,7 +1100,11 @@ export const calcEstimateFeeFromFeeHistorgam = function (numberOfBlocks: number,
   return Math.round(percentile(histogramFlat, 0.5) || 1);
 };
 
-export const estimateFees = async function (): Promise<{ fast: number; medium: number; slow: number }> {
+export const estimateFees = async function (): Promise<{
+  fast: number;
+  medium: number;
+  slow: number;
+}> {
   let histogram;
   let timeoutId;
   try {

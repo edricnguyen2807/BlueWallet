@@ -47,14 +47,22 @@ const ElectrumSettings: React.FC = () => {
   const navigation = useExtendedNavigation();
   const [isLoading, setIsLoading] = useState(true);
   const [serverHistory, setServerHistory] = useState<Set<ElectrumServerItem>>(new Set());
-  const [config, setConfig] = useState<{ connected?: number; host?: string; port?: string }>({});
+  const [config, setConfig] = useState<{
+    connected?: number;
+    host?: string;
+    port?: string;
+  }>({});
   const [host, setHost] = useState<string>('');
   const [port, setPort] = useState<number | undefined>();
   const [sslPort, setSslPort] = useState<number | undefined>(undefined);
   const [isAndroidNumericKeyboardFocused, setIsAndroidNumericKeyboardFocused] = useState(false);
   const [isAndroidAddressKeyboardVisible, setIsAndroidAddressKeyboardVisible] = useState(false);
   const { setIsElectrumDisabled, isElectrumDisabled } = useSettings();
-  const [savedServer, setSavedServer] = useState<{ host: string; tcp: string; ssl: string }>({
+  const [savedServer, setSavedServer] = useState<{
+    host: string;
+    tcp: string;
+    ssl: string;
+  }>({
     host: '',
     tcp: '',
     ssl: '',
@@ -158,7 +166,9 @@ const ElectrumSettings: React.FC = () => {
     if (server) {
       triggerHapticFeedback(HapticFeedbackTypes.ImpactHeavy);
       Alert.alert(
-        loc.formatString(loc.settings.set_electrum_server_as_default, { server: (server as ElectrumServerItem).host }),
+        loc.formatString(loc.settings.set_electrum_server_as_default, {
+          server: (server as ElectrumServerItem).host,
+        }),
         '',
         [
           {
@@ -212,7 +222,11 @@ const ElectrumSettings: React.FC = () => {
 
           if (!serverExistsInHistory && (serverPort || serverSslPort) && !hardcodedPeers.some(peer => peer.host === serverHost)) {
             const newServerHistory = new Set(serverHistory);
-            newServerHistory.add({ host: serverHost, tcp: Number(serverPort), ssl: Number(serverSslPort) });
+            newServerHistory.add({
+              host: serverHost,
+              tcp: Number(serverPort),
+              ssl: Number(serverSslPort),
+            });
             await DefaultPreference.set(BlueElectrum.ELECTRUM_SERVER_HISTORY, JSON.stringify(Array.from(newServerHistory)));
             setServerHistory(newServerHistory);
           }
@@ -250,7 +264,10 @@ const ElectrumSettings: React.FC = () => {
       triggerHapticFeedback(HapticFeedbackTypes.ImpactHeavy);
       Alert.alert(
         loc.settings.electrum_preferred_server,
-        loc.formatString(loc.settings.set_as_preferred_electrum, { host: value.host, port: String(value.ssl ?? value.tcp) }),
+        loc.formatString(loc.settings.set_as_preferred_electrum, {
+          host: value.host,
+          port: String(value.ssl ?? value.tcp),
+        }),
         [
           {
             text: loc._.ok,
@@ -512,7 +529,9 @@ const ElectrumSettings: React.FC = () => {
           <BlueSpacing20 />
           <AddressInput
             testID="HostInput"
-            placeholder={loc.formatString(loc.settings.electrum_host, { example: '10.20.30.40' })}
+            placeholder={loc.formatString(loc.settings.electrum_host, {
+              example: '10.20.30.40',
+            })}
             address={host}
             onChangeText={text => setHost(text.trim())}
             editable={!isLoading}
@@ -526,7 +545,9 @@ const ElectrumSettings: React.FC = () => {
           <View style={styles.portWrap}>
             <View style={[styles.inputWrap, stylesHook.inputWrap]}>
               <TextInput
-                placeholder={loc.formatString(loc.settings.electrum_port, { example: '50001' })}
+                placeholder={loc.formatString(loc.settings.electrum_port, {
+                  example: '50001',
+                })}
                 value={sslPort?.toString() === '' || sslPort === undefined ? port?.toString() || '' : sslPort?.toString() || ''}
                 onChangeText={text => {
                   const parsed = Number(text.trim());

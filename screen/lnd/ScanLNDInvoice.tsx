@@ -88,7 +88,11 @@ const ScanLNDInvoice = () => {
         triggerHapticFeedback(HapticFeedbackTypes.NotificationError);
         goBack();
         setTimeout(
-          () => presentAlert({ message: loc.wallets.no_ln_wallet_error, hapticFeedback: HapticFeedbackTypes.NotificationError }),
+          () =>
+            presentAlert({
+              message: loc.wallets.no_ln_wallet_error,
+              hapticFeedback: HapticFeedbackTypes.NotificationError,
+            }),
           500,
         );
       }
@@ -137,7 +141,14 @@ const ScanLNDInvoice = () => {
         triggerHapticFeedback(HapticFeedbackTypes.NotificationError);
         Keyboard.dismiss();
         setParams({ uri: undefined });
-        setTimeout(() => presentAlert({ message: Err.message, hapticFeedback: HapticFeedbackTypes.NotificationError }), 10);
+        setTimeout(
+          () =>
+            presentAlert({
+              message: Err.message,
+              hapticFeedback: HapticFeedbackTypes.NotificationError,
+            }),
+          10,
+        );
         setIsLoading(false);
         setAmount(undefined);
         setDestination('');
@@ -156,7 +167,10 @@ const ScanLNDInvoice = () => {
     setRenderWalletSelectionButtonHidden(false);
   };
 
-  useKeyboard({ onKeyboardDidShow: _keyboardDidShow, onKeyboardDidHide: _keyboardDidHide });
+  useKeyboard({
+    onKeyboardDidShow: _keyboardDidShow,
+    onKeyboardDidHide: _keyboardDidHide,
+  });
 
   const processInvoice = (data: string): void => {
     if (Lnurl.isLnurl(data)) return processLnurlPay(data);

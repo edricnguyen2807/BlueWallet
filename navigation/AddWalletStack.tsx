@@ -88,7 +88,10 @@ const AddWalletStack = () => {
       <Stack.Screen
         name="ImportCustomDerivationPath"
         component={ImportCustomDerivationPathComponent}
-        options={navigationStyle({ statusBarStyle: 'light', title: loc.wallets.import_derivation_title })(theme)}
+        options={navigationStyle({
+          statusBarStyle: 'light',
+          title: loc.wallets.import_derivation_title,
+        })(theme)}
       />
       <Stack.Screen
         name="ImportWallet"
@@ -98,7 +101,10 @@ const AddWalletStack = () => {
       <Stack.Screen
         name="ImportSpeed"
         component={ImportSpeedComponent}
-        options={navigationStyle({ statusBarStyle: 'light', title: loc.wallets.import_title })(theme)}
+        options={navigationStyle({
+          statusBarStyle: 'light',
+          title: loc.wallets.import_title,
+        })(theme)}
       />
       <Stack.Screen
         name="ImportWalletDiscovery"
@@ -119,7 +125,11 @@ const AddWalletStack = () => {
       <Stack.Screen
         name="PleaseBackupLNDHub"
         component={PleaseBackupLNDHubComponent}
-        options={navigationStyle({ gestureEnabled: false, headerBackVisible: false, title: loc.pleasebackup.title })(theme)}
+        options={navigationStyle({
+          gestureEnabled: false,
+          headerBackVisible: false,
+          title: loc.pleasebackup.title,
+        })(theme)}
       />
       <Stack.Screen
         name="ProvideEntropy"

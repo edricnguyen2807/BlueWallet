@@ -38,7 +38,10 @@ type FeeScreenAction =
   | { type: FeeScreenActions.SET_CUSTOM_FEE_FOCUSED }
   | { type: FeeScreenActions.SET_CUSTOM_FEE_BLURRED }
   | { type: FeeScreenActions.CLEAR_CUSTOM_FEE }
-  | { type: FeeScreenActions.SET_OPTIONS; payload: { options: FeeOption[]; currentFeeRate: number } };
+  | {
+      type: FeeScreenActions.SET_OPTIONS;
+      payload: { options: FeeOption[]; currentFeeRate: number };
+    };
 
 const feeScreenReducer = (state: FeeScreenState, action: FeeScreenAction): FeeScreenState => {
   switch (action.type) {
@@ -211,7 +214,10 @@ const SelectFeeScreen = () => {
         disabled: nf.slowFee === nf.mediumFee || nf.slowFee === nf.fastestFee,
       },
     ];
-    dispatch({ type: FeeScreenActions.SET_OPTIONS, payload: { options, currentFeeRate: Number(feeRate) } });
+    dispatch({
+      type: FeeScreenActions.SET_OPTIONS,
+      payload: { options, currentFeeRate: Number(feeRate) },
+    });
   }, [feePrecalc, nf, feeRate]);
 
   const navigateWithFee = useCallback(
@@ -230,7 +236,10 @@ const SelectFeeScreen = () => {
 
   const handleCustomFeeChange = useCallback((value: string) => {
     const cleanValue = value.replace(/[^\d.,]/g, '').replace(/([.,].*?)[.,]/g, '$1');
-    dispatch({ type: FeeScreenActions.SET_CUSTOM_FEE_VALUE, payload: cleanValue });
+    dispatch({
+      type: FeeScreenActions.SET_CUSTOM_FEE_VALUE,
+      payload: cleanValue,
+    });
   }, []);
 
   const handleCustomFeeSubmit = useCallback(() => {

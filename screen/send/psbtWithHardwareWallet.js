@@ -1,6 +1,6 @@
 import Clipboard from '@react-native-clipboard/clipboard';
 import { StackActions, useIsFocused, useRoute } from '@react-navigation/native';
-import * as bitcoin from 'bitcoinjs-lib';
+import * as bigcoin from 'bigcoinjs-lib';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Linking, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
@@ -73,7 +73,9 @@ const PsbtWithHardwareWallet = () => {
     ret => {
       if (ret && !ret.data) ret = { data: ret };
       if (ret.data.toUpperCase().startsWith('UR')) {
-        presentAlert({ message: 'BC-UR not decoded. This should never happen' });
+        presentAlert({
+          message: 'BC-UR not decoded. This should never happen',
+        });
       }
       if (ret.data.indexOf('+') === -1 && ret.data.indexOf('=') === -1 && ret.data.indexOf('=') === -1) {
         // this looks like NOT base64, so maybe its transaction's hex
@@ -112,7 +114,7 @@ const PsbtWithHardwareWallet = () => {
     }
 
     if (deepLinkPSBT) {
-      const newPsbt = bitcoin.Psbt.fromBase64(deepLinkPSBT);
+      const newPsbt = bigcoin.Psbt.fromBase64(deepLinkPSBT);
       try {
         const Tx = wallet.combinePsbt(routeParamsPSBT.current, newPsbt);
         setTxHex(Tx.toHex());
@@ -141,7 +143,7 @@ const PsbtWithHardwareWallet = () => {
       const result = await wallet.broadcastTx(txHex);
       if (result) {
         setIsLoading(false);
-        const txDecoded = bitcoin.Transaction.fromHex(txHex);
+        const txDecoded = bigcoin.Transaction.fromHex(txHex);
         const txid = txDecoded.getId();
         majorTomToGroundControl([], [], [txid]);
         if (memo) {

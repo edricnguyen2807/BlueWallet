@@ -147,8 +147,14 @@ const ImportWallet = () => {
   const toolTipActions = useMemo(() => {
     return [
       { ...CommonToolTipActions.Passphrase, menuState: askPassphraseMenuState },
-      { ...CommonToolTipActions.SearchAccount, menuState: searchAccountsMenuState },
-      { ...CommonToolTipActions.ClearClipboard, menuState: clearClipboardMenuState },
+      {
+        ...CommonToolTipActions.SearchAccount,
+        menuState: searchAccountsMenuState,
+      },
+      {
+        ...CommonToolTipActions.ClearClipboard,
+        menuState: clearClipboardMenuState,
+      },
     ];
   }, [askPassphraseMenuState, clearClipboardMenuState, searchAccountsMenuState]);
 
@@ -219,7 +225,10 @@ const ImportWallet = () => {
         inputAccessoryViewID={DoneAndDismissKeyboardInputAccessoryViewID}
       />
 
-      {Platform.select({ android: !isToolbarVisibleForAndroid && renderOptionsAndImportButton, default: renderOptionsAndImportButton })}
+      {Platform.select({
+        android: !isToolbarVisibleForAndroid && renderOptionsAndImportButton,
+        default: renderOptionsAndImportButton,
+      })}
       {Platform.select({
         ios: (
           <DoneAndDismissKeyboardInputAccessory

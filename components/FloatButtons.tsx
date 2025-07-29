@@ -252,7 +252,11 @@ const useFloatButtonLayout = (width: number, sizeClass: SizeClass) => {
       const multiButtonRadius = Math.max(LAYOUT.DEFAULT_BORDER_RADIUS, Math.floor(buttonRadius));
       const singleButtonRadius = LAYOUT.SINGLE_BUTTON_RADIUS;
 
-      return { buttonRadius: multiButtonRadius, singleButtonRadius, shouldBeVertical };
+      return {
+        buttonRadius: multiButtonRadius,
+        singleButtonRadius,
+        shouldBeVertical,
+      };
     },
     [width, sizeClass, shouldUseVerticalLayout],
   );
@@ -513,7 +517,9 @@ export const FButton = ({
         customButtonStyles.root,
         style,
         additionalStyles,
-        { borderRadius: typeof borderRadius === 'number' ? borderRadius : LAYOUT.DEFAULT_BORDER_RADIUS },
+        {
+          borderRadius: typeof borderRadius === 'number' ? borderRadius : LAYOUT.DEFAULT_BORDER_RADIUS,
+        },
       ]}
       {...props}
     >
@@ -569,7 +575,12 @@ export const FContainer = forwardRef<View, FContainerProps>((props, ref) => {
       }
 
       if (animationInProgress.current) {
-        pendingAnimationParams.current = { buttonRadius, singleRadius, shouldBeVertical, calculatedWidth };
+        pendingAnimationParams.current = {
+          buttonRadius,
+          singleRadius,
+          shouldBeVertical,
+          calculatedWidth,
+        };
         return;
       }
 

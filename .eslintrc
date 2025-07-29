@@ -3,6 +3,7 @@
   "plugins": [
     "@typescript-eslint",
     "react-native", // for no-inline-styles rule
+    "unicorn"
   ],
   "extends": [
     "standard",
@@ -20,6 +21,7 @@
     "react-native/no-inline-styles": "error",
     "react-native/no-unused-styles": "error",
     "react/no-is-mounted": "off",
+    "unicorn/no-for-loop": "off",
     "react-native/no-single-element-style-arrays": "error",
     "prettier/prettier": [
       "warn",

@@ -23,7 +23,15 @@ export const BlueButtonLink = forwardRef((props, ref) => {
   const { colors } = useTheme();
   return (
     <Pressable accessibilityRole="button" style={({ pressed }) => [styles.blueButtonLink, pressed && styles.pressed]} {...props} ref={ref}>
-      <Text style={{ color: colors.foregroundColor, textAlign: 'center', fontSize: 16 }}>{props.title}</Text>
+      <Text
+        style={{
+          color: colors.foregroundColor,
+          textAlign: 'center',
+          fontSize: 16,
+        }}
+      >
+        {props.title}
+      </Text>
     </Pressable>
   );
 });

@@ -123,7 +123,9 @@ const AddressItem = ({
     try {
       const wif = wallet._getWIFbyAddress(item.address);
       if (!wif) {
-        presentAlert({ message: 'Internal error: cant get WIF from the wallet' });
+        presentAlert({
+          message: 'Internal error: cant get WIF from the wallet',
+        });
         return;
       }
       triggerHapticFeedback(HapticFeedbackTypes.Selection);

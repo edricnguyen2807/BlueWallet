@@ -8,7 +8,11 @@ export interface BlockExplorer {
 }
 
 export const BLOCK_EXPLORERS: { [key: string]: BlockExplorer } = {
-  default: { key: 'default', name: 'mainnet', url: 'https://mainnet.bigbtc.org' },
+  default: {
+    key: 'default',
+    name: 'mainnet',
+    url: 'https://mainnet.bigbtc.org',
+  },
   // blockchair: { key: 'blockchair', name: 'Blockchair', url: 'https://blockchair.com/bitcoin' },
   // blockstream: { key: 'blockstream', name: 'Blockstream.info', url: 'https://blockstream.info' },
   // custom: { key: 'custom', name: 'Custom', url: '' }, // Custom URL will be handled separately

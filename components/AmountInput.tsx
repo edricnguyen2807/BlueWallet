@@ -243,7 +243,9 @@ export const AmountInput: React.FC<AmountInputProps> = props => {
     (event: NativeSyntheticEvent<TextInputSelectionChangeEventData>) => {
       const { selection } = event.nativeEvent;
       if (selection.start !== selection.end || selection.start !== amount.length) {
-        textInputRef.current?.setNativeProps({ selection: { start: amount.length, end: amount.length } });
+        textInputRef.current?.setNativeProps({
+          selection: { start: amount.length, end: amount.length },
+        });
       }
     },
     [amount],
@@ -251,9 +253,16 @@ export const AmountInput: React.FC<AmountInputProps> = props => {
 
   const stylesHook = StyleSheet.create({
     center: { padding: amount === BitcoinUnit.MAX ? 0 : 15 },
-    localCurrency: { color: disabled ? colors.buttonDisabledTextColor : colors.alternativeTextColor2 },
-    input: { color: disabled ? colors.buttonDisabledTextColor : colors.alternativeTextColor2, fontSize: amount.length > 10 ? 20 : 36 },
-    cryptoCurrency: { color: disabled ? colors.buttonDisabledTextColor : colors.alternativeTextColor2 },
+    localCurrency: {
+      color: disabled ? colors.buttonDisabledTextColor : colors.alternativeTextColor2,
+    },
+    input: {
+      color: disabled ? colors.buttonDisabledTextColor : colors.alternativeTextColor2,
+      fontSize: amount.length > 10 ? 20 : 36,
+    },
+    cryptoCurrency: {
+      color: disabled ? colors.buttonDisabledTextColor : colors.alternativeTextColor2,
+    },
   });
 
   return (
@@ -311,7 +320,11 @@ export const AmountInput: React.FC<AmountInputProps> = props => {
         <View style={styles.outdatedRateContainer}>
           <Badge status="warning" />
           <View style={styles.spacing8} />
-          <BlueText>{loc.formatString(loc.send.outdated_rate, { date: dayjs(outdatedRefreshRate.LastUpdated).format('l LT') })}</BlueText>
+          <BlueText>
+            {loc.formatString(loc.send.outdated_rate, {
+              date: dayjs(outdatedRefreshRate.LastUpdated).format('l LT'),
+            })}
+          </BlueText>
           <View style={styles.spacing8} />
           <TouchableOpacity
             accessibilityRole="button"

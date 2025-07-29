@@ -71,7 +71,10 @@ const ImportCustomDerivationPath: React.FC = () => {
       if (isElectrumDisabled) {
         // do not check if electrum is disabled
         Object.values(newWallets).forEach(w => {
-          setUsed(u => ({ ...u, [newPath]: { ...u[newPath], [w.type]: STATUS.WALLET_UNKNOWN } }));
+          setUsed(u => ({
+            ...u,
+            [newPath]: { ...u[newPath], [w.type]: STATUS.WALLET_UNKNOWN },
+          }));
         });
         return;
       }
@@ -80,14 +83,20 @@ const ImportCustomDerivationPath: React.FC = () => {
       const promises = Object.values(newWallets).map(w => {
         return w.wasEverUsed().then(v => {
           const status = v ? STATUS.WALLET_FOUND : STATUS.WALLET_NOTFOUND;
-          setUsed(u => ({ ...u, [newPath]: { ...u[newPath], [w.type]: status } }));
+          setUsed(u => ({
+            ...u,
+            [newPath]: { ...u[newPath], [w.type]: status },
+          }));
         });
       });
       try {
         await Promise.all(promises);
       } catch (e) {
         Object.values(newWallets).forEach(w => {
-          setUsed(u => ({ ...u, [newPath]: { ...u[newPath], [w.type]: STATUS.WALLET_UNKNOWN } }));
+          setUsed(u => ({
+            ...u,
+            [newPath]: { ...u[newPath], [w.type]: STATUS.WALLET_UNKNOWN },
+          }));
         });
       }
     }, 500),

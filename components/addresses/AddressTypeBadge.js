@@ -38,10 +38,10 @@ const AddressTypeBadge = ({ isInternal, hasTransactions }) => {
 
   // eslint-disable-next-line prettier/prettier
   const badgeStyle = hasTransactions
-   ? stylesHook.usedBadge
-   : isInternal
-    ? stylesHook.changeBadge
-    : stylesHook.receiveBadge;
+    ? stylesHook.usedBadge
+    : isInternal
+      ? stylesHook.changeBadge
+      : stylesHook.receiveBadge;
 
   // eslint-disable-next-line prettier/prettier
   const textStyle = hasTransactions

@@ -26,7 +26,10 @@ import useMenuElements from '../../hooks/useMenuElements';
 import SafeAreaSectionList from '../../components/SafeAreaSectionList';
 import { scanQrHelper } from '../../helpers/scan-qr.ts';
 
-const WalletsListSections = { CAROUSEL: 'CAROUSEL', TRANSACTIONS: 'TRANSACTIONS' };
+const WalletsListSections = {
+  CAROUSEL: 'CAROUSEL',
+  TRANSACTIONS: 'TRANSACTIONS',
+};
 
 type SectionData = {
   key: string;
@@ -129,7 +132,10 @@ const WalletsList: React.FC = () => {
   const refreshWallets = useCallback(
     async (index: number | undefined, showLoadingIndicator = true, showUpdateStatusIndicator = false) => {
       if (isElectrumDisabled) return;
-      dispatch({ type: ActionTypes.SET_LOADING, payload: showLoadingIndicator });
+      dispatch({
+        type: ActionTypes.SET_LOADING,
+        payload: showLoadingIndicator,
+      });
       try {
         await refreshAllWalletTransactions(index, showUpdateStatusIndicator);
       } catch (error) {
@@ -452,7 +458,10 @@ const WalletsList: React.FC = () => {
 
     // On smaller screens, show both carousel and transactions
     return [
-      { key: WalletsListSections.CAROUSEL, data: [WalletsListSections.CAROUSEL] },
+      {
+        key: WalletsListSections.CAROUSEL,
+        data: [WalletsListSections.CAROUSEL],
+      },
       { key: WalletsListSections.TRANSACTIONS, data: dataSource },
     ];
   }, [sizeClass, dataSource]);
