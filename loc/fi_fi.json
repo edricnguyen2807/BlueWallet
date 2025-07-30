@@ -419,7 +419,7 @@
     "vault_key": "Vault-avain {number}",
     "required_keys_out_of_total": "Vaaditut avaimet kokonaismäärästä",
     "fee": "Siirtomaksu: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "Vahvista",
     "header": "Lähetä",
     "share": "Jaa...",
@@ -509,7 +509,7 @@
     "sort_status": "Tila"
   },
   "units": {
-    "BTC": "BTC",
+    "BBTC": "BBTC",
     "MAX": "MAX",
     "sat_vbyte": "sat/tavu",
     "sats": "sattia"

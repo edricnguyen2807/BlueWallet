@@ -323,7 +323,7 @@
     "vault_key": "保管庫密鑰 {number}",
     "required_keys_out_of_total": "總數中所需的密鑰",
     "fee": "費用：{number}",
-    "fee_btc": "{number} 比特幣",
+    "fee_bbtc": "{number} 比特幣",
     "confirm": "確認",
     "header": "發送",
     "view": "查看",

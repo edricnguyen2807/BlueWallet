@@ -40,7 +40,7 @@ interface CoinDeskResponse {
 }
 
 interface CoinGeckoResponse {
-  bitcoin: {
+  bigcoin: {
     [ticker: string]: number;
   };
 }

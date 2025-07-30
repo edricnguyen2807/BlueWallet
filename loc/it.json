@@ -402,7 +402,7 @@
     "vault_key": "chiave Vault {number}",
     "required_keys_out_of_total": "Chiavi richieste sul totale",
     "fee": "Commissione: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "Conferma",
     "header": "Invia",
     "share": "Condividi",
@@ -481,7 +481,7 @@
     "sort_status": "Stato"
   },
   "units": {
-    "BTC": "BTC",
+    "BBTC": "BBTC",
     "MAX": "Max",
     "sat_vbyte": "sat/vByte",
     "sats": "sat"

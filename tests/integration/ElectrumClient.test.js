@@ -17,7 +17,7 @@ const hardcodedPeers = [
   { host: 'electrum3.bluewallet.io', tcp: '50001' },
 ];
 
-function bitcoinjs_crypto_sha256(buffer /*: Buffer */) /*: Buffer */ {
+function bigcoinjs_crypto_sha256(buffer /*: Buffer */) /*: Buffer */ {
   return Buffer.from(_sha256(Uint8Array.from(buffer)));
 }
 
@@ -37,7 +37,7 @@ describe('ElectrumClient', () => {
 
       let addr4elect = 'bc1qwqdg6squsna38e46795at95yu9atm8azzmyvckulcc7kytlcckxswvvzej';
       let script = bigcoin.address.toOutputScript(addr4elect);
-      let hash = bitcoinjs_crypto_sha256(script);
+      let hash = bigcoinjs_crypto_sha256(script);
       let reversedHash = Buffer.from(hash.reverse());
       const start = +new Date();
       let balance = await mainClient.blockchainScripthash_getBalance(reversedHash.toString('hex'));
@@ -47,7 +47,7 @@ describe('ElectrumClient', () => {
 
       addr4elect = '3GCvDBAktgQQtsbN6x5DYiQCMmgZ9Yk8BK';
       script = bigcoin.address.toOutputScript(addr4elect);
-      hash = bitcoinjs_crypto_sha256(script);
+      hash = bigcoinjs_crypto_sha256(script);
       reversedHash = Buffer.from(hash.reverse());
       balance = await mainClient.blockchainScripthash_getBalance(reversedHash.toString('hex'));
 

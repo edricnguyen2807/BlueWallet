@@ -321,7 +321,7 @@
     "provide_signature": "Berikan tanda tangan",
     "vault_key": "Kunci Brankas {number}",
     "fee": "Tarif: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "Konfirmasi",
     "header": "Kirim",
     "view": "Lihat",
@@ -363,7 +363,7 @@
     "sort_status": "Status"
   },
   "units": {
-    "BTC": "BTC",
+    "BBTC": "BBTC",
     "MAX": "Maks",
     "sat_vbyte": "sat/vByte",
     "sats": "sats"

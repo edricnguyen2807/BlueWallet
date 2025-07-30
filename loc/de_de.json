@@ -508,7 +508,7 @@
     "vault_key": "Tresor-Schlüssel: {number}",
     "required_keys_out_of_total": "Erforderliche Schlüssel aus dem Total",
     "fee": "Gebhür: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "Bestätigen",
     "header": "Senden",
     "share": "Teilen",
@@ -609,7 +609,7 @@
     "sort_by": "Sortiert nach"
   },
   "units": {
-    "BTC": "BTC",
+    "BBTC": "BBTC",
     "MAX": "MAX",
     "sat_vbyte": "sat/vByte",
     "sats": "sats"

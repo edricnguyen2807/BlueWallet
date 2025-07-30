@@ -523,7 +523,7 @@
     "vault_key": "금고 키 {number}",
     "required_keys_out_of_total": "총 갯수중 요구되는 키의 수",
     "fee": "수수료: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "컨펌",
     "header": "보내기",
     "share": "공유...",

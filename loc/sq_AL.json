@@ -310,7 +310,7 @@
     "sort_by": "Radhiti sipas"
   },
   "units": {
-    "BTC": "BTC",
+    "BBTC": "BBTC",
     "MAX": "Max",
     "sat_vbyte": "sat/vByte",
     "sats": "sats"

@@ -381,7 +381,7 @@
     "vault_key": "Ključ trezorja {number}",
     "required_keys_out_of_total": "Zahtevani ključi od vseh",
     "fee": "Omrežnina: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "Potrditev",
     "header": "Pošlji",
     "view": "Prikaži",
@@ -458,7 +458,7 @@
     "sort_status": "Stanje"
   },
   "units": {
-    "BTC": "BTC",
+    "BBTC": "BBTC",
     "MAX": "MAX",
     "sat_vbyte": "sat/vBajt",
     "sats": "sats"

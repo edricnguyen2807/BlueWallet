@@ -5,10 +5,10 @@ exports.compose3 = exports.sha256Hash = void 0;
 var bitcoinjs_lib_1 = require("bitcoinjs-lib");
 const {uint8ArrayToHex} = require("../../uint8array-extras");
 exports.sha256Hash = function (data) {
-    return bitcoinjs_crypto_sha256(data);
+    return bigcoinjs_crypto_sha256(data);
 };
 
-function bitcoinjs_crypto_sha256(buffer/*: Buffer*/)/*: Buffer*/ {
+function bigcoinjs_crypto_sha256(buffer/*: Buffer*/)/*: Buffer*/ {
     return Buffer.from(_sha256(Uint8Array.from(buffer)));
 }
 

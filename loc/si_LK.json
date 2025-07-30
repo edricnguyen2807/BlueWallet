@@ -372,7 +372,7 @@
     "vault_key": "සුරක්ෂිතාගාර යතුර {number}",
     "required_keys_out_of_total": "යතුරු එකතුවෙන් අවශ්‍ය යතුරු",
     "fee": "ගාස්තුව: {number}",
-    "fee_btc": "{number} බී.ටී.සී",
+    "fee_bbtc": "{number} බී.ටී.සී",
     "confirm": "තහවුරු කරන්න",
     "header": "යවන්න",
     "view": "දැක්ම",

@@ -523,7 +523,7 @@
     "vault_key": "{number}. klíč Úložiště",
     "required_keys_out_of_total": "Požadovaných klíčů z celkového počtu",
     "fee": "Poplatek: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "Potvrdit",
     "header": "Odeslat",
     "share": "Sdílet…",
@@ -624,7 +624,7 @@
     "sort_by": "Seřadit podle"
   },
   "units": {
-    "BTC": "BTC",
+    "BBTC": "BBTC",
     "MAX": "Max.",
     "sat_vbyte": "sat/vByte",
     "sats": "sats"

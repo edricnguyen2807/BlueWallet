@@ -355,7 +355,7 @@
     "vault_key": "Cheie seif {number}",
     "required_keys_out_of_total": "Chei necesare din total",
     "fee": "Comision: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "Confirmă",
     "header": "Trimite",
     "view": "Afișează",
@@ -430,7 +430,7 @@
     "sort_status": "Status"
   },
   "units": {
-    "BTC": "BTC",
+    "BBTC": "BBTC",
     "MAX": "Max",
     "sat_vbyte": "sat/vByte",
     "sats": "sats"

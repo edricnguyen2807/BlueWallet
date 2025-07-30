@@ -53,7 +53,7 @@ extension Transaction {
         ]
     }
     
-func formattedAmount(for unit: BitcoinUnit) -> String {
+func formattedAmount(for unit: BigcoinUnit) -> String {
         return amount.formatted(as: unit)
     }
 }

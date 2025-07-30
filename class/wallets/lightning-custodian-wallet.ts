@@ -1,5 +1,5 @@
 import bolt11 from 'bolt11';
-import { BitcoinUnit, Chain } from '../../models/bitcoinUnits';
+import { BigcoinUnit, Chain } from '../../models/bigcoinUnits';
 import { LegacyWallet } from './legacy-wallet';
 import { fetch } from '../../util/fetch';
 
@@ -22,7 +22,7 @@ export class LightningCustodianWallet extends LegacyWallet {
   transactions_raw: any[] = [];
   user_invoices_raw: any[] = [];
   info_raw: false | { uris?: string[] } = false;
-  preferredBalanceUnit = BitcoinUnit.SATS;
+  preferredBalanceUnit = BigcoinUnit.SATS;
   chain = Chain.OFFCHAIN;
   last_paid_invoice_result?: any;
   decoded_invoice_raw?: any;

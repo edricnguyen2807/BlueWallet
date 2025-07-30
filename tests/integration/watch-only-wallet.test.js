@@ -48,10 +48,10 @@ describe('Watch only wallet', () => {
     for (const sec of [
       'bc1quhnve8q4tk3unhmjts7ymxv8cd6w9xv8wy29uv',
       'BC1QUHNVE8Q4TK3UNHMJTS7YMXV8CD6W9XV8WY29UV',
-      'bitcoin:bc1quhnve8q4tk3unhmjts7ymxv8cd6w9xv8wy29uv',
-      'BITCOIN:BC1QUHNVE8Q4TK3UNHMJTS7YMXV8CD6W9XV8WY29UV',
-      'bitcoin:BC1QUHNVE8Q4TK3UNHMJTS7YMXV8CD6W9XV8WY29UV',
-      'BITCOIN:bc1quhnve8q4tk3unhmjts7ymxv8cd6w9xv8wy29uv',
+      'bigcoin:bc1quhnve8q4tk3unhmjts7ymxv8cd6w9xv8wy29uv',
+      'BIGCOIN:BC1QUHNVE8Q4TK3UNHMJTS7YMXV8CD6W9XV8WY29UV',
+      'bigcoin:BC1QUHNVE8Q4TK3UNHMJTS7YMXV8CD6W9XV8WY29UV',
+      'BIGCOIN:bc1quhnve8q4tk3unhmjts7ymxv8cd6w9xv8wy29uv',
     ]) {
       w.setSecret(sec);
       assert.strictEqual(w.getAddress(), 'bc1quhnve8q4tk3unhmjts7ymxv8cd6w9xv8wy29uv');

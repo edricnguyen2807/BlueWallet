@@ -525,7 +525,7 @@
     "vault_key": "Vault Key {number}",
     "required_keys_out_of_total": "Required keys out of the total",
     "fee": "Fee: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "Confirm",
     "header": "Send",
     "share": "Share...",
@@ -626,7 +626,7 @@
     "sort_by": "Sort by"
   },
   "units": {
-    "BTC": "BTC",
+    "BBTC": "BBTC",
     "MAX": "Max",
     "sat_vbyte": "sat/vByte",
     "sats": "sats"

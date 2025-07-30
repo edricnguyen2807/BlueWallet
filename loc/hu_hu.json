@@ -394,7 +394,7 @@
     "vault_key": "Trezor kulcs {number}",
     "required_keys_out_of_total": "Szükséges kulcsok az összessből",
     "fee": "Tranzakciós díj: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "Megerősítés",
     "header": "Küldés",
     "view": "Megnéz",
@@ -480,7 +480,7 @@
     "sort_status": "Állapot"
   },
   "units": {
-    "BTC": "BTC",
+    "BBTC": "BBTC",
     "MAX": "Maximum",
     "sat_vbyte": "sat/vByte",
     "sats": "sats"

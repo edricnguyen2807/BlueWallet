@@ -382,7 +382,7 @@
     "vault_key": "Clave de la Vault {number}",
     "required_keys_out_of_total": "Las llaves que se necesitarán del total de llaves creadas",
     "fee": "Tarifa: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "Confirmar",
     "header": "Enviar",
     "view": "Ver",
@@ -460,7 +460,7 @@
     "sort_status": "Estado"
   },
   "units": {
-    "BTC": "BTC",
+    "BBTC": "BBTC",
     "MAX": "Máx",
     "sat_vbyte": "sat/vByte",
     "sats": "sats"

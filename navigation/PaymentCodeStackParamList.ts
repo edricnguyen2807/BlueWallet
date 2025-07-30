@@ -1,4 +1,4 @@
-import { BitcoinUnit } from '../models/bitcoinUnits';
+import { BigcoinUnit } from '../models/bigcoinUnits';
 
 export type PaymentCodeStackParamList = {
   PaymentCode: { paymentCode: string };
@@ -8,7 +8,7 @@ export type PaymentCodeStackParamList = {
     walletID: string;
     amount: number;
     amountSats: number;
-    unit: BitcoinUnit;
+    unit: BigcoinUnit;
     isTransactionReplaceable: boolean;
     launchedBy: string;
     isEditable: boolean;

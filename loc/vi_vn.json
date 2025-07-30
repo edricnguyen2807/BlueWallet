@@ -383,7 +383,7 @@
     "vault_key": "Khoá Vault {number}",
     "required_keys_out_of_total": "Các chìa khoá cần thiết trong tổng số",
     "fee": "Phí: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "Xác nhận",
     "header": "Gửi",
     "view": "Xem",
@@ -460,7 +460,7 @@
     "sort_status": " Trạng thái"
   },
   "units": {
-    "BTC": "BTC",
+    "BBTC": "BBTC",
     "MAX": "Tối đa",
     "sat_vbyte": "sat/vByte",
     "sats": "sats"

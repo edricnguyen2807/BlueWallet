@@ -16,7 +16,7 @@ import {
 import { LightningCustodianWallet } from '../class';
 import DeeplinkSchemaMatch from '../class/deeplink-schema-match';
 import loc from '../loc';
-import { Chain } from '../models/bitcoinUnits';
+import { Chain } from '../models/bigcoinUnits';
 import { navigationRef } from '../NavigationService';
 import ActionSheet from '../screen/ActionSheet';
 import { useStorage } from './context/useStorage';
@@ -30,7 +30,7 @@ import useMenuElements from './useMenuElements';
 import { useExtendedNavigation } from './useExtendedNavigation';
 
 const ClipboardContentType = Object.freeze({
-  BITCOIN: 'BITCOIN',
+  BIGCOIN: 'BITCOIN',
   LIGHTNING: 'LIGHTNING',
 });
 

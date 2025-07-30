@@ -1,10 +1,10 @@
-export const BitcoinUnit = {
-  BTC: 'BTC',
+export const BigcoinUnit = {
+  BBTC: 'BBTC',
   SATS: 'sats',
   LOCAL_CURRENCY: 'local_currency',
   MAX: 'MAX',
 } as const;
-export type BitcoinUnit = (typeof BitcoinUnit)[keyof typeof BitcoinUnit];
+export type BigcoinUnit = (typeof BigcoinUnit)[keyof typeof BigcoinUnit];
 
 export const Chain = {
   ONCHAIN: 'ONCHAIN',

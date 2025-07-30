@@ -521,7 +521,7 @@
     "vault_key": "金庫キー {number}",
     "required_keys_out_of_total": "全体のうち必要なキー",
     "fee": "費用: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "承認",
     "header": "送る",
     "share": "共有...",
@@ -622,7 +622,7 @@
     "sort_by": "ソート方法"
   },
   "units": {
-    "BTC": "BTC",
+    "BBTC": "BBTC",
     "MAX": "最大",
     "sat_vbyte": "sat/vByte",
     "sats": "sats"

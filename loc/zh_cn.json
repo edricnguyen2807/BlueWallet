@@ -523,7 +523,7 @@
     "vault_key": "保管库密钥 {number}",
     "required_keys_out_of_total": "总数中所需的密钥",
     "fee": "费用：{number}",
-    "fee_btc": "{number} 比特币",
+    "fee_bbtc": "{number} 比特币",
     "confirm": "确认",
     "header": "发送",
     "share": "分享...",

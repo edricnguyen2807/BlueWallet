@@ -518,7 +518,7 @@
     "vault_key": "Ключ хранилища {number}",
     "required_keys_out_of_total": "Требуемое количество ключей из общего",
     "fee": "Комиссия: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "Подтвердить",
     "header": "Отправить",
     "share": "Поделиться...",
@@ -619,7 +619,7 @@
     "sort_by": "Сортировать по"
   },
   "units": {
-    "BTC": "BTC",
+    "BBTC": "BBTC",
     "MAX": "МАКС",
     "sat_vbyte": "сат/вБайт",
     "sats": "сатоши"

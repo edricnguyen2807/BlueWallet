@@ -110,7 +110,7 @@ let latestBlock: { height: number; time: number } | { height: undefined; time: u
 const txhashHeightCache: Record<string, number> = {};
 let _realm: Realm | undefined;
 
-function bitcoinjs_crypto_sha256(buffer: Uint8Array): Buffer {
+function bigcoinjs_crypto_sha256(buffer: Uint8Array): Buffer {
   return Buffer.from(_sha256(buffer));
 }
 
@@ -118,7 +118,7 @@ async function _getRealm() {
   if (_realm) return _realm;
 
   const cacheFolderPath = RNFS.CachesDirectoryPath; // Path to cache folder
-  const password = uint8ArrayToHex(bitcoinjs_crypto_sha256(Buffer.from('fyegjitkyf[eqjnc.lf')));
+  const password = uint8ArrayToHex(bigcoinjs_crypto_sha256(Buffer.from('fyegjitkyf[eqjnc.lf')));
   const buf = Buffer.from(password + password, 'hex');
   const encryptionKey = Int8Array.from(buf);
   const path = `${cacheFolderPath}/electrumcache.realm`; // Use cache folder path
@@ -493,7 +493,7 @@ export const getBalanceByAddress = async function (address: string): Promise<{ c
   try {
     if (!mainClient) throw new Error('Electrum client is not connected');
     const script = bigcoin.address.toOutputScript(address);
-    const hash = bitcoinjs_crypto_sha256(script);
+    const hash = bigcoinjs_crypto_sha256(script);
     const reversedHash = Buffer.from(hash).reverse();
     const balance = await mainClient.blockchainScripthash_getBalance(reversedHash.toString('hex'));
     balance.addr = address;
@@ -521,7 +521,7 @@ export const getSecondsSinceLastRequest = function () {
 export const getTransactionsByAddress = async function (address: string): Promise<ElectrumHistory[]> {
   if (!mainClient) throw new Error('Electrum client is not connected');
   const script = bigcoin.address.toOutputScript(address);
-  const hash = bitcoinjs_crypto_sha256(script);
+  const hash = bigcoinjs_crypto_sha256(script);
   const reversedHash = Buffer.from(hash).reverse();
   const history = await mainClient.blockchainScripthash_getHistory(reversedHash.toString('hex'));
   for (const h of history || []) {
@@ -534,7 +534,7 @@ export const getTransactionsByAddress = async function (address: string): Promis
 export const getMempoolTransactionsByAddress = async function (address: string): Promise<MempoolTransaction[]> {
   if (!mainClient) throw new Error('Electrum client is not connected');
   const script = bigcoin.address.toOutputScript(address);
-  const hash = bitcoinjs_crypto_sha256(script);
+  const hash = bigcoinjs_crypto_sha256(script);
   const reversedHash = Buffer.from(hash).reverse();
   return mainClient.blockchainScripthash_getMempool(reversedHash.toString('hex'));
 };
@@ -720,7 +720,7 @@ export const multiGetBalanceByAddress = async (addresses: string[], batchsize: n
     const scripthash2addr: Record<string, string> = {};
     for (const addr of chunk) {
       const script = bigcoin.address.toOutputScript(addr);
-      const hash = bitcoinjs_crypto_sha256(script);
+      const hash = bigcoinjs_crypto_sha256(script);
       const reversedHash = Buffer.from(hash).reverse().toString('hex');
       scripthashes.push(reversedHash);
       scripthash2addr[reversedHash] = addr;
@@ -764,7 +764,7 @@ export const multiGetUtxoByAddress = async function (addresses: string[], batchs
     const scripthash2addr: Record<string, string> = {};
     for (const addr of chunk) {
       const script = bigcoin.address.toOutputScript(addr);
-      const hash = bitcoinjs_crypto_sha256(script);
+      const hash = bigcoinjs_crypto_sha256(script);
       const reversedHash = Buffer.from(hash).reverse().toString('hex');
       scripthashes.push(reversedHash);
       scripthash2addr[reversedHash] = addr;
@@ -814,7 +814,7 @@ export const multiGetHistoryByAddress = async function (
     const scripthash2addr: Record<string, string> = {};
     for (const addr of chunk) {
       const script = bigcoin.address.toOutputScript(addr);
-      const hash = bitcoinjs_crypto_sha256(script);
+      const hash = bigcoinjs_crypto_sha256(script);
       const reversedHash = Buffer.from(hash).reverse().toString('hex');
       scripthashes.push(reversedHash);
       scripthash2addr[reversedHash] = addr;

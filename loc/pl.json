@@ -523,7 +523,7 @@
     "vault_key": "Klucz Skarbca {number}",
     "required_keys_out_of_total": "Wymagane klucze spośród wszystkich",
     "fee": "Opłata: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "Potwierdź",
     "header": "Wyślij",
     "share": "Udostępnij...",
@@ -624,7 +624,7 @@
     "sort_by": "Sortuj wg"
   },
   "units": {
-    "BTC": "BTC",
+    "BBTC": "BBTC",
     "MAX": "Max",
     "sat_vbyte": "sat/vByte",
     "sats": "satoshi"

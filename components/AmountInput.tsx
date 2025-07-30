@@ -27,17 +27,17 @@ import {
 import { BlueText } from '../BlueComponents';
 import confirm from '../helpers/confirm';
 import loc, { formatBalancePlain, formatBalanceWithoutSuffix, removeTrailingZeros } from '../loc';
-import { BitcoinUnit } from '../models/bitcoinUnits';
+import { BigcoinUnit } from '../models/bigcoinUnits';
 import { useTheme } from './themes';
 
 export const conversionCache: { [key: string]: string } = {};
 
 export const getCachedSatoshis = (amount: string): string | undefined => {
-  return conversionCache[amount + BitcoinUnit.LOCAL_CURRENCY];
+  return conversionCache[amount + BigcoinUnit.LOCAL_CURRENCY];
 };
 
 export const setCachedSatoshis = (amount: string, sats: string): void => {
-  conversionCache[amount + BitcoinUnit.LOCAL_CURRENCY] = sats;
+  conversionCache[amount + BigcoinUnit.LOCAL_CURRENCY] = sats;
 };
 
 type AmountInputProps = Omit<TextInputProps, 'onChangeText' | 'value'> & {
@@ -57,7 +57,7 @@ type AmountInputProps = Omit<TextInputProps, 'onChangeText' | 'value'> & {
   /**
    * The current unit of the amount (BTC, SATS, LOCAL_CURRENCY)
    */
-  unit: BitcoinUnit;
+  unit: BigcoinUnit;
   /**
    * Callback that returns currently typed amount in current denomination
    * e.g. 0.001 or 10000 or $9.34 (btc, sat, fiat)
@@ -65,9 +65,9 @@ type AmountInputProps = Omit<TextInputProps, 'onChangeText' | 'value'> & {
   onChangeText: (text: string) => void;
   /**
    * Callback that's fired to notify of currently selected denomination
-   * Returns a BitcoinUnit value
+   * Returns a BigcoinUnit value
    */
-  onAmountUnitChange: (unit: BitcoinUnit) => void;
+  onAmountUnitChange: (unit: BigcoinUnit) => void;
 };
 
 export const AmountInput: React.FC<AmountInputProps> = props => {
@@ -80,9 +80,9 @@ export const AmountInput: React.FC<AmountInputProps> = props => {
 
   const maxLength = useMemo(() => {
     switch (unit) {
-      case BitcoinUnit.BTC:
+      case BigcoinUnit.BBTC:
         return 11;
-      case BitcoinUnit.SATS:
+      case BigcoinUnit.SATS:
         return 15;
       default:
         return 15;
@@ -90,27 +90,27 @@ export const AmountInput: React.FC<AmountInputProps> = props => {
   }, [unit]);
 
   const secondaryDisplayCurrency = useMemo(() => {
-    if (amount === BitcoinUnit.MAX) {
+    if (amount === BigcoinUnit.MAX) {
       return '';
     }
     switch (unit) {
-      case BitcoinUnit.BTC: {
+      case BigcoinUnit.BBTC: {
         const sat = new BigNumber(amount).multipliedBy(100000000).toNumber();
-        return formatBalanceWithoutSuffix(sat, BitcoinUnit.LOCAL_CURRENCY, false);
+        return formatBalanceWithoutSuffix(sat, BigcoinUnit.LOCAL_CURRENCY, false);
       }
-      case BitcoinUnit.SATS:
-        return formatBalanceWithoutSuffix(Number(amount), BitcoinUnit.LOCAL_CURRENCY, false);
-      case BitcoinUnit.LOCAL_CURRENCY: {
+      case BigcoinUnit.SATS:
+        return formatBalanceWithoutSuffix(Number(amount), BigcoinUnit.LOCAL_CURRENCY, false);
+      case BigcoinUnit.LOCAL_CURRENCY: {
         let res: string = '';
-        if (conversionCache[amount + BitcoinUnit.LOCAL_CURRENCY]) {
+        if (conversionCache[amount + BigcoinUnit.LOCAL_CURRENCY]) {
           // cache hit! we reuse old value that supposedly doesn't have rounding errors
-          const sats = conversionCache[amount + BitcoinUnit.LOCAL_CURRENCY];
+          const sats = conversionCache[amount + BigcoinUnit.LOCAL_CURRENCY];
           res = satoshiToBTC(Number(sats));
         } else {
           res = fiatToBTC(Number(amount));
         }
         res = removeTrailingZeros(res);
-        return `${res} ${loc.units[BitcoinUnit.BTC]}`;
+        return `${res} ${loc.units[BigcoinUnit.BBTC]}`;
       }
     }
   }, [amount, unit]);
@@ -143,15 +143,15 @@ export const AmountInput: React.FC<AmountInputProps> = props => {
     let previousUnit = unit;
     let newUnit;
     // cycle through units BTC -> SAT -> LOCAL_CURRENCY -> BTC
-    if (previousUnit === BitcoinUnit.BTC) {
-      newUnit = BitcoinUnit.SATS;
-    } else if (previousUnit === BitcoinUnit.SATS) {
-      newUnit = BitcoinUnit.LOCAL_CURRENCY;
-    } else if (previousUnit === BitcoinUnit.LOCAL_CURRENCY) {
-      newUnit = BitcoinUnit.BTC;
+    if (previousUnit === BigcoinUnit.BBTC) {
+      newUnit = BigcoinUnit.SATS;
+    } else if (previousUnit === BigcoinUnit.SATS) {
+      newUnit = BigcoinUnit.LOCAL_CURRENCY;
+    } else if (previousUnit === BigcoinUnit.LOCAL_CURRENCY) {
+      newUnit = BigcoinUnit.BBTC;
     } else {
-      newUnit = BitcoinUnit.BTC;
-      previousUnit = BitcoinUnit.SATS;
+      newUnit = BigcoinUnit.BBTC;
+      previousUnit = BigcoinUnit.SATS;
     }
 
     /**
@@ -161,17 +161,17 @@ export const AmountInput: React.FC<AmountInputProps> = props => {
     const log = `${amount}(${previousUnit}) ->`;
     let sats: string = '0';
     switch (previousUnit) {
-      case BitcoinUnit.BTC:
+      case BigcoinUnit.BBTC:
         sats = new BigNumber(amount).multipliedBy(100000000).toString();
         break;
-      case BitcoinUnit.SATS:
+      case BigcoinUnit.SATS:
         sats = amount;
         break;
-      case BitcoinUnit.LOCAL_CURRENCY:
+      case BigcoinUnit.LOCAL_CURRENCY:
         sats = new BigNumber(fiatToBTC(+amount)).multipliedBy(100000000).toString();
         break;
     }
-    if (previousUnit === BitcoinUnit.LOCAL_CURRENCY && conversionCache[amount + previousUnit]) {
+    if (previousUnit === BigcoinUnit.LOCAL_CURRENCY && conversionCache[amount + previousUnit]) {
       // cache hit! we reuse old value that supposedly doesnt have rounding errors
       sats = conversionCache[amount + previousUnit];
     }
@@ -179,7 +179,7 @@ export const AmountInput: React.FC<AmountInputProps> = props => {
     const newInputValue = formatBalancePlain(+sats, newUnit, false);
     console.log(`${log} ${sats}(sats) -> ${newInputValue}(${newUnit})`);
 
-    if (newUnit === BitcoinUnit.LOCAL_CURRENCY && previousUnit === BitcoinUnit.SATS) {
+    if (newUnit === BigcoinUnit.LOCAL_CURRENCY && previousUnit === BigcoinUnit.SATS) {
       // we cache conversion, so when we will need reverse conversion there wont be a rounding error
       conversionCache[newInputValue + newUnit] = amount;
     }
@@ -194,7 +194,7 @@ export const AmountInput: React.FC<AmountInputProps> = props => {
   const handleChangeText = useCallback(
     (text: string) => {
       text = text.trim();
-      if (unit !== BitcoinUnit.LOCAL_CURRENCY) {
+      if (unit !== BigcoinUnit.LOCAL_CURRENCY) {
         text = text.replace(',', '.');
         const split = text.split('.');
         if (split.length >= 2) {
@@ -203,7 +203,7 @@ export const AmountInput: React.FC<AmountInputProps> = props => {
           text = `${parseInt(split[0], 10)}`;
         }
 
-        text = unit === BitcoinUnit.BTC ? text.replace(/[^0-9.]/g, '') : text.replace(/[^0-9]/g, '');
+        text = unit === BigcoinUnit.BBTC ? text.replace(/[^0-9.]/g, '') : text.replace(/[^0-9]/g, '');
       } else {
         text = text.replace(/,/gi, '.');
         if (text.split('.').length > 2) {
@@ -250,7 +250,7 @@ export const AmountInput: React.FC<AmountInputProps> = props => {
   );
 
   const stylesHook = StyleSheet.create({
-    center: { padding: amount === BitcoinUnit.MAX ? 0 : 15 },
+    center: { padding: amount === BigcoinUnit.MAX ? 0 : 15 },
     localCurrency: { color: disabled ? colors.buttonDisabledTextColor : colors.alternativeTextColor2 },
     input: { color: disabled ? colors.buttonDisabledTextColor : colors.alternativeTextColor2, fontSize: amount.length > 10 ? 20 : 36 },
     cryptoCurrency: { color: disabled ? colors.buttonDisabledTextColor : colors.alternativeTextColor2 },
@@ -262,10 +262,10 @@ export const AmountInput: React.FC<AmountInputProps> = props => {
         {!disabled && <View style={[styles.center, stylesHook.center]} />}
         <View style={styles.flex}>
           <View style={styles.container}>
-            {unit === BitcoinUnit.LOCAL_CURRENCY && amount !== BitcoinUnit.MAX && (
+            {unit === BigcoinUnit.LOCAL_CURRENCY && amount !== BigcoinUnit.MAX && (
               <Text style={[styles.localCurrency, stylesHook.localCurrency]}>{getCurrencySymbol() + ' '}</Text>
             )}
-            {amount !== BitcoinUnit.MAX ? (
+            {amount !== BigcoinUnit.MAX ? (
               <TextInput
                 onSelectionChange={handleSelectionChange}
                 testID="BitcoinAmountInput"
@@ -275,17 +275,17 @@ export const AmountInput: React.FC<AmountInputProps> = props => {
                 maxLength={maxLength}
                 ref={textInputRef}
                 editable={!isLoading && !disabled}
-                value={amount === BitcoinUnit.MAX ? loc.units.MAX : parseFloat(amount) >= 0 ? String(amount) : undefined}
+                value={amount === BigcoinUnit.MAX ? loc.units.MAX : parseFloat(amount) >= 0 ? String(amount) : undefined}
                 placeholderTextColor={disabled ? colors.buttonDisabledTextColor : colors.alternativeTextColor2}
                 style={[styles.input, stylesHook.input]}
                 {...otherProps}
               />
             ) : (
               <Pressable onPress={resetAmount}>
-                <Text style={[styles.input, stylesHook.input]}>{BitcoinUnit.MAX}</Text>
+                <Text style={[styles.input, stylesHook.input]}>{BigcoinUnit.MAX}</Text>
               </Pressable>
             )}
-            {unit !== BitcoinUnit.LOCAL_CURRENCY && amount !== BitcoinUnit.MAX && (
+            {unit !== BigcoinUnit.LOCAL_CURRENCY && amount !== BigcoinUnit.MAX && (
               <Text style={[styles.cryptoCurrency, stylesHook.cryptoCurrency]}>{' ' + loc.units[unit]}</Text>
             )}
           </View>
@@ -295,7 +295,7 @@ export const AmountInput: React.FC<AmountInputProps> = props => {
             </Text>
           </View>
         </View>
-        {!disabled && amount !== BitcoinUnit.MAX && (
+        {!disabled && amount !== BigcoinUnit.MAX && (
           <TouchableOpacity
             accessibilityRole="button"
             accessibilityLabel={loc._.change_input_currency}

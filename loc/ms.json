@@ -347,7 +347,7 @@
     "vault_key": "Kunci Bilik Kebal {number}",
     "required_keys_out_of_total": "Anak kunci diperlukan daripada jumlah keseluruhan",
     "fee": "Yuran: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "Pasti",
     "header": "Hantar",
     "view": "Lihat",
@@ -421,7 +421,7 @@
     "sort_status": "Keadaan"
   },
   "units": {
-    "BTC": "BTC",
+    "BBTC": "BBTC",
     "MAX": "Maks",
     "sat_vbyte": "sat/vBait",
     "sats": "sat"

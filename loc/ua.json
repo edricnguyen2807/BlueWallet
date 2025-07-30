@@ -268,7 +268,7 @@
   },
   "multisig": {
     "fee": "Комісія: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "Підтвердити",
     "header": "Надіслати",
     "view": "Переглянути",
@@ -307,7 +307,7 @@
     "sort_status": "Статус"
   },
   "units": {
-    "BTC": "BTC",
+    "BBTC": "BBTC",
     "MAX": "Макс",
     "sat_vbyte": "sat/vByte"
   },

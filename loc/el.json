@@ -279,7 +279,7 @@
   },
   "multisig": {
     "provide_signature": "Παροχή υπογραφής",
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "Επιβεβαίωση",
     "header": "Αποστολή",
     "view": "Προβολή",
@@ -308,7 +308,7 @@
     "sort_status": "Κατάσταση"
   },
   "units": {
-    "BTC": "BTC",
+    "BBTC": "BBTC",
     "MAX": "Μέγιστο",
     "sat_vbyte": "sat/vByte",
     "sats": "sats"

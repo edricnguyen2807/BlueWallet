@@ -267,7 +267,7 @@
     "provide_signature": "ใส่ลายเซ็น",
     "required_keys_out_of_total": "กุญแจที่ต้องการจากทั้งหมด",
     "fee": "ค่าธรรมเนียม: {number}",
-    "fee_btc": "{number} บิตคอยน์",
+    "fee_bbtc": "{number} บิตคอยน์",
     "confirm": "ยืนยัน",
     "header": "ส่ง",
     "view": "ดู",

@@ -391,7 +391,7 @@
     "vault_key": "Valvnyckel {number}",
     "required_keys_out_of_total": "Nödvändiga nycklar av totalt antal",
     "fee": "Avgift: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "Bekräfta",
     "header": "Skicka",
     "view": "Granska",
@@ -469,7 +469,7 @@
     "sort_status": "Status"
   },
   "units": {
-    "BTC": "BTC",
+    "BBTC": "BBTC",
     "MAX": "Max",
     "sat_vbyte": "sat/vByte",
     "sats": "sats"

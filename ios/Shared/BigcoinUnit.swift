@@ -1,5 +1,5 @@
 //
-//  BitcoinUnit.swift
+//  BigcoinUnit.swift
 //  BlueWallet
 //
 //  Created by Marcos Rodriguez on 4/14/24.
@@ -9,17 +9,17 @@ import Foundation
 
 /// Represents the various balance units used in the application.
 /// Conforms to `String`, `Codable`, `Equatable`, and `CustomStringConvertible` for easy encoding/decoding, comparisons, and descriptions.
-enum BitcoinUnit: String, Codable, Equatable, CustomStringConvertible {
-    case btc = "BTC"
+enum BigcoinUnit: String, Codable, Equatable, CustomStringConvertible {
+    case bbtc = "BBTC"
     case sats = "sats"
     case localCurrency = "local_currency"
     case max = "MAX"
 
-    /// Provides a user-friendly description of the `BitcoinUnit`.
+    /// Provides a user-friendly description of the `BigcoinUnit`.
     var description: String {
         switch self {
-        case .btc:
-            return "BTC"
+        case .bbtc:
+            return "BBTC"
         case .sats:
             return "sats"
         case .localCurrency:
@@ -29,11 +29,11 @@ enum BitcoinUnit: String, Codable, Equatable, CustomStringConvertible {
         }
     }
 
-    /// Initializes a `BitcoinUnit` from a raw string.
+    /// Initializes a `BigcoinUnit` from a raw string.
     /// - Parameter rawString: The raw string representing the balance unit.
     init(rawString: String) {
         switch rawString.lowercased() {
-        case "btc":
+        case "bbtc":
             self = .sats
         case "sats":
             self = .sats
@@ -49,8 +49,8 @@ enum BitcoinUnit: String, Codable, Equatable, CustomStringConvertible {
     }
 }
 
-extension BitcoinUnit {
-    static var mockUnit: BitcoinUnit {
+extension BigcoinUnit {
+    static var mockUnit: BigcoinUnit {
         return .sats
     }
 }

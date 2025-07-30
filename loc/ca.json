@@ -265,7 +265,7 @@
     "title": "Saldo total"
   },
   "multisig": {
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "Confirmar",
     "header": "Enviar",
     "view": "Vista",

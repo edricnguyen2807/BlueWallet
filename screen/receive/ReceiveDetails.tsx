@@ -26,7 +26,7 @@ import { useSettings } from '../../hooks/context/useSettings';
 import { useStorage } from '../../hooks/context/useStorage';
 import { useExtendedNavigation } from '../../hooks/useExtendedNavigation';
 import loc, { formatBalance } from '../../loc';
-import { BitcoinUnit, Chain } from '../../models/bitcoinUnits';
+import { BigcoinUnit, Chain } from '../../models/bigcoinUnits';
 import { ReceiveDetailsStackParamList } from '../../navigation/ReceiveDetailsStackParamList';
 import { CommonToolTipActions } from '../../typings/CommonToolTipActions';
 import { SuccessView } from '../send/success';
@@ -72,12 +72,12 @@ const ReceiveDetails = () => {
   const { colors } = useTheme();
   const [customLabel, setCustomLabel] = useState('');
   const [customAmount, setCustomAmount] = useState('');
-  const [customUnit, setCustomUnit] = useState<BitcoinUnit>(BitcoinUnit.BTC);
+  const [customUnit, setCustomUnit] = useState<BigcoinUnit>(BigcoinUnit.BBTC);
   const [bip21encoded, setBip21encoded] = useState('');
   const [isCustom, setIsCustom] = useState(false);
   const [tempCustomLabel, setTempCustomLabel] = useState('');
   const [tempCustomAmount, setTempCustomAmount] = useState('');
-  const [tempCustomUnit, setTempCustomUnit] = useState<BitcoinUnit>(BitcoinUnit.BTC);
+  const [tempCustomUnit, setTempCustomUnit] = useState<BigcoinUnit>(BigcoinUnit.BBTC);
   const [showPendingBalance, setShowPendingBalance] = useState(false);
   const [showConfirmedBalance, setShowConfirmedBalance] = useState(false);
   const [showAddress, setShowAddress] = useState(false);
@@ -275,8 +275,8 @@ const ReceiveDetails = () => {
 
           setDisplayBalance(
             loc.formatString(loc.transactions.pending_with_amount, {
-              amt1: formatBalance(balance.unconfirmed, BitcoinUnit.LOCAL_CURRENCY, true).toString(),
-              amt2: formatBalance(balance.unconfirmed, BitcoinUnit.BTC, true).toString(),
+              amt1: formatBalance(balance.unconfirmed, BigcoinUnit.LOCAL_CURRENCY, true).toString(),
+              amt2: formatBalance(balance.unconfirmed, BigcoinUnit.BBTC, true).toString(),
             }),
           );
           setShowPendingBalance(true);
@@ -293,8 +293,8 @@ const ReceiveDetails = () => {
             setShowAddress(false);
             setDisplayBalance(
               loc.formatString(loc.transactions.received_with_amount, {
-                amt1: formatBalance(balanceToShow, BitcoinUnit.LOCAL_CURRENCY, true).toString(),
-                amt2: formatBalance(balanceToShow, BitcoinUnit.BTC, true).toString(),
+                amt1: formatBalance(balanceToShow, BigcoinUnit.LOCAL_CURRENCY, true).toString(),
+                amt2: formatBalance(balanceToShow, BigcoinUnit.BBTC, true).toString(),
               }),
             );
             if (walletID) {
@@ -462,16 +462,16 @@ const ReceiveDetails = () => {
     let amount = tempCustomAmount;
     const amountNumber = Number(amount);
     switch (tempCustomUnit) {
-      case BitcoinUnit.BTC:
+      case BigcoinUnit.BBTC:
         // nop
         break;
-      case BitcoinUnit.SATS:
+      case BigcoinUnit.SATS:
         amount = satoshiToBTC(amountNumber);
         break;
-      case BitcoinUnit.LOCAL_CURRENCY:
-        if (AmountInput.conversionCache[amount + BitcoinUnit.LOCAL_CURRENCY]) {
+      case BigcoinUnit.LOCAL_CURRENCY:
+        if (AmountInput.conversionCache[amount + BigcoinUnit.LOCAL_CURRENCY]) {
           // cache hit! we reuse old value that supposedly doesnt have rounding errors
-          amount = satoshiToBTC(Number(AmountInput.conversionCache[amount + BitcoinUnit.LOCAL_CURRENCY]));
+          amount = satoshiToBTC(Number(AmountInput.conversionCache[amount + BigcoinUnit.LOCAL_CURRENCY]));
         } else {
           amount = fiatToBTC(amountNumber);
         }
@@ -488,10 +488,10 @@ const ReceiveDetails = () => {
   const resetCustomAmount = () => {
     setTempCustomLabel('');
     setTempCustomAmount('');
-    setTempCustomUnit(wallet?.getPreferredBalanceUnit() || BitcoinUnit.BTC);
+    setTempCustomUnit(wallet?.getPreferredBalanceUnit() || BigcoinUnit.BBTC);
     setCustomLabel('');
     setCustomAmount('');
-    setCustomUnit(wallet?.getPreferredBalanceUnit() || BitcoinUnit.BTC);
+    setCustomUnit(wallet?.getPreferredBalanceUnit() || BigcoinUnit.BBTC);
     // address is always defined here
     setBip21encoded(DeeplinkSchemaMatch.bip21encode(address!));
     setShowAddress(true);
@@ -505,11 +505,11 @@ const ReceiveDetails = () => {
     const number = Number(customAmount);
     if (number > 0) {
       switch (customUnit) {
-        case BitcoinUnit.BTC:
+        case BigcoinUnit.BBTC:
           return customAmount + ' BTC';
-        case BitcoinUnit.SATS:
+        case BigcoinUnit.SATS:
           return satoshiToBTC(number) + ' BTC';
-        case BitcoinUnit.LOCAL_CURRENCY:
+        case BigcoinUnit.LOCAL_CURRENCY:
           return fiatToBTC(number) + ' BTC';
       }
       return customAmount + ' ' + customUnit;

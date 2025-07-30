@@ -376,7 +376,7 @@
     "vault_key": "Vault-nøkkel {number}",
     "required_keys_out_of_total": "Nødvendige nøkler av totalen",
     "fee": "Avgift: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_bbtc": "{number} BBTC",
     "confirm": "Bekreft",
     "header": "Send",
     "view": "Vis",
@@ -454,7 +454,7 @@
     "sort_status": "Status"
   },
   "units": {
-    "BTC": "BTC",
+    "BBTC": "BBTC",
     "MAX": "Maks",
     "sat_vbyte": "sat/vByte",
     "sats": "sats"

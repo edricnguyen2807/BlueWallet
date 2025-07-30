@@ -398,7 +398,7 @@
     "vault_key": "کلید گاوصندوق {number}",
     "required_keys_out_of_total": "کلیدهای موردنیاز از کل",
     "fee": "کارمزد: {number}",
-    "fee_btc": "{number} بیت‌کوین",
+    "fee_bbtc": "{number} بیت‌کوین",
     "confirm": "تأیید",
     "header": "ارسال",
     "view": "مشاهده",
