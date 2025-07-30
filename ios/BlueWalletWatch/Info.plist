@@ -49,7 +49,7 @@
 	<key>WKApplication</key>
 	<true/>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>org.bigcoinwallet.bigwallet</string>
+	<string>org.bigbtc.bigwallet</string>
 	<key>bugsnag</key>
 	<dict>
 		<key>apiKey</key>

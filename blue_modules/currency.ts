@@ -8,7 +8,7 @@ const PREFERRED_CURRENCY_STORAGE_KEY = 'preferredCurrency';
 const PREFERRED_CURRENCY_LOCALE_STORAGE_KEY = 'preferredCurrencyLocale';
 const EXCHANGE_RATES_STORAGE_KEY = 'exchangeRates';
 const LAST_UPDATED = 'LAST_UPDATED';
-export const GROUP_ORG_BIGWALLET = 'group.org.bigcoinwallet.bigwallet';
+export const GROUP_ORG_BIGWALLET = 'group.org.bigbtc.bigwallet';
 const BTC_PREFIX = 'BTC_';
 
 export interface CurrencyRate {

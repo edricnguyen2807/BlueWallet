@@ -4,14 +4,14 @@
 <dict>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
-		<string>org.bigcoinwallet.bigwallet.fetchTxsForWallet</string>
+		<string>org.bigbtc.bigwallet.fetchTxsForWallet</string>
 	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>BlueWallet</string>
+	<string>BBTC Wallet</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -184,7 +184,7 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>In order to quickly scan the recipient's address, we need your permission to use the camera to scan their QR Code.</string>
+	<string>In order to quickly scan the recipient&apos;s address, we need your permission to use the camera to scan their QR Code.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>In order to use FaceID please confirm your permission.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
@@ -193,8 +193,8 @@
 	<string>In order to import an image for scanning, we need your permission to access your photo library.</string>
 	<key>NSUserActivityTypes</key>
 	<array>
-		<string>org.bigcoinwallet.bigwallet.receiveonchain</string>
-		<string>org.bigcoinwallet.bigwallet.xpub</string>
+		<string>org.bigbtc.bigwallet.receiveonchain</string>
+		<string>org.bigbtc.bigwallet.xpub</string>
 	</array>
 	<key>UIAppFonts</key>
 	<array>
@@ -337,7 +337,7 @@
 		</dict>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>org.bigcoinwallet.bigwallet</string>
+	<string>org.bigbtc.bigwallet</string>
 	<key>bugsnag</key>
 	<dict>
 		<key>apiKey</key>

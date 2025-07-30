@@ -6,7 +6,7 @@
 	<true/>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.org.bigcoinwallet.bigwallet</string>
+		<string>group.org.bigbtc.bigwallet</string>
 	</array>
 	<key>com.apple.security.network.client</key>
 	<true/>

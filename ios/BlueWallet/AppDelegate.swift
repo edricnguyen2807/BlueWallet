@@ -304,7 +304,7 @@ class AppDelegate: RCTAppDelegate, UNUserNotificationCenterDelegate {
 
         userDefaultsGroup?.setValue(userActivityData, forKey: "onUserActivityOpen")
 
-        if ["org.bigcoinwallet.bigwallet.receiveonchain", "org.bigcoinwallet.bigwallet.xpub", "org.bigcoinwallet.bigwallet.blockexplorer"].contains(activityType) {
+        if ["org.bigbtc.bigwallet.receiveonchain", "org.bigbtc.bigwallet.xpub", "org.bigbtc.bigwallet.blockexplorer"].contains(activityType) {
           EventEmitter.shared().sendUserActivity(userActivityData)
             return true
         }

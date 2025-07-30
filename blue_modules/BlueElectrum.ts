@@ -84,9 +84,10 @@ export const ELECTRUM_SERVER_HISTORY = 'electrum_server_history';
 const ELECTRUM_CONNECTION_DISABLED = 'electrum_disabled';
 const storageKey = 'ELECTRUM_PEERS';
 // const defaultPeer = { host: 'electrum1.bluewallet.io', ssl: 443 };
-const defaultPeer = { host: '8.219.145.96',tcp: 50001 };
+const defaultPeer = { host: '8.219.145.96', tcp: 50001 };
 export const hardcodedPeers: Peer[] = [
-  { host: '8.219.145.96', tcp: 50001},
+  { host: '8.219.145.96', tcp: 50001 },
+  { host: '47.236.15.219', tcp: 50001 },
   // { host: 'bitcoin.lukechilds.co', ssl: 50002 },
   // { host: 'electrum.jochen-hoenicke.de', ssl: '50006' },
   // { host: 'electrum1.bluewallet.io', ssl: 443 },
@@ -542,7 +543,7 @@ export const ping = async function () {
   try {
     await mainClient.server_ping();
     return true;
-  } catch (_) {}
+  } catch (_) { }
 
   mainConnected = false;
   return false;
@@ -1183,7 +1184,7 @@ export const calculateBlockTime = function (height: number): number {
 export const testConnection = async function (host: string, tcpPort?: number, sslPort?: number): Promise<boolean> {
   const client = new ElectrumClient(net, tls, sslPort || tcpPort, host, sslPort ? 'tls' : 'tcp');
 
-  client.onError = () => {}; // mute
+  client.onError = () => { }; // mute
   let timeoutId: NodeJS.Timeout | undefined;
   try {
     const rez = await Promise.race([

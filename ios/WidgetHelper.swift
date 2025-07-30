@@ -11,7 +11,7 @@ class WidgetHelper {
     }
     
     static func getSharedUserDefaults() -> UserDefaults? {
-        let suiteName = "group.org.bigcoinwallet.bigwallet"
+        let suiteName = "group.org.bigbtc.bigwallet"
         let defaults = UserDefaults(suiteName: suiteName)
         if defaults == nil {
             NSLog("[WidgetHelper] Warning: Could not access shared UserDefaults")

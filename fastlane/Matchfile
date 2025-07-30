@@ -9,11 +9,11 @@ type(ENV["MATCH_TYPE"] || "appstore")
 
 # App identifiers for all BlueWallet apps
 app_identifier([
-  "org.bigcoinwallet.bigwallet", 
-  "org.bigcoinwallet.bigwallet.watch", 
-  "org.bigcoinwallet.bigwallet.watch.extension", 
-  "org.bigcoinwallet.bigwallet.Stickers", 
-  "org.bigcoinwallet.bigwallet.MarketWidget"
+  "org.bigbtc.bigwallet", 
+  "org.bigbtc.bigwallet.watch", 
+  "org.bigbtc.bigwallet.watch.extension", 
+  "org.bigbtc.bigwallet.Stickers", 
+  "org.bigbtc.bigwallet.MarketWidget"
 ])
 
 # Your Apple Developer account email address

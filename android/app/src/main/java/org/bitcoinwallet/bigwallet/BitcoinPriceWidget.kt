@@ -1,4 +1,4 @@
-package org.bigcoinwallet.bigwallet
+package org.bigbtc.bigwallet
 
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
@@ -15,7 +15,7 @@ class BitcoinPriceWidget : AppWidgetProvider() {
 
     companion object {
         private const val TAG = "BitcoinPriceWidget"
-        private const val SHARED_PREF_NAME = "group.org.bigcoinwallet.bigwallet"
+        private const val SHARED_PREF_NAME = "group.org.bigbtc.bigwallet"
         
         /**
          * Update network status and apply proper theme

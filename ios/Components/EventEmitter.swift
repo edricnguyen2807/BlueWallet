@@ -23,7 +23,7 @@ class EventEmitter: RCTEventEmitter {
     
     @objc func getMostRecentUserActivity(_ resolve: @escaping RCTPromiseResolveBlock,
                                            rejecter reject: RCTPromiseRejectBlock) {
-        if let defaults = UserDefaults(suiteName: "group.org.bigcoinwallet.bigwallet") {
+        if let defaults = UserDefaults(suiteName: "group.org.bigbtc.bigwallet") {
             resolve(defaults.value(forKey: "onUserActivityOpen"))
         } else {
             resolve(nil)

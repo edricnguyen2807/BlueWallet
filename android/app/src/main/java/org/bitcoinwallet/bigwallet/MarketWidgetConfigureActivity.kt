@@ -1,4 +1,4 @@
-package org.bigcoinwallet.bigwallet
+package org.bigbtc.bigwallet
 
 import android.appwidget.AppWidgetManager
 import android.content.Intent

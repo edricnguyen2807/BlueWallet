@@ -1,4 +1,4 @@
-package org.bigcoinwallet.bigwallet
+package org.bigbtc.bigwallet
 
 import android.content.Context
 import android.util.Log

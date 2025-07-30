@@ -1,4 +1,4 @@
-package org.bigcoinwallet.bigwallet
+package org.bigbtc.bigwallet
 
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
@@ -13,13 +13,13 @@ import androidx.work.WorkManager
 import kotlinx.coroutines.delay
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
-import org.bigcoinwallet.bigwallet.ElectrumClient.ElectrumServer
+import org.bigbtc.bigwallet.ElectrumClient.ElectrumServer
 
 class MarketWidget : AppWidgetProvider() {
 
     companion object {
         private const val TAG = "MarketWidget"
-        private const val SHARED_PREF_NAME = "group.org.bigcoinwallet.bigwallet"
+        private const val SHARED_PREF_NAME = "group.org.bigbtc.bigwallet"
         private const val DEFAULT_CURRENCY = "USD"
         private const val KEY_LAST_ONLINE_STATUS = "market_widget_last_online_status"
 

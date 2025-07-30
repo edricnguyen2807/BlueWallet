@@ -1,4 +1,4 @@
-package org.bigcoinwallet.bigwallet
+package org.bigbtc.bigwallet
 
 import android.app.Application
 import android.content.Context
@@ -18,7 +18,7 @@ import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.react.soloader.OpenSourceMergedSoMapping
 import com.facebook.soloader.SoLoader
 import com.facebook.react.modules.i18nmanager.I18nUtil
-import org.bigcoinwallet.bigwallet.components.segmentedcontrol.CustomSegmentedControlPackage
+import org.bigbtc.bigwallet.components.segmentedcontrol.CustomSegmentedControlPackage
 
 class MainApplication : Application(), ReactApplication {
 
@@ -61,7 +61,7 @@ class MainApplication : Application(), ReactApplication {
 
     override fun onCreate() {
         super.onCreate()
-        sharedPref = getSharedPreferences("group.org.bigcoinwallet.bigwallet", Context.MODE_PRIVATE)
+        sharedPref = getSharedPreferences("group.org.bigbtc.bigwallet", Context.MODE_PRIVATE)
         sharedPref.registerOnSharedPreferenceChangeListener(preferenceChangeListener)
         
         // Register the theme change receiver

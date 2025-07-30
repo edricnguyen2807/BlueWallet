@@ -1,11 +1,11 @@
-package org.bigcoinwallet.bigwallet
+package org.bigbtc.bigwallet
 
 import android.content.Context
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatDelegate
 
 object ThemeHelper {
-    private const val SHARED_PREF_NAME = "group.org.bigcoinwallet.bigwallet"
+    private const val SHARED_PREF_NAME = "group.org.bigbtc.bigwallet"
     private const val KEY_FORCE_DARK_MODE = "force_dark_mode"
 
     /**

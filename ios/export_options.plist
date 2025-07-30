@@ -18,16 +18,16 @@
       <string>export</string>
       <key>provisioningProfiles</key>
       <dict>
-          <key>org.bigcoinwallet.bigwallet</key>
-          <string>match AppStore org.bigcoinwallet.bigwallet</string>
-          <key>org.bigcoinwallet.bigwallet.watch</key>
-          <string>match AppStore org.bigcoinwallet.bigwallet.watch</string>
-          <key>org.bigcoinwallet.bigwallet.watch.extension</key>
-          <string>match AppStore org.bigcoinwallet.bigwallet.watch.extension</string>
-          <key>org.bigcoinwallet.bigwallet.Stickers</key>
-          <string>match AppStore org.bigcoinwallet.bigwallet.Stickers</string>
-          <key>org.bigcoinwallet.bigwallet.MarketWidget</key>
-          <string>match AppStore org.bigcoinwallet.bigwallet.MarketWidget</string>
+          <key>org.bigbtc.bigwallet</key>
+          <string>match AppStore org.bigbtc.bigwallet</string>
+          <key>org.bigbtc.bigwallet.watch</key>
+          <string>match AppStore org.bigbtc.bigwallet.watch</string>
+          <key>org.bigbtc.bigwallet.watch.extension</key>
+          <string>match AppStore org.bigbtc.bigwallet.watch.extension</string>
+          <key>org.bigbtc.bigwallet.Stickers</key>
+          <string>match AppStore org.bigbtc.bigwallet.Stickers</string>
+          <key>org.bigbtc.bigwallet.MarketWidget</key>
+          <string>match AppStore org.bigbtc.bigwallet.MarketWidget</string>
       </dict>
   </dict>
 </plist>

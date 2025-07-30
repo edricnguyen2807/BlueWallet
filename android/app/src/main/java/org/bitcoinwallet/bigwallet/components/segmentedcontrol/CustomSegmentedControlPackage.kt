@@ -1,4 +1,4 @@
-package org.bigcoinwallet.bigwallet.components.segmentedcontrol
+package org.bigbtc.bigwallet.components.segmentedcontrol
 
 import com.facebook.react.ReactPackage
 import com.facebook.react.bridge.NativeModule

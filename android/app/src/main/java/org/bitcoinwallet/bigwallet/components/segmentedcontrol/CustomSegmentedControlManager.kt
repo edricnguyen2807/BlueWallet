@@ -1,4 +1,4 @@
-package org.bigcoinwallet.bigwallet.components.segmentedcontrol
+package org.bigbtc.bigwallet.components.segmentedcontrol
 
 import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.common.MapBuilder
