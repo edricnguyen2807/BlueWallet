@@ -1,4 +1,4 @@
-import * as bitcoin from 'bitcoinjs-lib';
+import * as bigcoin from 'bigcoinjs-lib';
 import { CoinSelectOutput, CoinSelectReturnInput, CoinSelectUtxo } from 'coinselect';
 
 import { BitcoinUnit } from '../../models/bitcoinUnits';
@@ -50,11 +50,11 @@ export type CreateTransactionTarget = {
 };
 
 export type CreateTransactionResult = {
-  tx?: bitcoin.Transaction;
+  tx?: bigcoin.Transaction;
   inputs: CoinSelectReturnInput[];
   outputs: CoinSelectOutput[];
   fee: number;
-  psbt: bitcoin.Psbt;
+  psbt: bigcoin.Psbt;
 };
 
 type TransactionInput = {

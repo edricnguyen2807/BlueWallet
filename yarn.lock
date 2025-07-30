@@ -3171,6 +3171,18 @@ bech32@^2.0.0, bech32@2.0.0:
   resolved "https://registry.npmjs.org/bech32/-/bech32-2.0.0.tgz"
   integrity sha512-LcknSilhIGatDAsY1ak2I8VtGaHNhgMSYVxFrGLXv+xLHytaKZKcaUJJUE7qmBr7h33o5YQwP55pMI0xmkpJwg==
 
+"bigcoinjs-lib@https://github.com/Bigcoin4TP/bigcoinjs-lib#v7.0.1":
+  version "7.0.1"
+  resolved "git+ssh://git@github.com/Bigcoin4TP/bigcoinjs-lib.git#5ba5825568edfd489acb4f487d418f06f8c53853"
+  dependencies:
+    "@noble/hashes" "^1.2.0"
+    bech32 "^2.0.0"
+    bip174 "^3.0.0-rc.0"
+    bs58check "^4.0.0"
+    uint8array-tools "^0.0.9"
+    valibot "^0.38.0"
+    varuint-bitcoin "^2.0.0"
+
 bigi@^1.1.0, bigi@^1.2.0:
   version "1.4.2"
   resolved "https://registry.npmjs.org/bigi/-/bigi-1.4.2.tgz"

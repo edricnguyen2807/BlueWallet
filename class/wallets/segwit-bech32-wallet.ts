@@ -1,4 +1,4 @@
-import * as bitcoin from 'bitcoinjs-lib';
+import * as bigcoin from 'bigcoinjs-lib';
 import { CoinSelectTarget } from 'coinselect';
 import { ECPairFactory } from 'ecpair';
 
@@ -26,7 +26,7 @@ export class SegwitBech32Wallet extends LegacyWallet {
         console.warn('only compressed public keys are good for segwit');
         return false;
       }
-      address = bitcoin.payments.p2wpkh({
+      address = bigcoin.payments.p2wpkh({
         pubkey: keyPair.publicKey,
       }).address;
     } catch (err) {
@@ -41,9 +41,9 @@ export class SegwitBech32Wallet extends LegacyWallet {
     try {
       const pubkey = Buffer.from(witness, 'hex');
       return (
-        bitcoin.payments.p2wpkh({
+        bigcoin.payments.p2wpkh({
           pubkey,
-          network: bitcoin.networks.bitcoin,
+          network: bigcoin.networks.bigcoin,
         }).address ?? false
       );
     } catch (_) {
@@ -61,9 +61,9 @@ export class SegwitBech32Wallet extends LegacyWallet {
     try {
       const scriptPubKey2 = Buffer.from(scriptPubKey, 'hex');
       return (
-        bitcoin.payments.p2wpkh({
+        bigcoin.payments.p2wpkh({
           output: scriptPubKey2,
-          network: bitcoin.networks.bitcoin,
+          network: bigcoin.networks.bigcoin,
         }).address ?? false
       );
     } catch (_) {
@@ -83,7 +83,7 @@ export class SegwitBech32Wallet extends LegacyWallet {
     if (targets.length === 0) throw new Error('No destination provided');
     const { inputs, outputs, fee } = this.coinselect(utxos, targets, feeRate);
     sequence = sequence || 0xffffffff; // disable RBF by default
-    const psbt = new bitcoin.Psbt();
+    const psbt = new bigcoin.Psbt();
     let c = 0;
     const values: Record<number, number> = {};
     const keyPair = ECPair.fromWIF(this.secret);
@@ -93,7 +93,7 @@ export class SegwitBech32Wallet extends LegacyWallet {
       c++;
 
       const pubkey = keyPair.publicKey;
-      const p2wpkh = bitcoin.payments.p2wpkh({ pubkey });
+      const p2wpkh = bigcoin.payments.p2wpkh({ pubkey });
       if (!p2wpkh.output) {
         throw new Error('Internal error: no p2wpkh.output during createTransaction()');
       }

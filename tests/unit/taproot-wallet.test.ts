@@ -1,5 +1,5 @@
 import assert from 'assert';
-import * as bitcoin from 'bitcoinjs-lib';
+import * as bigcoin from 'bigcoinjs-lib';
 
 import { TaprootWallet } from '../../class';
 
@@ -53,9 +53,9 @@ describe('Taproot wallet', () => {
     );
 
     // verifying:
-    const tx = bitcoin.Transaction.fromHex(txNew.tx.toHex());
+    const tx = bigcoin.Transaction.fromHex(txNew.tx.toHex());
     assert.strictEqual(tx.ins.length, 1);
     assert.strictEqual(tx.outs.length, 1);
-    assert.strictEqual('13HaCAB4jf7FYSZexJxoczyDDnutzZigjS', bitcoin.address.fromOutputScript(tx.outs[0].script)); // to address
+    assert.strictEqual('13HaCAB4jf7FYSZexJxoczyDDnutzZigjS', bigcoin.address.fromOutputScript(tx.outs[0].script)); // to address
   });
 });

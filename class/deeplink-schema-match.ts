@@ -1,5 +1,5 @@
 import bip21, { TOptions } from 'bip21';
-import * as bitcoin from 'bitcoinjs-lib';
+import * as bigcoin from 'bigcoinjs-lib';
 import URL from 'url';
 import { readFileOutsideSandbox } from '../blue_modules/fs';
 import { Chain } from '../models/bitcoinUnits';
@@ -321,7 +321,7 @@ class DeeplinkSchemaMatch {
     address = address.replace('://', ':').replace('bitcoin:', '').replace('BITCOIN:', '').replace('bitcoin=', '').split('?')[0];
     let isValidBitcoinAddress = false;
     try {
-      bitcoin.address.toOutputScript(address);
+      bigcoin.address.toOutputScript(address);
       isValidBitcoinAddress = true;
     } catch (err) {
       isValidBitcoinAddress = false;
