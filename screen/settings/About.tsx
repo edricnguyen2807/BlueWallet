@@ -79,7 +79,7 @@ const About: React.FC = () => {
       preferredAndroidMarket: AndroidMarket.Google,
       preferInApp: Platform.OS !== 'android',
       openAppStoreIfInAppFails: true,
-      fallbackPlatformURL: 'https://bluewallet.io',
+      fallbackPlatformURL: 'https://bigbtc.org',
     };
     Rate.rate(options, success => {
       if (success) {
@@ -93,7 +93,7 @@ const About: React.FC = () => {
       <BlueCard>
         <View style={styles.center}>
           <Image style={styles.logo} source={require('../../img/bluebeast.png')} />
-          <Text style={styles.textFree}>{loc.settings.about_free}</Text>
+          <Text style={styles.textFree}>{}</Text>
           <Text style={[styles.textBackup, stylesHook.textBackup]}>{formatStringAddTwoWhiteSpaces(loc.settings.about_backup)}</Text>
           {((Platform.OS === 'android' && hasGmsSync()) || Platform.OS !== 'android') && (
             <Button onPress={handleOnRatePress} title={loc.settings.about_review + ' ⭐🙏'} />
@@ -133,19 +133,10 @@ const About: React.FC = () => {
           <BlueTextCentered>{loc.settings.about_awesome} 👍</BlueTextCentered>
           <BlueSpacing20 />
           <BlueTextCentered>React Native</BlueTextCentered>
-          <BlueTextCentered>bitcoinjs-lib</BlueTextCentered>
+          <BlueTextCentered>bigcoinjs-lib</BlueTextCentered>
           <BlueTextCentered>Nodejs</BlueTextCentered>
           <BlueTextCentered>Electrum server</BlueTextCentered>
           <BlueSpacing20 />
-          <Pressable
-            accessibilityRole="button"
-            onPress={handleOnGithubPress}
-            android_ripple={{ color: colors.androidRippleColor }}
-            style={({ pressed }) => [Platform.OS === 'ios' && pressed ? styles.pressed : null, styles.buttonLink, stylesHook.buttonLink]}
-          >
-            <Icon size={22} name="github" type="font-awesome-5" color={colors.foregroundColor} />
-            <Text style={[styles.textLink, stylesHook.textLink]}>{formatStringAddTwoWhiteSpaces(loc.settings.about_sm_github)}</Text>
-          </Pressable>
         </View>
       </BlueCard>
       <ListItem
