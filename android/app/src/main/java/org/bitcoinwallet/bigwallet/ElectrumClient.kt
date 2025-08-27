@@ -31,6 +31,7 @@ class ElectrumClient {
         val hardcodedPeers = listOf(
             ElectrumServer("8.219.145.96", 50001, false),
             ElectrumServer("47.236.15.219", 50001, false),
+            //ElectrumServer("192.168.100.26", 60001, false),
             // ElectrumServer("electrum2.bluewallet.io", 50001, false),
             // ElectrumServer("electrum3.bluewallet.io", 50001, false),
             // ElectrumServer("electrum1.bluewallet.io", 443, true),

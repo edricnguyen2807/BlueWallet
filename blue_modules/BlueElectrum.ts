@@ -88,6 +88,7 @@ const defaultPeer = { host: '8.219.145.96', tcp: 50001 };
 export const hardcodedPeers: Peer[] = [
   { host: '8.219.145.96', tcp: 50001 },
   { host: '47.236.15.219', tcp: 50001 },
+  //{ host: '192.168.100.26', tcp: 60001 },
   // { host: 'bitcoin.lukechilds.co', ssl: 50002 },
   // { host: 'electrum.jochen-hoenicke.de', ssl: '50006' },
   // { host: 'electrum1.bluewallet.io', ssl: 443 },
